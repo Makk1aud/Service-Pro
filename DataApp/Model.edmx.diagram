@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a1810b603abe4894bd538999b7be1369" Name="Diagram1">
+        <EntityTypeShape EntityType="CourseworkModel.Client" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Deal" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.DiscountCard" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Employee" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Expenditure" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Manufacturer" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Material" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.MaterialType" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Position" Width="1.5" PointX="1.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Product" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.ProductStatus" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.ProductType" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="CourseworkModel.FK_client_id_DiscountCard" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_clientid_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_admin_id_Deal" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_card_id_Deal" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_product_id_Deal" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_expert_id_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_position_id_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_material_id_Expenditure" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_product_id_Expenditure" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_material_id_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_mat_type_id_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_pr_status_id_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_pr_type_id_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

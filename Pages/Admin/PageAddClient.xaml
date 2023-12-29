@@ -1,0 +1,64 @@
+﻿<Page x:Class="Coursework.Pages.Admin.PageAddClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework.Pages.Admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="PageAddClient">
+
+    <Grid Name="GridAddClient">
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Name="StackPanelElemets">
+            <TextBlock Text="Введите имя"
+                       Style="{StaticResource TextBlocksDefault}"
+                       TextAlignment="Center"/>
+            <TextBox Name="TextBoxFirstName"
+                     Style="{StaticResource TextBoxesDefault}">
+                <TextBox.Text>
+                    <Binding Path="FirstName" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                
+            </TextBox>
+            <TextBlock Text="Введите фамилию"
+                       Width="200"
+                       Style="{StaticResource TextBlocksDefault}"
+                       TextAlignment="Center"/> 
+            <TextBox Name="TextBoxLastname"
+                     Style="{StaticResource TextBoxesDefault}">
+                <TextBox.Text>
+                    <Binding Path="LastName" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Text="Введите номер"
+                       Width="200"
+                       Style="{StaticResource TextBlocksDefault}"
+                       TextAlignment="Center"/> 
+            <TextBox Name="TextBoxPhone"
+                     Style="{StaticResource TextBoxesDefault}">
+                <TextBox.Text>
+                    <Binding Path="PhoneNum" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Button Name="ButtonAddClient"
+                    Content="Добавить"
+                    Style="{StaticResource ButtonsDefault}"
+                    Width="150"
+                    Click="ButtonAddClient_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
