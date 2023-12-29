@@ -7,40 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Coursework.Repository.Extensions.FilterParameters;
+using Coursework.Repository.Extensions;
 
 namespace Coursework.Repository
 {
-    public class ClientRepository : IClientRepository
+    public class ClientRepository : RepositoryBase<Client>, IClientRepository
     {
-        private static CourseworkEntities _context;
-
-        static ClientRepository()
+        public ClientRepository(CourseworkEntities context)
+            : base(context)
         {
-            _context = ModelClass.GetContext();
         }
 
-        public void AddClient(Client client)
-        {
-            _context.Client.Add(client);
-            ModelClass.SaveDatabase();
-        }
+        public void AddClient(Client client) =>
+            Create(client);
 
-        public void DeleteClient(Client client)
-        {
+        public void DeleteClient(Client client) =>
+            Delete(client);
 
-            _context.Client.Remove(client);
-            ModelClass.SaveDatabase();
+        public IEnumerable<Client> GetClients(bool trackChanges) =>
+            FindAll(trackChanges)
+            .ToList();
 
-        }
-
-        public List<Client> GetClients()
-        {
-            return _context.Client.ToList();
-        }
-
-        public List<Client> GetClientsByPhone(string phoneNumber)
-        {
-            return _context.Client.Where(x => x.phone.StartsWith(phoneNumber)).ToList();
-        }
+        public IEnumerable<Client> GetClientsPagination(ClientParameters parameters, bool trackChanges) =>
+            FindAll(trackChanges)
+            .FindById(parameters.Id)
+            .FindByPhone(parameters.PhoneNum)
+            .ToList();
     }
 }

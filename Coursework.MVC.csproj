@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IRepositoryBase.cs" />
     <Compile Include="DataApp\Client.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -141,6 +142,11 @@
     <Compile Include="Pages\General\PageListProducts.xaml.cs">
       <DependentUpon>PageListProducts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\Extensions\ClientRepositoryExtensions.cs" />
+    <Compile Include="Repository\Extensions\EmployeeRepositoryExtensions.cs" />
+    <Compile Include="Repository\Extensions\FilterParameters\ClientParameters.cs" />
+    <Compile Include="Repository\Extensions\FilterParameters\EmployeeParameters.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
     <Page Include="Windows\AdminWindow.xaml">
