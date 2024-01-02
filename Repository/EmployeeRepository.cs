@@ -11,7 +11,7 @@ using Coursework.Repository.Extensions;
 
 namespace Coursework.Repository
 {
-    public class EmployeeRepository : RepositoryBase<Employee>, IEmployyRepository
+    public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
         public EmployeeRepository(CourseworkEntities context) 
             : base(context)

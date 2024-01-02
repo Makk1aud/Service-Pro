@@ -8,7 +8,7 @@ using Coursework.Repository.Extensions.FilterParameters;
 
 namespace Coursework.Contracts
 {
-    public interface IEmployyRepository
+    public interface IEmployeeRepository
     {
         IEnumerable<Employee> GetEmployees(bool trackChanges);
         IEnumerable<Employee> GetEmployeesPagination(EmployeeParameters parameters,bool trackChanges);

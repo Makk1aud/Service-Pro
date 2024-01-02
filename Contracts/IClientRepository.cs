@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// добавить в сервис слой отдельные свойства с уже заранне указаными типами в генерик репозитории
 namespace Coursework.Contracts
 {
     public interface IClientRepository
