@@ -29,7 +29,7 @@ namespace Coursework.Repository
             FindAll(trackChanges)
             .ToList();
 
-        public IEnumerable<Client> GetClientsPagination(ClientParameters parameters, bool trackChanges) =>
+        public IEnumerable<Client> GetFilterClients(ClientParameters parameters, bool trackChanges) =>
             FindAll(trackChanges)
             .FindById(parameters.Id)
             .FindByPhone(parameters.PhoneNum)

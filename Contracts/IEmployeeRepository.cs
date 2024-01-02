@@ -11,7 +11,7 @@ namespace Coursework.Contracts
     public interface IEmployeeRepository
     {
         IEnumerable<Employee> GetEmployees(bool trackChanges);
-        IEnumerable<Employee> GetEmployeesPagination(EmployeeParameters parameters,bool trackChanges);
+        IEnumerable<Employee> GetFilterEmployees(EmployeeParameters parameters,bool trackChanges);
         void UpdateEmployee(Employee employee);
         void CreateEmployy(Employee employee);
         void DeleteEmployee(Employee employee);

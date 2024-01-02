@@ -26,9 +26,9 @@ namespace Coursework.Repository
             Delete(employee);
 
         public IEnumerable<Employee> GetEmployees(bool trackChanges) =>
-            GetEmployees(trackChanges);
+            FindAll(trackChanges);
 
-        public IEnumerable<Employee> GetEmployeesPagination(EmployeeParameters parameters, bool trackChanges) =>
+        public IEnumerable<Employee> GetFilterEmployees(EmployeeParameters parameters, bool trackChanges) =>
             FindAll(trackChanges)
             .FindById(parameters.Id)
             .FindByLogin(parameters.Login)

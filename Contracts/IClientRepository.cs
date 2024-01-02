@@ -12,7 +12,7 @@ namespace Coursework.Contracts
     public interface IClientRepository
     {
         IEnumerable<Client> GetClients(bool trackChanges);
-        IEnumerable<Client> GetClientsPagination(ClientParameters parameters, bool trackChanges);
+        IEnumerable<Client> GetFilterClients(ClientParameters parameters, bool trackChanges);
         void AddClient(Client client);
         void DeleteClient(Client client);
     }

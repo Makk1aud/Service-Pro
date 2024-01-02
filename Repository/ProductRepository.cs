@@ -5,26 +5,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Coursework.Repository.Pagination;
+using Coursework.Repository.Extensions.FilterParameters;
 
 namespace Coursework.Repository
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository :RepositoryBase<Product> ,IProductRepository
     {
-        static private CourseworkEntities _context;
-        static ProductRepository()
+        public ProductRepository(CourseworkEntities context) 
+            : base(context)
         {
-            _context = ModelClass.GetContext();
         }
 
-        public void AddProduct(Product product)
+        public void CreateProduct(Product product) =>
+            Create(product);
+
+        public void DeleteProduct(Product product) => 
+            Delete(product);
+
+        public PagedList<Product> GetProductsPagination(ProductParameters parameters, bool trackChanges)
         {
-            _context.Product.Add(product);
-            ModelClass.SaveDatabase();
+            var items = FindAll(trackChanges)
+                .ToList();
+
+            var count = FindAll(trackChanges)
+                .Count();
+            return new PagedList<Product>(items, count, parameters.PageNumber, parameters.PageSize);
         }
 
-        public List<ProductType> GetProductTypes()
-        {
-            return _context.ProductType.ToList();
-        }
+        public void UpdateProduct(Product product) => 
+            Update(product);
     }
 }
