@@ -152,6 +152,7 @@
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\Pagination\PagedList.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\RepositoryManager.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
     <Page Include="Windows\AdminWindow.xaml">
       <SubType>Designer</SubType>

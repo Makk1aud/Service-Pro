@@ -1,4 +1,5 @@
 ﻿using Coursework.DataApp;
+using Coursework.Repository.Extensions.FilterParameters;
 using Coursework.Repository.Pagination;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Coursework.Contracts
     public interface IProductRepository
     {
         void CreateProduct(Product product);
-        PagedList<Product> GetProducts
+        PagedList<Product> GetProductsPagination(ProductParameters parameters, bool trackChanges);
+        void DeleteProduct(Product product);
+        void UpdateProduct(Product product);
     }
 }

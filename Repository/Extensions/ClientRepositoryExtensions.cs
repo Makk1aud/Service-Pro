@@ -21,8 +21,18 @@ namespace Coursework.Repository.Extensions
         {
             if (id is null)
                 return items;
-            //Можно улучшить если добавить firstOrDefault, нужно сделать если будет слишком долгий поиск по id
             items = items.Where(x => x.client_id.Equals(id));
+
+            //Поиск по id любой таблицы
+
+            //var idProperty = items.GetType()
+            //    .GetProperty(
+            //        items
+            //        .GetType()
+            //        .GetProperties()
+            //        .First().Name).Name;
+            //items = items
+            //    .Where(x => x.GetType().GetProperty(idProperty).Equals(id));
             return items;
         }
     } 
