@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IRepositoryBase.cs" />
     <Compile Include="DataApp\Client.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -141,6 +142,15 @@
     <Compile Include="Pages\General\PageListProducts.xaml.cs">
       <DependentUpon>PageListProducts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\Extensions\ClientRepositoryExtensions.cs" />
+    <Compile Include="Repository\Extensions\EmployeeRepositoryExtensions.cs" />
+    <Compile Include="Repository\Extensions\FilterParameters\ClientParameters.cs" />
+    <Compile Include="Repository\Extensions\FilterParameters\EmployeeParameters.cs" />
+    <Compile Include="Repository\Extensions\FilterParameters\MetaData.cs" />
+    <Compile Include="Repository\Extensions\FilterParameters\ProductParameters.cs" />
+    <Compile Include="Repository\Extensions\FilterParameters\RequestParameters.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\Pagination\PagedList.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
     <Page Include="Windows\AdminWindow.xaml">
@@ -202,7 +212,7 @@
       <DependentUpon>ExpertWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IClientRepository.cs" />
-    <Compile Include="Contracts\IEmployyRepository.cs" />
+    <Compile Include="Contracts\IEmployeeRepository.cs" />
     <Compile Include="Contracts\IProductRepository.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />

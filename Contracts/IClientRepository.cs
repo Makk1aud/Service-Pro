@@ -1,16 +1,18 @@
 ﻿using Coursework.DataApp;
+using Coursework.Repository.Extensions.FilterParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// добавить в сервис слой отдельные свойства с уже заранне указаными типами в генерик репозитории
 namespace Coursework.Contracts
 {
     public interface IClientRepository
     {
-        List<Client> GetClients();
-        List<Client> GetClientsByPhone(string phoneNumber);
+        IEnumerable<Client> GetClients(bool trackChanges);
+        IEnumerable<Client> GetClientsPagination(ClientParameters parameters, bool trackChanges);
         void AddClient(Client client);
         void DeleteClient(Client client);
     }

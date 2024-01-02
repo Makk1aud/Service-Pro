@@ -1,4 +1,5 @@
 ﻿using Coursework.DataApp;
+using Coursework.Repository.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Coursework.Contracts
 {
     public interface IProductRepository
     {
-        List<ProductType> GetProductTypes();
-        void AddProduct(Product product);
+        void CreateProduct(Product product);
+        PagedList<Product> GetProducts
     }
 }
