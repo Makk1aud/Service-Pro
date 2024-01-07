@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using Coursework.Repository.Extensions.FilterParameters;
 using Coursework.Repository.Extensions;
+using Coursework.Repository.Pagination;
+using System.Security.Cryptography;
 
 namespace Coursework.Repository
 {
@@ -19,20 +21,37 @@ namespace Coursework.Repository
         {
         }
 
-        public void AddClient(Client client) =>
+        public void CreateClient(Client client) =>
             Create(client);
 
         public void DeleteClient(Client client) =>
             Delete(client);
 
-        public IEnumerable<Client> GetClients(bool trackChanges) =>
-            FindAll(trackChanges)
-            .ToList();
+        public PagedList<Client> GetClients(bool trackChanges)
+        {
+            var clientParameters = new ClientParameters();
+            var items = FindAll(trackChanges)
+                .OrderBy(x => x.firstname)
+                .Skip((clientParameters.PageNumber - 1) * clientParameters.PageSize)
+                .Take(clientParameters.PageSize)
+                .ToList();
 
-        public IEnumerable<Client> GetFilterClients(ClientParameters parameters, bool trackChanges) =>
-            FindAll(trackChanges)
-            .FindById(parameters.Id)
-            .FindByPhone(parameters.PhoneNum)
-            .ToList();
+            var count = FindAll(trackChanges).Count();
+            return new PagedList<Client>(items, count, clientParameters.PageNumber, clientParameters.PageSize);
+        }
+
+        public PagedList<Client> GetClients(ClientParameters clientParameters, bool trackChanges)
+        {
+            var items = FindAll(trackChanges)
+                .FindById(clientParameters.Id)
+                .FindByPhone(clientParameters.PhoneNum)
+                .OrderBy(x => x.firstname)
+                .Skip((clientParameters.PageNumber - 1) * clientParameters.PageSize)
+                .Take(clientParameters.PageSize)
+                .ToList();
+
+            var count = FindAll(trackChanges).Count();
+            return new PagedList<Client>(items, count, clientParameters.PageNumber, clientParameters.PageSize);
+        }            
     }
 }

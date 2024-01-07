@@ -1,5 +1,6 @@
 ﻿using Coursework.DataApp;
 using Coursework.Repository.Extensions.FilterParameters;
+using Coursework.Repository.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace Coursework.Contracts
 {
     public interface IClientRepository
     {
-        IEnumerable<Client> GetClients(bool trackChanges);
-        IEnumerable<Client> GetFilterClients(ClientParameters parameters, bool trackChanges);
-        void AddClient(Client client);
+        PagedList<Client> GetClients(bool trackChanges);
+        PagedList<Client> GetClients(ClientParameters parameters, bool trackChanges);
+        void CreateClient(Client client);
         void DeleteClient(Client client);
     }
 }

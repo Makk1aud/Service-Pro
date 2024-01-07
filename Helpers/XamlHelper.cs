@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 
-namespace Coursework.Classes
+namespace Coursework.Helpers
 {
     public static class XamlHelper 
     {

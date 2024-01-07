@@ -15,29 +15,30 @@ namespace Coursework.Repository
     {
         private readonly CourseworkEntities _context;
 
-        protected RepositoryBase(CourseworkEntities context)
+        public RepositoryBase(CourseworkEntities context)
         {
             _context = context;
         }
 
-        protected void Create(T entity) => 
+        public void Create(T entity) => 
             _context.Set<T>().Add(entity);
 
 
-        protected void Delete(T entity) =>
+        public void Delete(T entity) =>
             _context.Set<T>().Remove(entity);
 
-        protected IQueryable<T> FindAll(bool trackChanges) =>
-            trackChanges 
-            ? _context.Set<T>() 
+        public IQueryable<T> FindAll(bool trackChanges) =>
+            trackChanges
+            ? _context.Set<T>()
             : _context.Set<T>().AsNoTracking();
 
-        protected IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) =>
+
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) =>
             trackChanges
             ? _context.Set<T>().Where(expression)
             : _context.Set<T>().Where(expression).AsNoTracking();
 
-        protected void Update(T entity) =>
+        public void Update(T entity) =>
             _context.Set<T>().AddOrUpdate(entity);
     }
 }

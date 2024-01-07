@@ -31,6 +31,7 @@
         <AssociationConnector Association="CourseworkModel.FK_mat_type_id_Material" ManuallyRouted="false" />
         <AssociationConnector Association="CourseworkModel.FK_pr_status_id_Product" ManuallyRouted="false" />
         <AssociationConnector Association="CourseworkModel.FK_pr_type_id_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseworkModel.FK_managerid_Product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

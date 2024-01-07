@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Coursework.Classes
+namespace Coursework.Helpers
 {
     public static class ChangeWindows
     {

@@ -9,20 +9,28 @@ namespace Coursework.Repository.Extensions
 {
     public static class EmployeeRepositoryExtensions
     {
-        public static IQueryable<Employee> FindByLogin(this IQueryable<Employee> items, string login)
-        {
-            if(String.IsNullOrWhiteSpace(login))
-                return items;
-            items = items.Where(x => x.login_code.Equals(login, StringComparison.CurrentCultureIgnoreCase));
-            return items;
-        }
+        public static IQueryable<Employee> FindByLogin(this IQueryable<Employee> items, string login) =>
+            String.IsNullOrWhiteSpace(login) 
+            ? items
+            : items.Where(x => x.login_code.Equals(login, StringComparison.InvariantCultureIgnoreCase));        
 
-        public static IQueryable<Employee> FindById(this IQueryable<Employee> items, int? id)
+        public static IQueryable<Employee> FindById(this IQueryable<Employee> items, int? employeeId) =>
+            employeeId is null 
+            ? items
+            : items.Where(x => x.employee_id == employeeId);        
+
+        public static IQueryable<Employee> FindByPositionId(this IQueryable<Employee> items, int? positionId) =>
+            positionId is null
+            ? items
+            : items.Where(x => x.position_id == positionId);        
+
+        public static IQueryable<Employee> FindByLastname(this IQueryable<Employee> items, string lastname)
         {
-            if (id is null)
+            if (String.IsNullOrWhiteSpace(lastname))
                 return items;
-            items = items.Where(x => x.employee_id.Equals(id));
-            return items;
+
+            var searchLastname = lastname.Trim().ToLower();
+            return items.Where(x => x.lastname.ToLower().Contains(searchLastname));
         }
     }
 }
