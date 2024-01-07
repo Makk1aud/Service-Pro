@@ -38,5 +38,6 @@ namespace Coursework.DataApp
         public virtual ICollection<Expenditure> Expenditure { get; set; }
         public virtual ProductStatus ProductStatus { get; set; }
         public virtual ProductType ProductType { get; set; }
+        public virtual Employee Employee1 { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище CourseworkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище CourseworkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="client_id" />
@@ -42,7 +42,7 @@
           <Property Name="firstname" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="lastname" Type="varchar" MaxLength="20" />
           <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="login_code" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="login_code" Type="varchar(max)" Nullable="false" />
           <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="position_id" Type="int" Nullable="false" />
         </EntityType>
@@ -85,7 +85,7 @@
             <PropertyRef Name="posotion_id" />
           </Key>
           <Property Name="posotion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="posotion_title" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="position_title" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -181,6 +181,18 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="expert_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_managerid_Product">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="manager_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -314,6 +326,10 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_managerid_Product" Association="Self.FK_managerid_Product">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_mat_type_id_Material" Association="Self.FK_mat_type_id_Material">
             <End Role="MaterialType" EntitySet="MaterialType" />
             <End Role="Material" EntitySet="Material" />
@@ -347,8 +363,7 @@
             <End Role="Expenditure" EntitySet="Expenditure" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CourseworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -396,12 +411,13 @@
           <Property Name="firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="login_code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="position_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Deal" Relationship="Self.FK_admin_id_Deal" FromRole="Employee" ToRole="Deal" />
           <NavigationProperty Name="Product" Relationship="Self.FK_expert_id_Product" FromRole="Employee" ToRole="Product" />
           <NavigationProperty Name="Position" Relationship="Self.FK_position_id_Position" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="Product1" Relationship="CourseworkModel.FK_managerid_Product" FromRole="Employee" ToRole="Product" />
         </EntityType>
         <EntityType Name="Expenditure">
           <Key>
@@ -449,8 +465,8 @@
             <PropertyRef Name="posotion_id" />
           </Key>
           <Property Name="posotion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="posotion_title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_position_id_Position" FromRole="Position" ToRole="Employee" />
+          <Property Name="position_title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -470,6 +486,7 @@
           <NavigationProperty Name="Expenditure" Relationship="Self.FK_product_id_Expenditure" FromRole="Product" ToRole="Expenditure" />
           <NavigationProperty Name="ProductStatus" Relationship="Self.FK_pr_status_id_Product" FromRole="Product" ToRole="ProductStatus" />
           <NavigationProperty Name="ProductType" Relationship="Self.FK_pr_type_id_Product" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="Employee1" Relationship="CourseworkModel.FK_managerid_Product" FromRole="Product" ToRole="Employee" />
         </EntityType>
         <EntityType Name="ProductStatus">
           <Key>
@@ -719,7 +736,23 @@
             <End Role="ProductType" EntitySet="ProductType" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_managerid_Product" Association="CourseworkModel.FK_managerid_Product">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_managerid_Product">
+          <End Type="CourseworkModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="CourseworkModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -812,8 +845,8 @@
           <EntitySetMapping Name="Position">
             <EntityTypeMapping TypeName="CourseworkModel.Position">
               <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="position_title" ColumnName="position_title" />
                 <ScalarProperty Name="posotion_id" ColumnName="posotion_id" />
-                <ScalarProperty Name="posotion_title" ColumnName="posotion_title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

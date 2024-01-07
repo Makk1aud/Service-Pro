@@ -12,7 +12,8 @@ namespace Coursework.Contracts
     public interface IProductRepository
     {
         void CreateProduct(Product product);
-        PagedList<Product> GetProductsPagination(ProductParameters parameters, bool trackChanges);
+        PagedList<Product> GetProducts(ProductParameters productParameters, bool trackChanges);
+        PagedList<Product> GetProducts(bool trackChanges);
         void DeleteProduct(Product product);
         void UpdateProduct(Product product);
     }

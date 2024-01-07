@@ -1,7 +1,7 @@
 ﻿using Coursework.Classes;
 using Coursework.DataApp;
-using Coursework.Interfaces;
-using Coursework.Models;
+
+using Coursework.Repository.Extensions.FilterParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +22,12 @@ namespace Coursework.Pages.Admin
 {
     public partial class PageMerchandising : Page
     {
-        private IClientRepository _clientRepository;
-        private IProductRepository _productRepository;
         public PageMerchandising()
         {
             InitializeComponent();
-            _clientRepository = new ClientRepository();
-            _productRepository = new ProductRepository();
 
-            DataGridClients.ItemsSource = _clientRepository.GetClients();
-            ComboBoxPrType.ItemsSource = _productRepository.GetProductTypes();
+            DataGridClients.ItemsSource = AdminClass.repositoryManager.Client.GetClients(trackChanges : false);
+            ComboBoxPrType.ItemsSource = AdminClass.repositoryManager.ProductType.FindAllGeneric(trackChanges : false);
             ComboBoxPrType.SelectedItem = ComboBoxPrType.Items[0];
         }
 
@@ -50,20 +46,27 @@ namespace Coursework.Pages.Admin
 
         private void TextBoxPhone_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TextBoxPhone.Text != string.Empty)
-                DataGridClients.ItemsSource = _clientRepository.GetClientsByPhone(TextBoxPhone.Text);
-            else
-                DataGridClients.ItemsSource = _clientRepository.GetClients();
+            //if (TextBoxPhone.Text != string.Empty)
+            //    DataGridClients.ItemsSource = _clientRepository.GetClientsByPhone(TextBoxPhone.Text);
+            //else
+            //    DataGridClients.ItemsSource = _clientRepository.GetClients();
+            DataGridClients.ItemsSource = AdminClass
+                .repositoryManager
+                .Client
+                .GetClients(new ClientParameters 
+                        { 
+                            PhoneNum= TextBoxPhone.Text 
+                        }, 
+                        trackChanges : false);
         }
 
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
-            PageAddClient pageAddClient = new PageAddClient(_clientRepository);
-            AdminClass.frameMainStruct.Navigate(pageAddClient);
-            
+            PageAddClient pageAddClient = new PageAddClient();
+            AdminClass.frameMainStruct.Navigate(pageAddClient);            
         }
 
-        private void ButtonAddProduct_Click(object sender, RoutedEventArgs e)
+        private async void ButtonAddProduct_Click(object sender, RoutedEventArgs e)
         {
             if (DataGridClients.SelectedItem == null)
                 return;
@@ -71,11 +74,13 @@ namespace Coursework.Pages.Admin
             {
                 product_name = TextBoxPrTitle.Text,
                 prod_description = TextBoxPrDesc.Text,
+                manager_id = AdminClass.employee.employee_id,
                 pr_type_id = Convert.ToInt32(ComboBoxPrType.SelectedValue),
                 client_id = (DataGridClients.SelectedItem as Client).client_id,
                 pr_status_id = 1
             };
-            _productRepository.AddProduct(product);
+            AdminClass.repositoryManager.Product.CreateProduct(product);
+            await AdminClass.repositoryManager.SaveAsync();
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -84,11 +89,16 @@ namespace Coursework.Pages.Admin
             ButtonAddProduct.IsEnabled = !String.IsNullOrEmpty(textBox.Text);
         }
 
-        private void MenuDelete_Click(object sender, RoutedEventArgs e)
+        private async void MenuDelete_Click(object sender, RoutedEventArgs e)
         {
             var client = DataGridClients.SelectedItem as Client;
-            _clientRepository.DeleteClient(client);
-            DataGridClients.ItemsSource = _clientRepository.GetClients();
+            AdminClass.repositoryManager.Client.DeleteClient(client);
+            await AdminClass.repositoryManager.SaveAsync();
+
+            DataGridClients.ItemsSource = AdminClass
+                .repositoryManager
+                .Client
+                .GetClients(trackChanges : false);
         }
     }
 }

@@ -19,9 +19,6 @@ using Coursework.Pages.Admin;
 
 namespace Coursework
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class AuthorisationWindow : Window
     {
         public AuthorisationWindow()

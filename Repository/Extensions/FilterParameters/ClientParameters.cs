@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Coursework.Repository.Extensions.FilterParameters
 {
-    public class ClientParameters
+    public class ClientParameters : RequestParameters
     {
         public int? Id { get; set; }
         public string PhoneNum { get; set; }

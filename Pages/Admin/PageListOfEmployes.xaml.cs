@@ -1,5 +1,6 @@
 ﻿using Coursework.Classes;
 using Coursework.DataApp;
+using Coursework.Repository.Extensions.FilterParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,32 +15,39 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Сoursework.Core.Models;
 
 namespace Coursework.Pages.Admin
 {
-    /// <summary>
-    /// Логика взаимодействия для PageListOfEmployes.xaml
-    /// </summary>
     public partial class PageListOfEmployes : Page
     {
-        private EmployeeRepository _employeeRepository;
-        private List<Employee> _employees;
+        //private List<Employee> _employees;
         public PageListOfEmployes()
         {
             InitializeComponent();
-            _employeeRepository = new EmployeeRepository();
-            _employees = _employeeRepository.GetEmployees();
-            DataGridEmployes.ItemsSource = _employees;
-            ComboBoxPosSort.ItemsSource = _employeeRepository.GetPositions();
+            //_employeeRepository = new EmployeeRepository();
+            //_employees = _employeeRepository.GetEmployees();
+            DataGridEmployes.ItemsSource = AdminClass
+                .repositoryManager
+                .Employee
+                .GetEmployees(trackChanges: false)
+                .ToList();
+            //ComboBoxPosSort.ItemsSource = _employeeRepository.GetPositions();
         }
 
         private void DataGridSort()
         {
-            var sortList = _employees;
-            TextBoxSort(ref sortList);
-            ComboBoxSort(ref sortList);
-            DataGridEmployes.ItemsSource = sortList;
+            //var sortList = _employees;
+            //TextBoxSort(ref sortList);
+            //ComboBoxSort(ref sortList);
+            DataGridEmployes.ItemsSource = AdminClass
+                .repositoryManager
+                .Employee
+                .GetEmployees(new EmployeeParameters
+                {
+                    Lastname = TextBoxLastName.Text,
+                    //PositonId = Convert.ToInt32(ComboBoxPosSort.SelectedValue),
+                    PositonId = 0
+                }, trackChanges: false);
         }
 
         private void TextBoxSort(ref List<Employee> list)
@@ -66,14 +74,18 @@ namespace Coursework.Pages.Admin
 
         private void ButtonReset_Click(object sender, RoutedEventArgs e)
         {
-            DataGridEmployes.ItemsSource = _employees;
+            DataGridEmployes.ItemsSource = AdminClass
+                .repositoryManager
+                .Employee
+                .GetEmployees(trackChanges: false);
         }
 
-        private void MenuDelete_Click(object sender, RoutedEventArgs e)
+        private async void MenuDelete_Click(object sender, RoutedEventArgs e)
         {
-            var emp = DataGridEmployes.SelectedItem as Employee;
-            _employeeRepository.DeleteEmployee(emp);
-            _employees = _employeeRepository.GetEmployees();
+            var employee = DataGridEmployes.SelectedItem as Employee;
+
+            AdminClass.repositoryManager.Employee.DeleteEmployee(employee);
+            await AdminClass.repositoryManager.SaveAsync();
             DataGridSort();
         }
     }

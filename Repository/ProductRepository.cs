@@ -23,14 +23,29 @@ namespace Coursework.Repository
         public void DeleteProduct(Product product) => 
             Delete(product);
 
-        public PagedList<Product> GetProductsPagination(ProductParameters parameters, bool trackChanges)
+        public PagedList<Product> GetProducts(ProductParameters productParameters, bool trackChanges)
         {
             var items = FindAll(trackChanges)
+                .Skip((productParameters.PageNumber - 1) * productParameters.PageSize)
+                .Take(productParameters.PageSize)
                 .ToList();
 
             var count = FindAll(trackChanges)
                 .Count();
-            return new PagedList<Product>(items, count, parameters.PageNumber, parameters.PageSize);
+            return new PagedList<Product>(items, count, productParameters.PageNumber, productParameters.PageSize);
+        }
+
+        public PagedList<Product> GetProducts(bool trackChanges)
+        {
+            var productParameters = new ProductParameters();
+            var items = FindAll(trackChanges)
+                .Skip((productParameters.PageNumber - 1) * productParameters.PageSize)
+                .Take(productParameters.PageSize)
+                .ToList();
+
+            var count = FindAll(trackChanges)
+                .Count();
+            return new PagedList<Product>(items, count, productParameters.PageNumber, productParameters.PageSize);
         }
 
         public void UpdateProduct(Product product) => 

@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Coursework.Classes;
 using Coursework.DataApp;
-using Coursework.Interfaces;
 using Coursework.ValidationsModels;
 
 
@@ -16,18 +15,16 @@ namespace Coursework.Pages.Admin
 
     public partial class PageAddClient : Page
     {
-        private IClientRepository _clientRepository;
         public ClientValidation client;
 
-        public PageAddClient(IClientRepository repository)
+        public PageAddClient()
         {
             InitializeComponent();
-            _clientRepository = repository;
             client = new ClientValidation();
             this.DataContext = client;
         }
 
-        private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
+        private async void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
             if (!CheckErrors())
                 return;
@@ -37,7 +34,8 @@ namespace Coursework.Pages.Admin
                 lastname = client.LastName,
                 phone = client.PhoneNum
             };
-            _clientRepository.AddClient(newClient);
+            AdminClass.repositoryManager.Client.CreateClient(newClient);
+            await AdminClass.repositoryManager.SaveAsync();
             AdminClass.frameMainStruct.Navigate(new PageMerchandising());
         }
 

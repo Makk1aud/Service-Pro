@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Coursework.Pages.General
 {
-    /// <summary>
-    /// Логика взаимодействия для PageListProducts.xaml
-    /// </summary>
     public partial class PageListProducts : Page
     {
         public PageListProducts()

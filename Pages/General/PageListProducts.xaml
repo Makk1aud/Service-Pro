@@ -17,7 +17,7 @@
             <Border BorderBrush="Black" Background="AliceBlue"
                     BorderThickness="1"
                     Margin="5">
-                <StackPanel Orientation="Horizontal">
+                <!--<StackPanel Orientation="Horizontal">
                     <StackPanel>
                         <TextBlock Text="Нименование"
                                    Style="{StaticResource TextBlocksDefault}"
@@ -41,7 +41,7 @@
                             Content="Сбросить"
                             Click="ButtonReset_Click"
                             VerticalAlignment="Bottom"/>
-                </StackPanel>
+                </StackPanel>-->
             </Border>
             <DataGrid Name="DataGridEmployes"
           IsReadOnly="True"
@@ -74,13 +74,13 @@
             Width="40*"
             Binding="{Binding Path=Position.position_title}"/>
                 </DataGrid.Columns>
-                <DataGrid.ContextMenu>
-                    <ContextMenu>
+                <!--<DataGrid.ContextMenu>-->
+                <!--<ContextMenu>
                         <MenuItem Header="Удалить"
                       Click="MenuDelete_Click">
                         </MenuItem>
-                    </ContextMenu>
-                </DataGrid.ContextMenu>
+                    </ContextMenu>-->
+                <!--</DataGrid.ContextMenu>-->
             </DataGrid>
         </StackPanel>
     </Grid>
