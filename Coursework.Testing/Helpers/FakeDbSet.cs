@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Coursework.Testing.Helpers
 {
-    public class FakeDbSet<T> :DbSet<T>, IDbSet<T> where T : class
+    public class FakeDbSet<T> : DbSet<T>, IDbSet<T>, IEnumerable<T> where T : class
     {
         private ObservableCollection<T> _data;
 
@@ -79,6 +79,10 @@ namespace Coursework.Testing.Helpers
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _data.GetEnumerator();
+        }
+        public override IEnumerable<T> AddRange(IEnumerable<T> entities)
+        {
+            return base.AddRange(entities);
         }
     }
 }
