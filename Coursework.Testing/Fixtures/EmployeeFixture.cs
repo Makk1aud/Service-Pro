@@ -32,5 +32,71 @@ namespace Coursework.Testing.Fixtures
         //        fakerList.Add(item);
         //    return fakerList;
         //}
+
+
+        public FakeDbSet<Employee> GetDbTestEmployees() =>
+            new ()
+            {
+                new()
+                {
+                    employee_id = 1,
+                    firstname = "Олег",
+                    lastname = "Петров",
+                    email = "makklaud@mail.ru",
+                    login_code = "MTExMQ==",
+                    phone = "1234567890",
+                    position_id = 2
+                },
+                new()
+                {
+                    employee_id = 2,
+                    firstname = "Алексей",
+                    lastname = "Наседкин",
+                    email = "makklaud@mail.ru",
+                    login_code = "MTdsExgfhgfggfMQ==",
+                    phone = "1234567890",
+                    position_id = 1
+                },
+                new()
+                {
+                    employee_id = 3,
+                    firstname = "Кирилл",
+                    lastname = "Шиляев",
+                    email = "makklaud@mail.ru",
+                    login_code = "MTExMfdfhggfdQ==",
+                    phone = "1234567890",
+                    position_id = 2
+                },
+                new()
+                {
+                    employee_id = 4,
+                    firstname = "Андрей",
+                    lastname = "Куличенко",
+                    email = "makklaud@mail.ru",
+                    login_code = "MTExMQfdsddf==",
+                    phone = "1234567890",
+                    position_id = 2
+                },
+                new()
+                {
+                    employee_id = 5,
+                    firstname = "Максим",
+                    lastname = "Алиновский",
+                    email = "makklaud@mail.ru",
+                    login_code = "MTEfgdggfhfxMQ==",
+                    phone = "1234567890",
+                    position_id = 2
+                },
+                new()
+                {
+                    employee_id = 6,
+                    firstname = "Батырхан",
+                    lastname = "Тюлембаев",
+                    email = "makklaud@mail.ru",
+                    login_code = "MTExMQghgf==",
+                    phone = "1234567890",
+                    position_id = 2
+                },
+            };
     }
 }

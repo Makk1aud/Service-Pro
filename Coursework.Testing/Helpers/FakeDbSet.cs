@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Coursework.Testing.Helpers
 {
-    public class FakeDbSet<T> : DbSet<T>, IDbSet<T>, IEnumerable<T> where T : class
+    public class FakeDbSet<T> : DbSet<T>, IDbSet<T>, IEnumerable<T>, IQueryable, IDbAsyncEnumerable<T> where T : class
     {
         private ObservableCollection<T> _data;
 
@@ -39,24 +40,24 @@ namespace Coursework.Testing.Helpers
         {
             get { return _query.Provider; }
         }
-        public T Add(T entity)
+        public override T Add(T entity)
         {
             _data.Add(entity);
             return entity;
         }
 
-        public T Attach(T entity)
+        public override T Attach(T entity)
         {
             _data.Add(entity);
             return entity;
         }
 
-        public T Create()
+        public override T Create()
         {
             return Activator.CreateInstance<T>();
         }
 
-        public T Find(params object[] keyValues)
+        public override T Find(params object[] keyValues)
         {
             throw new NotImplementedException();
         }
@@ -66,7 +67,7 @@ namespace Coursework.Testing.Helpers
             return _data.GetEnumerator();
         }
 
-        public T Remove(T entity)
+        public override T Remove(T entity)
         {
             throw new NotImplementedException();
         }
@@ -80,6 +81,7 @@ namespace Coursework.Testing.Helpers
         {
             return _data.GetEnumerator();
         }
+
         public override IEnumerable<T> AddRange(IEnumerable<T> entities)
         {
             return base.AddRange(entities);

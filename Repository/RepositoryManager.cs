@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity.Infrastructure;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,9 @@ namespace Coursework.Repository
 
         public async Task SaveAsync()
         {
+            string message;
+            string caption;
+            bool error = false;
             try
             {
                 await _context.SaveChangesAsync();
