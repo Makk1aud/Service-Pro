@@ -11,7 +11,7 @@ namespace Coursework.Testing.Fixtures
 {
     public class EmployeeFixture : MainFixture
     {
-        public Faker<Employee> GetGenerationEmployees()
+        protected Faker<Employee> GenerationEmployeesRules()
         {
             return new Faker<Employee>("ru")
                 .RuleFor(x => x.employee_id, f => f.Random.Number(1,1000))
@@ -19,22 +19,24 @@ namespace Coursework.Testing.Fixtures
                 .RuleFor(x => x.lastname, f => f.Name.LastName())
                 .RuleFor(x => x.email, f => f.Internet.Email())
                 .RuleFor(x => x.login_code, f => f.Random.Word())
-                .RuleFor(x => x.phone, f => f.Phone.PhoneNumberFormat())
+                .RuleFor(x => x.phone, f => f.Phone.PhoneNumber("+7 ###-###-##-##"))
                 .RuleFor(x => x.position_id, f => f.Random.Number(1, 2));            
         }
 
-        //Сделать этот метод generic
-        //public FakeDbSet<Employee> GetRandomEmployees(int count)
-        //{
-        //    List<Employee> listOfEmployees = GetGenerationEmployees().Generate(count);
-        //    FakeDbSet<Employee> fakerList = new FakeDbSet<Employee>();
-        //    foreach (var item in listOfEmployees)
-        //        fakerList.Add(item);
-        //    return fakerList;
-        //}
+        public FakeDbSet<Employee> GetDbSetRandomEmployee(int listLength)
+        {
+            EmployeeFixture.GenerationGeneric<Employee> generationGeneric;
+            generationGeneric = GenerationEmployeesRules;
+            return GetRandomDbSetList<Employee>(listLength, generationGeneric);
+        }
 
+        public IEnumerable<Employee> GetListOfRandomEmployees(int listLength)
+        {
+            var listEmp = GenerationEmployeesRules().Generate(listLength);
+            return listEmp;
+        }
 
-        public FakeDbSet<Employee> GetDbTestEmployees() =>
+        public FakeDbSet<Employee> GetDbSetTestEmployees() =>
             new ()
             {
                 new()

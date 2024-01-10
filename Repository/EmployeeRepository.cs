@@ -14,9 +14,11 @@ namespace Coursework.Repository
 {
     public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
+        private readonly CourseworkEntities coursework;
         public EmployeeRepository(CourseworkEntities context) 
             : base(context)
         {
+            coursework= context;
         }
 
         public void CreateEmployee(Employee employee)

@@ -1,17 +1,18 @@
 ﻿using Bogus;
+using Coursework.Testing.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Coursework.Testing.Helpers
+namespace Coursework.Testing.Fixtures
 {
     public abstract class MainFixture
     {
-        public delegate Faker<T> GenerationGeneric<T>() where T : class;
+        protected delegate Faker<T> GenerationGeneric<T>() where T : class;
 
-        public FakeDbSet<T> GetRandomGenericList<T>(int count, GenerationGeneric<T> generationMethod) where T : class
+        protected FakeDbSet<T> GetRandomDbSetList<T>(int count, GenerationGeneric<T> generationMethod) where T : class
         {
             List<T> listOfEmployees = generationMethod().Generate(count);
             FakeDbSet<T> fakerList = new FakeDbSet<T>();
