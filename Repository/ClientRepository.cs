@@ -27,18 +27,10 @@ namespace Coursework.Repository
         public void DeleteClient(Client client) =>
             Delete(client);
 
-        public PagedList<Client> GetClients(bool trackChanges)
-        {
-            var clientParameters = new ClientParameters();
-            var items = FindAll(trackChanges)
+        public IEnumerable<Client> GetClients(bool trackChanges) =>
+            FindAll(trackChanges)
                 .OrderBy(x => x.firstname)
-                .Skip((clientParameters.PageNumber - 1) * clientParameters.PageSize)
-                .Take(clientParameters.PageSize)
                 .ToList();
-
-            var count = FindAll(trackChanges).Count();
-            return new PagedList<Client>(items, count, clientParameters.PageNumber, clientParameters.PageSize);
-        }
 
         public PagedList<Client> GetClients(ClientParameters clientParameters, bool trackChanges)
         {

@@ -18,9 +18,9 @@ namespace Coursework.ValidationsModels.ValidationExtensions
             && name.Trim().Length <= 20;
 
         public static bool PhoneValidation(string phoneNumber) =>
-            !String.IsNullOrEmpty(phoneNumber) 
-            && phoneNumber.Trim().Length >= 16 
-            && phoneNumber.Trim().Length <= 20;
+            !String.IsNullOrEmpty(phoneNumber)
+            && phoneNumber.Trim().Length >= 16
+            && phoneNumber.Trim().Length <= 20;            
 
         public static bool EmployeeValidation(Employee employee) =>
             NameValidation(employee.firstname)
