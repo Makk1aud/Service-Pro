@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Coursework.ValidationsModels.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Coursework.ValidationsModels
 {
@@ -21,15 +23,15 @@ namespace Coursework.ValidationsModels
                 switch(columnName)
                 {
                     case "FirstName":
-                        if(FirstName != null && FirstName.Trim().Length <3) 
+                        if (!ValidationExtensions.NameValidation(FirstName))
                             error = "Имя должно быть введено";
                         break;
                     case "LastName":
-                        if (LastName != null && LastName.Trim().Length < 3)
+                        if (!ValidationExtensions.NameValidation(LastName))
                             error = "Имя должно быть введено";
                         break;
                     case "PhoneNum":
-                        if(PhoneNum != null && PhoneNum.Trim().Length < 16)
+                        if (!ValidationExtensions.PhoneValidation(PhoneNum))
                             error = "Формат номера не правильный, проверьте пробелы";
                         break;
                 }
