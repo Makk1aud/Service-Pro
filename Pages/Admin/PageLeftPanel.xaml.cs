@@ -29,12 +29,12 @@ namespace Coursework.Pages.Admin
 
         private void ButtonMainPage_Click(object sender, RoutedEventArgs e)
         {
-            AdminClass.frameMainStruct.Navigate(new PageMerchandising());
+            AdminClass.FrameMainStruct.Navigate(new PageMerchandising());
         }
 
         private void ButtonListOfExperts_Click(object sender, RoutedEventArgs e)
         {
-            AdminClass.frameMainStruct.Navigate(new PageListOfEmployes());
+            AdminClass.FrameMainStruct.Navigate(new PageListOfEmployes());
         }
     }
 }

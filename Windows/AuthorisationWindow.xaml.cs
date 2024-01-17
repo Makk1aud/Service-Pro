@@ -24,7 +24,7 @@ namespace Coursework
         public AuthorisationWindow()
         {
             InitializeComponent();
-            AuthorisationClass.frameAuth = FrameAuth;
+            AuthorisationClass.FrameAuth = FrameAuth;
             FrameAuth.Navigate(new PageAuthorisation());
         }
     }

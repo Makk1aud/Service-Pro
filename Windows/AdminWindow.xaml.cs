@@ -24,9 +24,9 @@ namespace Coursework
         public AdminWindow(Employee employee)
         {
             InitializeComponent();
-            AdminClass.frameLeftPanel = FrameLeftPanel;
-            AdminClass.frameMainStruct = FrameMainStruct;
-            AdminClass.employee = employee;
+            AdminClass.FrameLeftPanel = FrameLeftPanel;
+            AdminClass.FrameMainStruct = FrameMainStruct;
+            AdminClass.Employee = employee;
             FrameLeftPanel.Navigate(new PageLeftPanel());
             FrameMainStruct.Navigate(new PageMerchandising());
         }

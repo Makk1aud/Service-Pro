@@ -29,7 +29,7 @@ namespace Coursework.Pages.Authorisation
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             var emp = AuthorisationClass
-                .repositoryManager
+                .RepositoryManager
                 .Employee
                 .GetEmployeeByLogin(PasswordBoxCode.Password, trackChanges : false);
 

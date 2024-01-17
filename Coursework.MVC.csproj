@@ -211,7 +211,10 @@
     <Compile Include="Pages\Admin\PageListOfEmployes.xaml.cs">
       <DependentUpon>PageListOfEmployes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\General\PageListProducts.xaml.cs">
+    <Compile Include="Pages\Expert\PageExpertLeftPanel.xaml.cs">
+      <DependentUpon>PageExpertLeftPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Expert\PageListProducts.xaml.cs">
       <DependentUpon>PageListProducts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\Extensions\ClientRepositoryExtensions.cs" />
@@ -226,6 +229,10 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\RepositoryManager.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
+    <Page Include="Pages\Expert\PageExpertLeftPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -270,7 +277,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\General\PageListProducts.xaml">
+    <Page Include="Pages\Expert\PageListProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -337,7 +344,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Expert\" />
+    <Folder Include="Pages\General\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

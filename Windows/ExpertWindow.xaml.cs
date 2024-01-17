@@ -1,5 +1,7 @@
 ﻿using Coursework.Classes;
 using Coursework.DataApp;
+using Coursework.Pages.Expert;
+using Coursework.Pages.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +18,16 @@ using System.Windows.Shapes;
 
 namespace Coursework
 {
-    /// <summary>
-    /// Логика взаимодействия для ExpertWindow.xaml
-    /// </summary>
     public partial class ExpertWindow : Window
     {
         public ExpertWindow(Employee employee)
         {
             InitializeComponent();
-            ExpertClass.employee = employee;
+            ExpertClass.Employee = employee;
+            ExpertClass.FrameMainStruct = FrameMainStruct;
+            ExpertClass.FrameLeftPanel = FrameLeftPanel;
+            FrameMainStruct.Navigate(new PageListProducts());
+            FrameLeftPanel.Navigate(new PageExpertLeftPanel());
         }
     }
 }

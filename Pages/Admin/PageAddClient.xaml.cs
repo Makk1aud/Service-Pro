@@ -34,9 +34,9 @@ namespace Coursework.Pages.Admin
                 lastname = client.LastName,
                 phone = client.PhoneNum
             };
-            AdminClass.repositoryManager.Client.CreateClient(newClient);
-            await AdminClass.repositoryManager.SaveAsync();
-            AdminClass.frameMainStruct.Navigate(new PageMerchandising());
+            AdminClass.RepositoryManager.Client.CreateClient(newClient);
+            await AdminClass.RepositoryManager.SaveAsync();
+            AdminClass.FrameMainStruct.Navigate(new PageMerchandising());
         }
 
         private bool CheckErrors()

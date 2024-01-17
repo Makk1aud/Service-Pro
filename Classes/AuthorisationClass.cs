@@ -12,11 +12,11 @@ namespace Coursework.Classes
 {
     public static class AuthorisationClass
     {
-        public static IRepositoryManager repositoryManager { get; }
+        public static IRepositoryManager RepositoryManager { get; }
         static AuthorisationClass()
         {
-            repositoryManager = new RepositoryManager(new CourseworkEntities());
+            RepositoryManager = new RepositoryManager(new CourseworkEntities());
         }
-        public static Frame frameAuth;
+        public static Frame FrameAuth { get; set; }
     }
 }

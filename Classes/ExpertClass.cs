@@ -6,16 +6,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Coursework.Classes
 {
     public static class ExpertClass
     {
-        public static IRepositoryManager repositoryManager { get; }
+        public static IRepositoryManager RepositoryManager { get; }
         static ExpertClass()
         {
-            repositoryManager = new RepositoryManager(new CourseworkEntities());
+            RepositoryManager = new RepositoryManager(new CourseworkEntities());
         }
-        public static Employee employee;
+
+        public static Frame FrameLeftPanel { get; set; }
+        public static Frame FrameMainStruct { get; set; }
+        public static Employee Employee { get; set; }
     }
 }
