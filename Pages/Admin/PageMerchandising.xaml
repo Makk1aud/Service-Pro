@@ -19,6 +19,7 @@
                         <TextBox Name="TextBoxPhone"
                                  Text="Поиск по номеру"
                                  GotFocus="TextBox_GotFocus"
+                                 MaxLength="20"
                                  Style="{StaticResource TextBoxesDefault}"/>        
                     </StackPanel>
                     <DataGrid Name="DataGridClients"
@@ -69,15 +70,15 @@
                              GotFocus="TextBox_GotFocus"
                              Width="250"
                              Text="Наименование товара"
-                             LostFocus="TextBox_LostFocus"/>
+                             LostFocus="TextBox_LostFocus"
+                             MaxLength="30"/>
                     <TextBox Name="TextBoxPrDesc"
                              Style="{StaticResource TextBoxesDefault}"
                              GotFocus="TextBox_GotFocus"
                              Width="250"
                              TextWrapping="WrapWithOverflow"
                              Height="150"
-                             Text="Описание проблемы"
-                             LostFocus="TextBox_LostFocus"/>
+                             Text="Описание проблемы"/>
                     <ComboBox Name="ComboBoxPrType"
                               Style="{StaticResource ComboBoxesDefault}"
                               SelectedValuePath="pr_type_id"

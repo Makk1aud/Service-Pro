@@ -2,6 +2,7 @@
 using Coursework.DataApp;
 
 using Coursework.Repository.Extensions.FilterParameters;
+using Coursework.ValidationsModels.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Coursework.Pages.Admin
         {
             InitializeComponent();
 
-            DataGridClients.ItemsSource = AdminClass.repositoryManager.Client.GetClients(trackChanges : false);
+            DataGridClients.ItemsSource = AdminClass.repositoryManager.Client.GetClients(trackChanges : true);
             ComboBoxPrType.ItemsSource = AdminClass.repositoryManager.ProductType.FindAllGeneric(trackChanges : false);
             ComboBoxPrType.SelectedItem = ComboBoxPrType.Items[0];
         }
@@ -83,11 +84,8 @@ namespace Coursework.Pages.Admin
             await AdminClass.repositoryManager.SaveAsync();
         }
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            var textBox = sender as TextBox;
-            ButtonAddProduct.IsEnabled = !String.IsNullOrEmpty(textBox.Text);
-        }
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e) =>
+            ButtonAddProduct.IsEnabled = ValidationExtensions.ProductNameValidation((sender as TextBox).Text);
 
         private async void MenuDelete_Click(object sender, RoutedEventArgs e)
         {

@@ -6,21 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Coursework.ValidationsModels.ValidationExtensions
+namespace Coursework.ValidationsModels.Extensions
 {
     public static class ValidationExtensions
     {
 
         public static bool NameValidation(string name) =>
-            !String.IsNullOrEmpty(name) 
-            && name.Trim().Length > 3 
-            && name.Trim().Length <= 20;
+            name.FieldValidation(3, 20);          
+
 
         public static bool PhoneValidation(string phoneNumber) =>
-            !String.IsNullOrEmpty(phoneNumber)
-            && phoneNumber.Trim().Length >= 16
-            && phoneNumber.Trim().Length <= 20;            
+            phoneNumber.FieldValidation(16,20);           
 
         public static bool EmployeeValidation(Employee employee) =>
             NameValidation(employee.firstname)
@@ -30,6 +28,15 @@ namespace Coursework.ValidationsModels.ValidationExtensions
 
         public static bool EmailValidation(string email) =>
             new EmailAddressAttribute().IsValid(email)
-            && email.Trim().Length <= 40;
+            && email.FieldValidation(max: 40);
+
+        public static bool ProductNameValidation(string productName) =>
+            productName.FieldValidation(3, 30)
+            && productName.Where(x => char.IsLetterOrDigit(x)).Any();
+
+        public static bool FieldValidation(this string item, int min = 0, int max = int.MaxValue) =>
+            !String.IsNullOrEmpty(item)
+            && item.Trim().Length >= min
+            && item.Trim().Length <= max;
     }
 }

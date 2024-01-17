@@ -234,7 +234,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ValidationsModels\ValidationExtensions\ValidationExtensions.cs" />
+    <Compile Include="ValidationsModels\Extensions\ValidationExtensions.cs" />
     <Compile Include="Windows\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>

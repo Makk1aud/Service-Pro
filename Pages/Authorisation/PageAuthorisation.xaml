@@ -14,14 +14,16 @@
             <TextBlock Text="Введите ваш код"
                        FontSize="26pt"/>
             <PasswordBox Name="PasswordBoxCode" 
-                    Height="35"
-                     Width="200"
-                     Margin="5"/>
+                         Height="35"
+                         Width="200"
+                         Margin="5"
+                         FontSize="14pt"/>
             <Button Name="ButtonLogin"
                     Content="Войти"
                     Height="30"
                     Width="100"
                     Margin="5"
+                    Style="{StaticResource ButtonsDefault}"
                     Click="ButtonLogin_Click"/>
         </StackPanel>
     </Grid>

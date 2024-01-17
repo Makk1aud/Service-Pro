@@ -1,6 +1,7 @@
 ﻿using Coursework.DataApp;
 using Coursework.Testing.Fixtures;
-using Coursework.ValidationsModels.ValidationExtensions;
+using Coursework.ValidationsModels.Extensions;
+
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -97,7 +98,7 @@ namespace Coursework.Testing.Systems.Helpers
 
         [Theory]
         [InlineData("+78398734435")]
-        public void Get_5_IncorrPhones_Return_True(string incorrectPhone)
+        public void Get_5_IncorrectPhones_Return_True(string incorrectPhone)
         {
             var phone = incorrectPhone;
 
@@ -130,8 +131,55 @@ namespace Coursework.Testing.Systems.Helpers
             var expected = true;
 
             bool result = true;
-            foreach (var employee in employees)            
-                result = ValidationExtensions.EmployeeValidation(employee);           
+            foreach (var employee in employees)
+            {
+                result = ValidationExtensions.EmployeeValidation(employee);
+                if (!result)
+                    break;
+            }       
+
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("/")]
+        [InlineData("      f")]
+        [InlineData(" .  ")]
+        [InlineData("   ")]
+        [InlineData(".       .")]
+        public void Get_5_IncorrectProductsNames_Return_False(string productName)
+        {
+            var expected = false;
+
+            bool result = ValidationExtensions.ProductNameValidation(productName);
+
+            result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void Get_10_Length_Word_Return_True()
+        {
+            var word = "hello ten";
+            var min = 2;
+            var max = 13;
+
+            var expected = true;
+
+            var result = word.FieldValidation(min, max);
+
+            result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void Get_Null_Word_Return_False()
+        {
+            string word = null;
+            var min = 2;
+            var max = 13;
+
+            var expected = false;
+
+            var result = word.FieldValidation(min, max);
 
             result.Should().Be(expected);
         }
