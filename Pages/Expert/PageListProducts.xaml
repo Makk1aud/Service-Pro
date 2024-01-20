@@ -17,31 +17,39 @@
             <Border BorderBrush="Black" Background="AliceBlue"
                     BorderThickness="1"
                     Margin="5">
-                <!--<StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
                     <StackPanel>
-                        <TextBlock Text="Нименование"
+                        <TextBlock Text="Наименование"
                                    Style="{StaticResource TextBlocksDefault}"
                                    HorizontalAlignment="Left"/>
-                        <TextBox Name="TextBoxLastName"
+                        <TextBox Name="TextBoxProductName"
                                  Style="{StaticResource TextBoxesDefault}"
-                                 TextChanged="TextBoxLastName_TextChanged"/>
+                                 TextChanged="TextBox_TextChanged"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Описание"
+                                   Style="{StaticResource TextBlocksDefault}"
+                                   HorizontalAlignment="Left"/>
+                        <TextBox Name="TextBoxProductDesc"
+                                 Style="{StaticResource TextBoxesDefault}"
+                                 TextChanged="TextBox_TextChanged"/>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="Тип"
                                    Style="{StaticResource TextBlocksDefault}"
                                    HorizontalAlignment="Left"/>
-                        <ComboBox Name="ComboBoxPosSort"
+                        <ComboBox Name="ComboBoxProductType"
                                   DisplayMemberPath="position_title"
                                   SelectedValuePath="position_id"
                                   Style="{StaticResource ComboBoxesDefault}"
-                                  SelectionChanged="ComboBoxPosSort_SelectionChanged"/>
+                                  SelectionChanged="ComboBoxProductType_SelectionChanged"/>
                     </StackPanel>
                     <Button Name="ButtonReset"
                             Style="{StaticResource ButtonsDefault}"
                             Content="Сбросить"
                             Click="ButtonReset_Click"
                             VerticalAlignment="Bottom"/>
-                </StackPanel>-->
+                </StackPanel>
             </Border>
             <DataGrid Name="DataGridProducts"
                       IsReadOnly="True"

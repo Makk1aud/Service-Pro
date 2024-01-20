@@ -223,6 +223,7 @@
     <Compile Include="Repository\Extensions\FilterParameters\EmployeeParameters.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\MetaData.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\ProductParameters.cs" />
+    <Compile Include="Repository\Extensions\ProductRepositoryExtensions.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\RequestParameters.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\Pagination\PagedList.cs" />

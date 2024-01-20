@@ -42,7 +42,10 @@ namespace Coursework.Repository
                 .Take(clientParameters.PageSize)
                 .ToList();
 
-            var count = FindAll(trackChanges).Count();
+            var count = FindAll(trackChanges)
+                .FindById(clientParameters.Id)
+                .FindByPhone(clientParameters.PhoneNum)
+                .Count();
             return new PagedList<Client>(items, count, clientParameters.PageNumber, clientParameters.PageSize);
         }            
     }
