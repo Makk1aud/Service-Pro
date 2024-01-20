@@ -18,7 +18,7 @@ namespace Coursework.Testing.Fixtures
                 .RuleFor(x => x.prod_description, f => f.Company.CatchPhrase())
                 .RuleFor(x => x.pr_type_id, f => f.Random.Number(1, 10000))
                 .RuleFor(x => x.client_id, f => f.Random.Number(1, 10000))
-                .RuleFor(x => x.expert_id, f => f.Random.Number(1, 10000))
+                .RuleFor(x => x.expert_id, f => f.Random.Number(1, 10000).OrNull(f))
                 .RuleFor(x => x.pr_status_id, f => f.Random.Number(1, 10000));
         }
 
@@ -38,7 +38,7 @@ namespace Coursework.Testing.Fixtures
                     prod_description = "авпввпавава",
                     pr_type_id = 23,
                     client_id = 546,
-                    expert_id = 9846,
+                    expert_id = null,
                     pr_status_id = 2
                 },
                 new()
@@ -46,9 +46,9 @@ namespace Coursework.Testing.Fixtures
                     product_id= 2,
                     product_name = "S3434",
                     prod_description = "Не работает экран",
-                    pr_type_id = 34,
+                    pr_type_id = 2,
                     client_id = 435,
-                    expert_id = 342,
+                    expert_id = null,
                     pr_status_id = 2
                 },
                 new()
@@ -56,9 +56,9 @@ namespace Coursework.Testing.Fixtures
                     product_id= 3,
                     product_name = "S3434",
                     prod_description = "Сломался",
-                    pr_type_id = 32,
+                    pr_type_id = 22,
                     client_id = 433,
-                    expert_id = 324,
+                    expert_id = 23,
                     pr_status_id = 1
                 }
             };

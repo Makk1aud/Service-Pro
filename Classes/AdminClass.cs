@@ -12,13 +12,13 @@ namespace Coursework.Classes
 {
     public static class AdminClass
     {
-        public static IRepositoryManager repositoryManager { get; }
+        public static IRepositoryManager RepositoryManager { get; }
         static AdminClass()
         {
-            repositoryManager = new RepositoryManager(new CourseworkEntities());
+            RepositoryManager = new RepositoryManager(new CourseworkEntities());
         }
-        public static Employee employee;
-        public static Frame frameLeftPanel;
-        public static Frame frameMainStruct;
+        public static Employee Employee { get; set; }
+        public static Frame FrameLeftPanel { get; set; }
+        public static Frame FrameMainStruct { get; set; }
     }
 }

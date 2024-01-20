@@ -13,11 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Coursework.Pages.General
+namespace Coursework.Pages.Expert
 {
-    public partial class PageListProducts : Page
+    /// <summary>
+    /// Логика взаимодействия для PageExpertLeftPanel.xaml
+    /// </summary>
+    public partial class PageExpertLeftPanel : Page
     {
-        public PageListProducts()
+        public PageExpertLeftPanel()
         {
             InitializeComponent();
         }

@@ -12,7 +12,7 @@ namespace Coursework.Repository.Extensions
         public static IQueryable<Employee> FindByLogin(this IQueryable<Employee> items, string login) =>
             String.IsNullOrWhiteSpace(login) 
             ? items
-            : items.Where(x => x.login_code.Equals(login, StringComparison.InvariantCultureIgnoreCase));        
+            : items.Where(x => x.login_code.Contains(login));        
 
         public static IQueryable<Employee> FindById(this IQueryable<Employee> items, int? employeeId) =>
             employeeId is null 

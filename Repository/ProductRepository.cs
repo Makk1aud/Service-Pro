@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Coursework.Repository.Pagination;
 using Coursework.Repository.Extensions.FilterParameters;
+using Coursework.Repository.Extensions;
 
 namespace Coursework.Repository
 {
@@ -25,13 +26,21 @@ namespace Coursework.Repository
 
         public PagedList<Product> GetProducts(ProductParameters productParameters, bool trackChanges)
         {
-            var items = FindAll(trackChanges)                
+            var items = FindAll(trackChanges)
+                .GetProductsByExpertId(productParameters.ExpertId)
+                .GetProductsByName(productParameters.SearchName)
+                .GetProductsByProductTypeId(productParameters.ProductTypeId)
+                .OrderBy(x => x.product_name)
                 .Skip((productParameters.PageNumber - 1) * productParameters.PageSize)
                 .Take(productParameters.PageSize)
                 .ToList();
 
             var count = FindAll(trackChanges)
+                .GetProductsByExpertId(productParameters.ExpertId)
+                .GetProductsByName(productParameters.SearchName)
+                .GetProductsByProductTypeId(productParameters.ProductTypeId)
                 .Count();
+
             return new PagedList<Product>(items, count, productParameters.PageNumber, productParameters.PageSize);
         }
 

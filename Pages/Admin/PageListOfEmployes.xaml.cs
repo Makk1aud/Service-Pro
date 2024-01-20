@@ -27,7 +27,7 @@ namespace Coursework.Pages.Admin
             //_employeeRepository = new EmployeeRepository();
             //_employees = _employeeRepository.GetEmployees();
             DataGridEmployes.ItemsSource = AdminClass
-                .repositoryManager
+                .RepositoryManager
                 .Employee
                 .GetEmployees(trackChanges: false)
                 .ToList();
@@ -40,7 +40,7 @@ namespace Coursework.Pages.Admin
             //TextBoxSort(ref sortList);
             //ComboBoxSort(ref sortList);
             DataGridEmployes.ItemsSource = AdminClass
-                .repositoryManager
+                .RepositoryManager
                 .Employee
                 .GetEmployees(new EmployeeParameters
                 {
@@ -75,7 +75,7 @@ namespace Coursework.Pages.Admin
         private void ButtonReset_Click(object sender, RoutedEventArgs e)
         {
             DataGridEmployes.ItemsSource = AdminClass
-                .repositoryManager
+                .RepositoryManager
                 .Employee
                 .GetEmployees(trackChanges: false);
         }
@@ -84,8 +84,8 @@ namespace Coursework.Pages.Admin
         {
             var employee = DataGridEmployes.SelectedItem as Employee;
 
-            AdminClass.repositoryManager.Employee.DeleteEmployee(employee);
-            await AdminClass.repositoryManager.SaveAsync();
+            AdminClass.RepositoryManager.Employee.DeleteEmployee(employee);
+            await AdminClass.RepositoryManager.SaveAsync();
             DataGridSort();
         }
     }
