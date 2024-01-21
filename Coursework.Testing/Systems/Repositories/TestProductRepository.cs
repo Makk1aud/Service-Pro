@@ -239,5 +239,71 @@ namespace Coursework.Testing.Systems.Repositories
             result.Should().Contain(x => x.pr_type_id == productParameters.ProductTypeId);
             result.Should().HaveCount(expectedCount);
         }
+
+        [Fact]
+        public void Get_OnSucces_Return_Empty_PagedList_Products_With_TypeId_245()
+        {
+            var fixture = new ProductFixture();
+            var expectedCount = 0;
+            var productParameters = new ProductParameters
+            {
+                ProductTypeId = 245
+            };
+
+            var listOfProducts = fixture.GetTestDbSetProducts();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Product>()).Returns(listOfProducts);
+
+            var productRepository = new ProductRepository(context.Object);
+
+            var result = productRepository.GetProducts(productParameters, trackChanges: true);
+
+            result.Should().HaveCount(expectedCount);
+        }
+
+        [Fact]
+        public void Get_OnSucces_Return_PagedList_Products_With_Desc()
+        { 
+            var fixture = new ProductFixture();
+            var expectedCount = 1;
+            var productParameters = new ProductParameters
+            {
+                SearchDesc = "Экран"
+            };
+
+            var listOfProducts = fixture.GetTestDbSetProducts();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Product>()).Returns(listOfProducts);
+
+            var productRepository = new ProductRepository(context.Object);
+
+            var result = productRepository.GetProducts(productParameters, trackChanges: true);
+
+            result.Should().HaveCount(expectedCount);
+        }
+
+        [Fact]
+        public void Get_OnSucces_Return_PagedList_Products_Page_0()
+        {
+            var fixture = new ProductFixture();
+            var expectedCount = 0;
+            var productParameters = new ProductParameters
+            {
+                PageNumber = -1
+            };
+
+            var listOfProducts = fixture.GetRandomDbSetProducts(15);
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Product>()).Returns(listOfProducts);
+
+            var productRepository = new ProductRepository(context.Object);
+
+            var result = productRepository.GetProducts(productParameters, trackChanges: true);
+
+            result.Should().HaveCount(expectedCount);
+        }
     }
 }

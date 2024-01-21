@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework"
         mc:Ignorable="d"
-        Title="ExpertWindow" Height="450" Width="1100"
-        ResizeMode="NoResize">
+        Title="ExpertWindow" Height="650" Width="1100"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="23*"/>

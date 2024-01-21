@@ -30,6 +30,7 @@ namespace Coursework.Repository
                 .GetProductsByExpertId(productParameters.ExpertId)
                 .GetProductsByName(productParameters.SearchName)
                 .GetProductsByProductTypeId(productParameters.ProductTypeId)
+                .GetProductsByDescription(productParameters.SearchDesc)
                 .OrderBy(x => x.product_name)
                 .Skip((productParameters.PageNumber - 1) * productParameters.PageSize)
                 .Take(productParameters.PageSize)
@@ -38,6 +39,7 @@ namespace Coursework.Repository
             var count = FindAll(trackChanges)
                 .GetProductsByExpertId(productParameters.ExpertId)
                 .GetProductsByName(productParameters.SearchName)
+                .GetProductsByDescription(productParameters.SearchDesc)
                 .GetProductsByProductTypeId(productParameters.ProductTypeId)
                 .Count();
 
