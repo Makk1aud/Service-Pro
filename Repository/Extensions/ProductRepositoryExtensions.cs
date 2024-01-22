@@ -22,8 +22,17 @@ namespace Coursework.Repository.Extensions
             return items.Where(x => x.product_name.ToLower().Contains(lowerName));
         }
 
+        public static IQueryable<Product> GetProductsByDescription(this IQueryable<Product> items, string searchDesc)
+        {
+            if (string.IsNullOrEmpty(searchDesc))
+                return items;
+
+            var lowerName = searchDesc.Trim().ToLower();
+            return items.Where(x => x.prod_description.ToLower().Contains(lowerName));
+        }
+
         public static IQueryable<Product> GetProductsByProductTypeId(this IQueryable<Product> items, int? productTypeId) =>
-            productTypeId is null
+            productTypeId is null || productTypeId == 0
             ? items
             : items.Where(x => x.pr_type_id == productTypeId);
     }

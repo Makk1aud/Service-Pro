@@ -12,7 +12,7 @@ namespace Coursework.Repository.Extensions.FilterParameters
         public int TotalPages { get; set; }
         public int PageSize { get; set; }
         public int TotalCount { get; set; }
-        public bool HasPrevious => CurrentPage > 1 && CurrentPage <= TotalCount / PageSize;
+        public bool HasPrevious => CurrentPage > 1 && CurrentPage <= TotalPages;
         public bool HasNext => CurrentPage < TotalPages;
     }
 }

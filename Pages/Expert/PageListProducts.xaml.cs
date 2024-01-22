@@ -21,44 +21,74 @@ namespace Coursework.Pages.General
 {
     public partial class PageListProducts : Page
     {
+        private MetaData _metaData;
         public PageListProducts()
         {
             InitializeComponent();         
-            DataGridProducts.ItemsSource = DefaultList();
+            DataGridProducts.ItemsSource = DataGridSorting(1);
+            ComboBoxProductType.ItemsSource = ExpertClass
+                .RepositoryManager
+                .ProductType
+                .FindAllGeneric(trackChanges: false);
         }
 
-        private IEnumerable<Product> DefaultList() =>
-            ExpertClass
-            .RepositoryManager
-            .Product
-            .GetProducts(new ProductParameters(), trackChanges: true);
+        //private IEnumerable<Product> DefaultList(int pageNumber)
+        //{
+        //    var listOfProducts = ExpertClass.RepositoryManager.Product
+        //                .GetProducts(new ProductParameters()
+        //                {
+        //                    PageNumber = pageNumber
+        //                }, trackChanges: true);
+        //    _metaData = listOfProducts.MetaData;
+        //    this.DataContext = _metaData;
+        //    return listOfProducts;
+        //}
 
         private async void ButtonSelectProduct_Click(object sender, RoutedEventArgs e)
         {
             var product = (sender as Button).DataContext as Product;
             product.expert_id = ExpertClass.Employee.employee_id;
             await ExpertClass.RepositoryManager.SaveAsync();
-            DataGridProducts.ItemsSource = DefaultList();
+            DataGridSorting(_metaData.CurrentPage);
         }
 
-        private void DataGridSorting()
+        private IEnumerable<Product> DataGridSorting(int pageNum)
         {
-            DataGridProducts.ItemsSource = ExpertClass
+            var listOfProducts = ExpertClass
                 .RepositoryManager
                 .Product
                 .GetProducts (new ProductParameters()
                 {
-
+                    PageNumber = pageNum,
+                    SearchName = TextBoxProductName.Text,
+                    SearchDesc = TextBoxProductDesc.Text,
+                    ProductTypeId = Convert.ToInt32(ComboBoxProductType.SelectedValue)
                 }, trackChanges: true);
+            _metaData = listOfProducts.MetaData;
+            this.DataContext = _metaData;
+            DataGridProducts.ItemsSource = listOfProducts;
+            return listOfProducts;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e) =>
-            DataGridSorting();
+            DataGridSorting(_metaData.CurrentPage = 1);
 
         private void ComboBoxProductType_SelectionChanged(object sender, SelectionChangedEventArgs e) =>
-            DataGridSorting();
+            DataGridSorting(_metaData.CurrentPage = 1);
 
-        private void ButtonReset_Click(object sender, RoutedEventArgs e) =>
-            DataGridProducts.ItemsSource = DefaultList();
+        private void ButtonPreviousPage_Click(object sender, RoutedEventArgs e) =>
+            DataGridSorting(_metaData.HasPrevious ? --_metaData.CurrentPage : _metaData.CurrentPage);
+
+
+        private void ButtonNextPage_Click(object sender, RoutedEventArgs e) =>
+            DataGridSorting(_metaData.HasNext ? ++_metaData.CurrentPage : _metaData.CurrentPage);
+
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxProductDesc.Text = string.Empty;
+            TextBoxProductName.Text = string.Empty;
+            ComboBoxProductType.SelectedItem = null;
+            DataGridProducts.ItemsSource = DataGridSorting(1);
+        }
     }
 }
