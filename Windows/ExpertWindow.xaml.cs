@@ -26,7 +26,7 @@ namespace Coursework
             ExpertClass.Employee = employee;
             ExpertClass.FrameMainStruct = FrameMainStruct;
             ExpertClass.FrameLeftPanel = FrameLeftPanel;
-            FrameMainStruct.Navigate(new PageListProducts());
+            FrameMainStruct.Navigate(new PageMyService());
             FrameLeftPanel.Navigate(new PageExpertLeftPanel());
         }
     }

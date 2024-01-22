@@ -31,6 +31,7 @@ namespace Coursework.Repository
                 .GetProductsByName(productParameters.SearchName)
                 .GetProductsByProductTypeId(productParameters.ProductTypeId)
                 .GetProductsByDescription(productParameters.SearchDesc)
+                .GetProductsByProductStatusId(productParameters.ProductStatusId)
                 .OrderBy(x => x.product_name)
                 .Skip((productParameters.PageNumber - 1) * productParameters.PageSize)
                 .Take(productParameters.PageSize)
@@ -41,6 +42,7 @@ namespace Coursework.Repository
                 .GetProductsByName(productParameters.SearchName)
                 .GetProductsByDescription(productParameters.SearchDesc)
                 .GetProductsByProductTypeId(productParameters.ProductTypeId)
+                .GetProductsByProductStatusId (productParameters.ProductStatusId)
                 .Count();
 
             return new PagedList<Product>(items, count, productParameters.PageNumber, productParameters.PageSize);

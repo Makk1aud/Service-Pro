@@ -15,6 +15,7 @@ namespace Coursework.Contracts
         IClientRepository Client { get;}
         IEmployeeRepository Employee { get;}
         IGenericRepository<ProductType> ProductType { get;}
+        IGenericRepository<ProductStatus> ProductStatus{ get;}
         Task SaveAsync();
     }
 }

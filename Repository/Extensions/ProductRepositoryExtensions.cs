@@ -35,5 +35,10 @@ namespace Coursework.Repository.Extensions
             productTypeId is null || productTypeId == 0
             ? items
             : items.Where(x => x.pr_type_id == productTypeId);
+
+        public static IQueryable<Product> GetProductsByProductStatusId(this IQueryable<Product> items, int? productStatusId) =>
+            productStatusId is null || productStatusId == 0
+            ? items
+            : items.Where(x => x.pr_status_id == productStatusId);
     }
 }

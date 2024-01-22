@@ -49,7 +49,7 @@ namespace Coursework.Testing.Fixtures
                     pr_type_id = 2,
                     client_id = 435,
                     expert_id = null,
-                    pr_status_id = 2
+                    pr_status_id = 34
                 },
                 new()
                 {

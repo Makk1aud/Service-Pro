@@ -217,6 +217,9 @@
     <Compile Include="Pages\Expert\PageListProducts.xaml.cs">
       <DependentUpon>PageListProducts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Expert\PageMyService.xaml.cs">
+      <DependentUpon>PageMyService.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Extensions\ClientRepositoryExtensions.cs" />
     <Compile Include="Repository\Extensions\EmployeeRepositoryExtensions.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\ClientParameters.cs" />
@@ -234,6 +237,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Expert\PageMyService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -243,6 +250,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="ValidationsModels\Extensions\ValidationExtensions.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="Windows\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
