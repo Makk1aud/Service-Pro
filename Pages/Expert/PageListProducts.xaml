@@ -98,7 +98,15 @@
                         Content="Пред"
                         Click="ButtonPreviousPage_Click"
                         Style="{StaticResource ButtonsDefault}"/>
-
+                <TextBlock Text="{Binding CurrentPage}"
+                           FontSize="14pt"                           
+                           VerticalAlignment="Center"/>
+                <TextBlock Text="из"
+                           FontSize="14pt"                           
+                           VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding TotalPages}"
+                           FontSize="14pt"                           
+                           VerticalAlignment="Center"/>     
                 <Button Name="ButtonNextPage"
                         Content="След"
                         Click="ButtonNextPage_Click"

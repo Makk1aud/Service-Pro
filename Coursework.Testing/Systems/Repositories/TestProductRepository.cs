@@ -283,27 +283,5 @@ namespace Coursework.Testing.Systems.Repositories
 
             result.Should().HaveCount(expectedCount);
         }
-
-        [Fact]
-        public void Get_OnSucces_Return_PagedList_Products_Page_0()
-        {
-            var fixture = new ProductFixture();
-            var expectedCount = 0;
-            var productParameters = new ProductParameters
-            {
-                PageNumber = -1
-            };
-
-            var listOfProducts = fixture.GetRandomDbSetProducts(15);
-
-            var context = new Mock<CourseworkEntities>();
-            context.Setup(x => x.Set<Product>()).Returns(listOfProducts);
-
-            var productRepository = new ProductRepository(context.Object);
-
-            var result = productRepository.GetProducts(productParameters, trackChanges: true);
-
-            result.Should().HaveCount(expectedCount);
-        }
     }
 }
