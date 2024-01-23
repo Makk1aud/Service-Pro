@@ -34,6 +34,7 @@ namespace Coursework.Pages.Expert
                 .RepositoryManager
                 .ProductType
                 .FindAllGeneric(trackChanges: false);
+
             DataGridSorting(1);
         }
 
@@ -47,7 +48,8 @@ namespace Coursework.Pages.Expert
                     PageNumber = pageNum,
                     SearchName = TextBoxProductName.Text,
                     ProductStatusId = Convert.ToInt32(ComboBoxStatus.SelectedValue),
-                    ProductTypeId = Convert.ToInt32(ComboBoxProductType.SelectedValue)
+                    ProductTypeId = Convert.ToInt32(ComboBoxProductType.SelectedValue),
+                    ExpertId = ExpertClass.Employee.employee_id
                 }, trackChanges: false);
 
             _metaData = listOfProducts.MetaData;

@@ -15,7 +15,7 @@
                 <StackPanel HorizontalAlignment="Left"
                             Margin="0 0 30 0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Имя"
+                        <TextBlock Text="Имя: "
                                    TextAlignment="Right"
                                    Style="{StaticResource TextBlocksDefault}"/>
                         <TextBlock Text="{Binding firstname}"
@@ -24,7 +24,7 @@
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Фамилия"
+                        <TextBlock Text="Фамилия: "
                                    TextAlignment="Right"
                                    Style="{StaticResource TextBlocksDefault}"/>
                         <TextBlock Text="{Binding lastname}"
@@ -33,7 +33,7 @@
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Почта"
+                        <TextBlock Text="Почта: "
                                    Style="{StaticResource TextBlocksDefault}"
                                    TextAlignment="Right"/>
                         <TextBlock Text="{Binding email}"
@@ -42,7 +42,7 @@
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Телефон"
+                        <TextBlock Text="Телефон: "
                                    TextAlignment="Right"
                                    Style="{StaticResource TextBlocksDefault}"/>
                         <TextBlock Text="{Binding phone}"
@@ -137,9 +137,9 @@
                                         Binding="{Binding Path=ProductType.pr_type_title}"
                                         CellStyle="{StaticResource CellListProductsStyle}"/>
                     <DataGridTextColumn Header="Тип товара"
-                    Width="20*"
-                    Binding="{Binding Path=ProductStatus.pr_status_title}"
-                    CellStyle="{StaticResource CellListProductsStyle}"/>
+                                        Width="20*"
+                                        Binding="{Binding Path=ProductStatus.pr_status_title}"
+                                        CellStyle="{StaticResource CellListProductsStyle}"/>
                     <DataGridTemplateColumn Width="10*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

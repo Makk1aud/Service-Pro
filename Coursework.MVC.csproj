@@ -220,6 +220,9 @@
     <Compile Include="Pages\Expert\PageMyService.xaml.cs">
       <DependentUpon>PageMyService.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Expert\PageProductHandling.xaml.cs">
+      <DependentUpon>PageProductHandling.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Extensions\ClientRepositoryExtensions.cs" />
     <Compile Include="Repository\Extensions\EmployeeRepositoryExtensions.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\ClientParameters.cs" />
@@ -238,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Expert\PageMyService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Expert\PageProductHandling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -36,6 +36,7 @@ namespace Coursework.Pages.General
         {
             var product = (sender as Button).DataContext as Product;
             product.expert_id = ExpertClass.Employee.employee_id;
+            
             await ExpertClass.RepositoryManager.SaveAsync();
             DataGridSorting(_metaData.CurrentPage);
         }

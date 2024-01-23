@@ -1,0 +1,109 @@
+﻿<Page x:Class="Coursework.Pages.Expert.PageProductHandling"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework.Pages.Expert"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="PageProductHandling">
+
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Наименование: "
+                                   TextAlignment="Right"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                        <TextBlock Text="{Binding product_name}"
+                                   DataContext="{Binding Path=Product}"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Описание проблемы: "
+                                   TextWrapping="WrapWithOverflow"
+                                   Height="70"
+                                   TextAlignment="Left"
+                                   VerticalAlignment="Top"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                        <TextBlock Text="{Binding prod_description}"
+                                   DataContext="{Binding Path=Product}"
+                                   Height="100"
+                                   Width="200"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Номер клиента: "
+                                   TextAlignment="Right"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                        <TextBlock Text="{Binding Client.phone}"
+                                   DataContext="{Binding Path=Product}"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                    </StackPanel>
+                    <Button Name="ButtonBack"
+                            Content="Назад"
+                            Style="{StaticResource ButtonsDefault}"
+                            Click="ButtonBack_Click"
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            Margin="0 80 0 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Button Name="ButtonInWork"
+                            Content="В работе"
+                            Style="{StaticResource ButtonsDefault}"
+                            Click="ButtonInWork_Click"
+                            IsEnabled="{Binding Path=WorkButtonEnabled}"/>
+                    <Button Name="ButtonInWait"
+                            Content="В ожидании"
+                            Style="{StaticResource ButtonsDefault}"
+                            Click="ButtonInWork_Click"
+                            IsEnabled="{Binding Path=WaitButtonEnabled}"/>
+                    <Button Name="ButtonInComplete"
+                            Content="Завершить"
+                            Style="{StaticResource ButtonsDefault}"
+                            Click="ButtonInWork_Click"
+                            IsEnabled="{Binding Path=CompleteButtonEnabled}"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Использованные материалы"
+                               FontSize="18pt"
+                               HorizontalAlignment="Center"/>
+                    <DataGrid Name="DataGridProducts"
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              AutoGenerateColumns="False"
+                              Height="200"
+                              Width="400"
+                              MinRowHeight="20">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название"
+                                                Width="20*"
+                                                Binding="{Binding Path=Material.material_title}"
+                                                CellStyle="{StaticResource CellListProductsStyle}"/>
+
+                            <DataGridTextColumn Header="Цена"
+                                                Width="20*"
+                                                Binding="{Binding Path=Material.material_price}"
+                                                CellStyle="{StaticResource CellListProductsStyle}"/>
+                            <DataGridTextColumn Header="Кол-во"
+                                                Width="10*"
+                                                Binding="{Binding Path=quantity}"
+                                                CellStyle="{StaticResource CellListProductsStyle}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="ButtomAddMaterial"
+                            Content="Добавить материал"
+                            Style="{StaticResource ButtonsDefault}"
+                            Click="ButtomAddMaterial_Click"
+                            Width="200"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
