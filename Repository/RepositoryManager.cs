@@ -21,6 +21,7 @@ namespace Coursework.Repository
         private readonly Lazy<IEmployeeRepository> _employeeRepository;
         private readonly Lazy<IGenericRepository<ProductType>> _productTypeRepository;
         private readonly Lazy<IGenericRepository<ProductStatus>> _productStatusRepository;
+        private readonly Lazy<IGenericRepository<Expenditure>> _expernditureRepository;
 
         public RepositoryManager(CourseworkEntities context)
         {
@@ -31,6 +32,7 @@ namespace Coursework.Repository
             _employeeRepository = new Lazy<IEmployeeRepository>(() => new EmployeeRepository(context));
             _productTypeRepository = new Lazy<IGenericRepository<ProductType>>(() => new GenericRepository<ProductType>(context));
             _productStatusRepository = new Lazy<IGenericRepository<ProductStatus>>(() => new GenericRepository<ProductStatus>(context));
+            _expernditureRepository = new Lazy<IGenericRepository<Expenditure>>(() => new GenericRepository<Expenditure>(context));
         }
 
         public IGenericRepository<DiscountCard> DiscountCard => _discountCardRepository.Value;
@@ -44,6 +46,8 @@ namespace Coursework.Repository
         public IGenericRepository<ProductType> ProductType => _productTypeRepository.Value;
 
         public IGenericRepository<ProductStatus> ProductStatus => _productStatusRepository.Value;
+
+        public IGenericRepository<Expenditure> Expenditure => _expernditureRepository.Value;
 
         public async Task SaveAsync()
         {

@@ -1,4 +1,5 @@
 ﻿using Coursework.Classes;
+using Coursework.DataApp;
 using Coursework.Repository.Extensions.FilterParameters;
 using Coursework.ViewModels;
 using System;
@@ -50,7 +51,7 @@ namespace Coursework.Pages.Expert
                     ProductStatusId = Convert.ToInt32(ComboBoxStatus.SelectedValue),
                     ProductTypeId = Convert.ToInt32(ComboBoxProductType.SelectedValue),
                     ExpertId = ExpertClass.Employee.employee_id
-                }, trackChanges: false);
+                }, trackChanges: true);
 
             _metaData = listOfProducts.MetaData;
             this.DataContext = new ProductsViewModel { MetaData = _metaData, Employee = ExpertClass.Employee };
@@ -80,7 +81,8 @@ namespace Coursework.Pages.Expert
 
         private void ButtonSelectProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            var product = (sender as Button).DataContext as Product;
+            ExpertClass.FrameMainStruct.Navigate(new PageProductHandling(product));
         }
     }
 }

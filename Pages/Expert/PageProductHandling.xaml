@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Coursework.Pages.Expert"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="900"
+      d:DesignHeight="600" d:DesignWidth="900"
       Title="PageProductHandling">
 
     <Grid>
@@ -28,11 +28,18 @@
                                    TextAlignment="Left"
                                    VerticalAlignment="Top"
                                    Style="{StaticResource TextBlocksDefault}"/>
-                        <TextBlock Text="{Binding prod_description}"
-                                   DataContext="{Binding Path=Product}"
-                                   Height="100"
-                                   Width="200"
-                                   Style="{StaticResource TextBlocksDefault}"/>
+                        <TreeView Width="200">
+                            <TreeViewItem Header="Проблема"
+                                          FontSize="14pt">
+                                <TextBlock Text="{Binding prod_description}"
+                                               DataContext="{Binding Path=Product}"
+                                               Height="150"
+                                               Width="150"
+                                               TextWrapping="WrapWithOverflow"
+                                               Style="{StaticResource TextBlocksDefault}"/>
+                            </TreeViewItem>
+                        </TreeView>
+                        
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -55,17 +62,20 @@
                     <Button Name="ButtonInWork"
                             Content="В работе"
                             Style="{StaticResource ButtonsDefault}"
-                            Click="ButtonInWork_Click"
+                            Click="ButtonChangeStatus_Click"
+                            Tag="1"
                             IsEnabled="{Binding Path=WorkButtonEnabled}"/>
                     <Button Name="ButtonInWait"
                             Content="В ожидании"
                             Style="{StaticResource ButtonsDefault}"
-                            Click="ButtonInWork_Click"
+                            Click="ButtonChangeStatus_Click"
+                            Tag="2"
                             IsEnabled="{Binding Path=WaitButtonEnabled}"/>
                     <Button Name="ButtonInComplete"
                             Content="Завершить"
                             Style="{StaticResource ButtonsDefault}"
-                            Click="ButtonInWork_Click"
+                            Click="ButtonChangeStatus_Click"
+                            Tag="3"
                             IsEnabled="{Binding Path=CompleteButtonEnabled}"/>
                 </StackPanel>
 
@@ -73,7 +83,7 @@
                     <TextBlock Text="Использованные материалы"
                                FontSize="18pt"
                                HorizontalAlignment="Center"/>
-                    <DataGrid Name="DataGridProducts"
+                    <DataGrid Name="DataGridExpenditure"
                               IsReadOnly="True"
                               CanUserAddRows="False"
                               AutoGenerateColumns="False"
@@ -85,7 +95,13 @@
                             <DataGridTextColumn Header="Название"
                                                 Width="20*"
                                                 Binding="{Binding Path=Material.material_title}"
-                                                CellStyle="{StaticResource CellListProductsStyle}"/>
+                                                CellStyle="{StaticResource CellListProductsStyle}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
 
                             <DataGridTextColumn Header="Цена"
                                                 Width="20*"
@@ -97,13 +113,110 @@
                                                 CellStyle="{StaticResource CellListProductsStyle}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="ButtomAddMaterial"
-                            Content="Добавить материал"
-                            Style="{StaticResource ButtonsDefault}"
-                            Click="ButtomAddMaterial_Click"
-                            Width="200"/>
                 </StackPanel>
             </StackPanel>
+            <TreeView>
+                <TreeViewItem Header="Найти материал"
+                              FontSize="12pt">
+                    <StackPanel Orientation="Horizontal">
+                        <DataGrid Name="DataGridMaterials"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  AutoGenerateColumns="False"
+                                  Height="250"
+                                  Width="500"
+                                  MinRowHeight="20">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Наименование"
+                                                    Width="20*"
+                                                    Binding="{Binding Path=Material.material_title}"
+                                                    CellStyle="{StaticResource CellListProductsStyle}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Цена"
+                                                    Width="10*"
+                                                    Binding="{Binding Path=Material.material_price}"
+                                                    CellStyle="{StaticResource CellListProductsStyle}"/>
+                                <DataGridTextColumn Header="Тип"
+                                                    Width="15*"
+                                                    Binding="{Binding Path=quantity}"
+                                                    CellStyle="{StaticResource CellListProductsStyle}"/>
+                                <DataGridTextColumn Header="Производитель"
+                                                    Width="20*"
+                                                    Binding="{Binding Path=quantity}"
+                                                    CellStyle="{StaticResource CellListProductsStyle}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="Сортировка"
+                                       Style="{StaticResource TextBlocksDefault}"
+                                       Width="120"/>
+
+                            <Border BorderBrush="Black" 
+                                    Background="AliceBlue"
+                                    BorderThickness="1"
+                                    Margin="5">
+                                <StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Text="Наименование"
+                                                   Style="{StaticResource TextBlocksDefault}"
+                                                   HorizontalAlignment="Left"/>
+                                        <TextBox Name="TextBoxProductName"
+                                                 Style="{StaticResource TextBoxesDefault}"
+                                                 TextChanged="TextBoxProductName_TextChanged"/>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Text="Тип"
+                                                   Style="{StaticResource TextBlocksDefault}"
+                                                   HorizontalAlignment="Left"/>
+                                        <ComboBox Name="ComboBoxProductType"
+                                                  DisplayMemberPath="pr_type_title"
+                                                  SelectedValuePath="pr_type_id"
+                                                  HorizontalAlignment="Left"
+                                                  Style="{StaticResource ComboBoxesDefault}"
+                                                  SelectionChanged="ComboBoxProductType_SelectionChanged"/>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Text="Статус"
+                                                   Style="{StaticResource TextBlocksDefault}"
+                                                   HorizontalAlignment="Left"/>
+                                        <ComboBox Name="ComboBoxStatus"
+                                                  HorizontalAlignment="Left"
+                                                  DisplayMemberPath="pr_status_title"
+                                                  SelectedValuePath="pr_status_id"
+                                                  Style="{StaticResource ComboBoxesDefault}"
+                                                  SelectionChanged="ComboBoxStatus_SelectionChanged"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Center">
+                            <Button Name="ButtomAddMaterial"
+                                    Style="{StaticResource ButtonsDefault}"
+                                    Click="ButtomAddMaterial_Click"
+                                    Width="120"
+                                    Height="70"
+                                    IsEnabled="{Binding Path=CompleteButtonEnabled}">
+                                <TextBlock Text="Добавить материал"
+                                               TextWrapping="Wrap"/>
+                            </Button>
+                            <Button Name="ButtonReset"
+                                    Style="{StaticResource ButtonsDefault}"
+                                    Content="Сбросить"
+                                    FontSize="16pt"
+                                    Click="ButtonReset_Click_1"
+                                    VerticalAlignment="Center"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </TreeViewItem>
+            </TreeView>
         </StackPanel>
     </Grid>
 </Page>

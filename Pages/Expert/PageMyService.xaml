@@ -64,8 +64,8 @@
 
             </StackPanel>
             <TextBlock Text="Сортировка"
-           Style="{StaticResource TextBlocksDefault}"
-           Width="120"/>
+                       Style="{StaticResource TextBlocksDefault}"
+                       Width="120"/>
 
             <Border BorderBrush="Black" 
                     Background="AliceBlue"
