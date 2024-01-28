@@ -19,9 +19,11 @@ namespace Coursework.Repository
         private readonly Lazy<IProductRepository> _productRepository;
         private readonly Lazy<IClientRepository> _clientRepository;
         private readonly Lazy<IEmployeeRepository> _employeeRepository;
+        private readonly Lazy<IMaterialRepository> _materialRepository;
         private readonly Lazy<IGenericRepository<ProductType>> _productTypeRepository;
         private readonly Lazy<IGenericRepository<ProductStatus>> _productStatusRepository;
         private readonly Lazy<IGenericRepository<Expenditure>> _expernditureRepository;
+        private readonly Lazy<IGenericRepository<MaterialType>> _materialTypeRepository;
 
         public RepositoryManager(CourseworkEntities context)
         {
@@ -30,9 +32,11 @@ namespace Coursework.Repository
             _productRepository = new Lazy<IProductRepository>(() => new ProductRepository(context));
             _clientRepository = new Lazy<IClientRepository>(() => new ClientRepository(context));
             _employeeRepository = new Lazy<IEmployeeRepository>(() => new EmployeeRepository(context));
+            _materialRepository = new Lazy<IMaterialRepository>(() => new MaterialRepository(context));
             _productTypeRepository = new Lazy<IGenericRepository<ProductType>>(() => new GenericRepository<ProductType>(context));
             _productStatusRepository = new Lazy<IGenericRepository<ProductStatus>>(() => new GenericRepository<ProductStatus>(context));
             _expernditureRepository = new Lazy<IGenericRepository<Expenditure>>(() => new GenericRepository<Expenditure>(context));
+            _materialTypeRepository = new Lazy<IGenericRepository<MaterialType>>(() => new GenericRepository<MaterialType>(context));
         }
 
         public IGenericRepository<DiscountCard> DiscountCard => _discountCardRepository.Value;
@@ -48,6 +52,10 @@ namespace Coursework.Repository
         public IGenericRepository<ProductStatus> ProductStatus => _productStatusRepository.Value;
 
         public IGenericRepository<Expenditure> Expenditure => _expernditureRepository.Value;
+
+        public IGenericRepository<MaterialType> MaterialType => _materialTypeRepository.Value;
+
+        public IMaterialRepository Material => _materialRepository.Value;
 
         public async Task SaveAsync()
         {

@@ -63,7 +63,13 @@
                     <DataGridTextColumn Header="Наименование"
                                         Width="20*"
                                         Binding="{Binding Path=product_name}"
-                                        CellStyle="{StaticResource CellListProductsStyle}"/>
+                                        CellStyle="{StaticResource CellListProductsStyle}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Описание ошибки"
                                         Width="40*"

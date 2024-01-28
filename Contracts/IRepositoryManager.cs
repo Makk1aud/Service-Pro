@@ -10,13 +10,14 @@ namespace Coursework.Contracts
     public interface IRepositoryManager
     {
         IGenericRepository<DiscountCard> DiscountCard { get;}
-        //Добавить больше полей с generic типами таблиц
         IProductRepository Product { get;}
         IClientRepository Client { get;}
         IEmployeeRepository Employee { get;}
+        IMaterialRepository Material { get;}
         IGenericRepository<ProductType> ProductType { get;}
         IGenericRepository<ProductStatus> ProductStatus{ get;}
         IGenericRepository<Expenditure> Expenditure { get; }
+        IGenericRepository<MaterialType> MaterialType { get; }
         Task SaveAsync();
     }
 }

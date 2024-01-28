@@ -18,30 +18,41 @@
                                    Style="{StaticResource TextBlocksDefault}"/>
                         <TextBlock Text="{Binding product_name}"
                                    DataContext="{Binding Path=Product}"
+                                   TextWrapping="Wrap"
+                                   Height="60"
                                    Style="{StaticResource TextBlocksDefault}"/>
-                    </StackPanel>
-                    
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Описание проблемы: "
-                                   TextWrapping="WrapWithOverflow"
-                                   Height="70"
-                                   TextAlignment="Left"
-                                   VerticalAlignment="Top"
-                                   Style="{StaticResource TextBlocksDefault}"/>
-                        <TreeView Width="200">
-                            <TreeViewItem Header="Проблема"
-                                          FontSize="14pt">
-                                <TextBlock Text="{Binding prod_description}"
-                                               DataContext="{Binding Path=Product}"
-                                               Height="150"
-                                               Width="150"
-                                               TextWrapping="WrapWithOverflow"
-                                               Style="{StaticResource TextBlocksDefault}"/>
-                            </TreeViewItem>
-                        </TreeView>
-                        
                     </StackPanel>
 
+                    <StackPanel>
+                        
+                        <TreeView Width="300"
+                                  HorizontalAlignment="Left">
+                            <TreeView.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                Color="Transparent" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                                Color="Black" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                                                Color="Transparent" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                                                Color="Black" />
+                            </TreeView.Resources>
+                            <TreeViewItem Header="Проблема"
+                                          FontSize="14pt">
+                                <TextBox Text="{Binding prod_description}"
+                                         DataContext="{Binding Path=Product}"
+                                         Width="250"
+                                         Height="100"
+                                         IsReadOnly="True"
+                                         GotFocus="TextBox_GotFocus"
+                                         IsTabStop="False"
+                                         TextWrapping="Wrap"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                            </TreeViewItem>
+                        </TreeView>
+
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Номер клиента: "
                                    TextAlignment="Right"
@@ -112,10 +123,28 @@
                                                 Binding="{Binding Path=quantity}"
                                                 CellStyle="{StaticResource CellListProductsStyle}"/>
                         </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить"
+                                          Click="MenuItemDelete_Click"/>
+                                <MenuItem Header="Увеличить кол-во"
+                                          Click="MenuItemAdd_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
                 </StackPanel>
             </StackPanel>
             <TreeView>
+                <TreeView.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                      Color="Transparent" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                      Color="Black" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                      Color="Transparent" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                      Color="Black" />
+                </TreeView.Resources>
                 <TreeViewItem Header="Найти материал"
                               FontSize="12pt">
                     <StackPanel Orientation="Horizontal">
@@ -126,11 +155,20 @@
                                   Height="250"
                                   Width="500"
                                   MinRowHeight="20">
-
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Style.Triggers>
+                                        <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                            <Setter Property="Background" Value="Black" />
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Resources>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Наименование"
                                                     Width="20*"
-                                                    Binding="{Binding Path=Material.material_title}"
+                                                    Binding="{Binding Path=material_title}"
                                                     CellStyle="{StaticResource CellListProductsStyle}">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>
@@ -141,15 +179,15 @@
 
                                 <DataGridTextColumn Header="Цена"
                                                     Width="10*"
-                                                    Binding="{Binding Path=Material.material_price}"
+                                                    Binding="{Binding Path=material_price}"
                                                     CellStyle="{StaticResource CellListProductsStyle}"/>
                                 <DataGridTextColumn Header="Тип"
                                                     Width="15*"
-                                                    Binding="{Binding Path=quantity}"
+                                                    Binding="{Binding Path=MaterialType.mat_type_title}"
                                                     CellStyle="{StaticResource CellListProductsStyle}"/>
                                 <DataGridTextColumn Header="Производитель"
                                                     Width="20*"
-                                                    Binding="{Binding Path=quantity}"
+                                                    Binding="{Binding Path=Manufacturer.manufacturer_title}"
                                                     CellStyle="{StaticResource CellListProductsStyle}"/>
                             </DataGrid.Columns>
                         </DataGrid>
@@ -169,37 +207,50 @@
                                                    HorizontalAlignment="Left"/>
                                         <TextBox Name="TextBoxProductName"
                                                  Style="{StaticResource TextBoxesDefault}"
-                                                 TextChanged="TextBoxProductName_TextChanged"/>
+                                                 TextChanged="TextBox_TextChanged"
+                                                 MaxLength="20"/>
                                     </StackPanel>
                                     <StackPanel>
                                         <TextBlock Text="Тип"
                                                    Style="{StaticResource TextBlocksDefault}"
                                                    HorizontalAlignment="Left"/>
                                         <ComboBox Name="ComboBoxProductType"
-                                                  DisplayMemberPath="pr_type_title"
-                                                  SelectedValuePath="pr_type_id"
+                                                  DisplayMemberPath="mat_type_title"
+                                                  SelectedValuePath="mat_type_id"
                                                   HorizontalAlignment="Left"
                                                   Style="{StaticResource ComboBoxesDefault}"
                                                   SelectionChanged="ComboBoxProductType_SelectionChanged"/>
                                     </StackPanel>
                                     <StackPanel>
-                                        <TextBlock Text="Статус"
+                                        <TextBlock Text="Цена от - до руб."
                                                    Style="{StaticResource TextBlocksDefault}"
                                                    HorizontalAlignment="Left"/>
-                                        <ComboBox Name="ComboBoxStatus"
-                                                  HorizontalAlignment="Left"
-                                                  DisplayMemberPath="pr_status_title"
-                                                  SelectedValuePath="pr_status_id"
-                                                  Style="{StaticResource ComboBoxesDefault}"
-                                                  SelectionChanged="ComboBoxStatus_SelectionChanged"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Name="TextBoxMinPrice"
+                                                     Style="{StaticResource TextBoxesDefault}"
+                                                     Width="80"
+                                                     Text="0"
+                                                     TextChanged="TextBox_TextChanged"
+                                                     MaxLength="5"/>
+                                            <TextBlock Text="--"
+                                                       Style="{StaticResource TextBlocksDefault}"
+                                                       Width="20"
+                                                       HorizontalAlignment="Left"/>
+                                            <TextBox Name="TextBoxMaxPrice"
+                                                     Width="80"
+                                                     Style="{StaticResource TextBoxesDefault}"
+                                                     Text="99000"
+                                                     MaxLength="6"
+                                                     TextChanged="TextBox_TextChanged"/>
+                                        </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
                         <StackPanel VerticalAlignment="Center">
-                            <Button Name="ButtomAddMaterial"
+                            <Button Name="ButtonAddMaterial"
                                     Style="{StaticResource ButtonsDefault}"
-                                    Click="ButtomAddMaterial_Click"
+                                    Click="ButtonAddMaterial_Click"
                                     Width="120"
                                     Height="70"
                                     IsEnabled="{Binding Path=CompleteButtonEnabled}">
@@ -210,7 +261,7 @@
                                     Style="{StaticResource ButtonsDefault}"
                                     Content="Сбросить"
                                     FontSize="16pt"
-                                    Click="ButtonReset_Click_1"
+                                    Click="ButtonReset_Click"
                                     VerticalAlignment="Center"/>
                         </StackPanel>
                         

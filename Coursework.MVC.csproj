@@ -151,6 +151,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Contracts\IGenericRepository.cs" />
+    <Compile Include="Contracts\IMaterialRepository.cs" />
     <Compile Include="Contracts\IRepositoryBase.cs" />
     <Compile Include="DataApp\Client.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -227,11 +228,14 @@
     <Compile Include="Repository\Extensions\EmployeeRepositoryExtensions.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\ClientParameters.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\EmployeeParameters.cs" />
+    <Compile Include="Repository\Extensions\FilterParameters\MaterialParameters.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\MetaData.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\ProductParameters.cs" />
+    <Compile Include="Repository\Extensions\MaterialRepositoryExtensions.cs" />
     <Compile Include="Repository\Extensions\ProductRepositoryExtensions.cs" />
     <Compile Include="Repository\Extensions\FilterParameters\RequestParameters.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\MaterialRepository.cs" />
     <Compile Include="Repository\Pagination\PagedList.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\RepositoryManager.cs" />

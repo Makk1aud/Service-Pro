@@ -119,7 +119,13 @@
                     <DataGridTextColumn Header="Наименование"
                                         Width="20*"
                                         Binding="{Binding Path=product_name}"
-                                        CellStyle="{StaticResource CellListProductsStyle}"/>
+                                        CellStyle="{StaticResource CellListProductsStyle}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Описание ошибки"
                                         Width="40*"
@@ -136,11 +142,11 @@
                                         Width="20*"
                                         Binding="{Binding Path=ProductType.pr_type_title}"
                                         CellStyle="{StaticResource CellListProductsStyle}"/>
-                    <DataGridTextColumn Header="Тип товара"
-                                        Width="20*"
+                    <DataGridTextColumn Header="Статус"
+                                        Width="14*"
                                         Binding="{Binding Path=ProductStatus.pr_status_title}"
                                         CellStyle="{StaticResource CellListProductsStyle}"/>
-                    <DataGridTemplateColumn Width="10*">
+                    <DataGridTemplateColumn Width="15*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Name="ButtonSelectProduct"
