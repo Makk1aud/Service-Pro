@@ -97,6 +97,7 @@
                         <ComboBox Name="ComboBoxStatus"
                                   DisplayMemberPath="pr_status_title"
                                   SelectedValuePath="pr_status_id"
+                                  
                                   Style="{StaticResource ComboBoxesDefault}"
                                   SelectionChanged="ComboBox_SelectionChanged"/>
                     </StackPanel>

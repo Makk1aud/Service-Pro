@@ -209,6 +209,9 @@
     </Compile>
     <Compile Include="Contracts\IRepositoryManager.cs" />
     <Compile Include="Helpers\PasswordHash.cs" />
+    <Compile Include="Pages\Admin\PageIssueOrder.xaml.cs">
+      <DependentUpon>PageIssueOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\PageListOfEmployes.xaml.cs">
       <DependentUpon>PageListOfEmployes.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,10 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\RepositoryManager.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
+    <Page Include="Pages\Admin\PageIssueOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Expert\PageExpertLeftPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

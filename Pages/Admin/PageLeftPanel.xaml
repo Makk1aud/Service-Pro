@@ -19,6 +19,10 @@
                     Content="Список специалистов"
                     Click="ButtonListOfExperts_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
+            <Button Name="ButtonIssueOrder"
+                    Content="Выдать заказ"
+                    Click="ButtonIssueOrder_Click"
+                    Style="{StaticResource ButtonsLeftPanel}"/>
         </StackPanel>
     </Grid>
 </Page>
