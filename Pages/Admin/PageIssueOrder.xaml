@@ -51,6 +51,45 @@
                             VerticalAlignment="Bottom"/>
                 </StackPanel>
             </Border>
+            <DataGrid Name="DataGridEmployes"
+          IsReadOnly="True"
+          CanUserAddRows="False"
+          AutoGenerateColumns="False"
+          Height="300"
+          Width="800">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя"
+            Width="20*"
+            Binding="{Binding Path=firstname}"/>
+
+                    <DataGridTextColumn Header="Фамилия"
+            Width="20*"
+            Binding="{Binding Path=lastname}"/>
+
+                    <DataGridTextColumn Header="Номер телефона"
+            Width="40*"
+            Binding="{Binding Path=phone}"/>
+
+                    <DataGridTextColumn Header="Email"
+            Width="40*"
+            Binding="{Binding Path=email}"/>
+
+                    <DataGridTextColumn Header="Код"
+            Width="10*"
+            Binding="{Binding Path=login_code}"/>
+
+                    <DataGridTextColumn Header="Должность"
+            Width="40*"
+            Binding="{Binding Path=Position.position_title}"/>
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Удалить"
+                      Click="MenuDelete_Click">
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Page>
