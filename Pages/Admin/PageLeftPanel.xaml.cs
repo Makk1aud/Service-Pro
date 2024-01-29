@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Coursework.Pages.Admin
 {
-    /// <summary>
-    /// Логика взаимодействия для PageLeftPanel.xaml
-    /// </summary>
     public partial class PageLeftPanel : Page
     {
         public PageLeftPanel()
@@ -27,14 +24,13 @@ namespace Coursework.Pages.Admin
             InitializeComponent();
         }
 
-        private void ButtonMainPage_Click(object sender, RoutedEventArgs e)
-        {
+        private void ButtonMainPage_Click(object sender, RoutedEventArgs e) =>
             AdminClass.FrameMainStruct.Navigate(new PageMerchandising());
-        }
 
-        private void ButtonListOfExperts_Click(object sender, RoutedEventArgs e)
-        {
+        private void ButtonListOfExperts_Click(object sender, RoutedEventArgs e) =>
             AdminClass.FrameMainStruct.Navigate(new PageListOfEmployes());
-        }
+
+        private void ButtonIssueOrder_Click(object sender, RoutedEventArgs e) =>
+            AdminClass.FrameMainStruct.Navigate(new PageIssueOrder());
     }
 }

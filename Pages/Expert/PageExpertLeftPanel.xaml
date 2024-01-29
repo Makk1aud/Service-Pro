@@ -11,13 +11,13 @@
     <Grid Background="DarkSalmon">
         <StackPanel VerticalAlignment="Top"
                     HorizontalAlignment="Left">
-            <Button Name="ButtonMainPage"
-                    Content="Главная страница"
-
+            <Button Name="ButtonPersonalKabinet"
+                    Content="Личный кабинет"
+                    Click="ButtonPersonalKabinet_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
-            <Button Name="ButtonListOfExperts"
-                    Content="Список специалистов"
-
+            <Button Name="ButtonListOfProducts"
+                    Content="Список товаров"
+                    Click="ButtonListOfProducts_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
         </StackPanel>
     </Grid>

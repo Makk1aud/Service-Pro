@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Coursework.Classes;
+using Coursework.Pages.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +17,17 @@ using System.Windows.Shapes;
 
 namespace Coursework.Pages.Expert
 {
-    /// <summary>
-    /// Логика взаимодействия для PageExpertLeftPanel.xaml
-    /// </summary>
     public partial class PageExpertLeftPanel : Page
     {
         public PageExpertLeftPanel()
         {
             InitializeComponent();
         }
+
+        private void ButtonListOfProducts_Click(object sender, RoutedEventArgs e) =>
+            ExpertClass.FrameMainStruct.Navigate(new PageListProducts());
+
+        private void ButtonPersonalKabinet_Click(object sender, RoutedEventArgs e) =>
+            ExpertClass.FrameMainStruct.Navigate(new PageMyService());
     }
 }

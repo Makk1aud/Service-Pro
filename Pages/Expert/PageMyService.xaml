@@ -1,20 +1,74 @@
-﻿<Page x:Class="Coursework.Pages.General.PageListProducts"
+﻿<Page x:Class="Coursework.Pages.Expert.PageMyService"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Coursework.Pages.General"
+      xmlns:local="clr-namespace:Coursework.Pages.Expert"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="900"
-      Title="PageListProducts">
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="PageMyService">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Left">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Width="800">
+                <StackPanel HorizontalAlignment="Left"
+                            Margin="0 0 30 0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Имя: "
+                                   TextAlignment="Right"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                        <TextBlock Text="{Binding firstname}"
+                                   DataContext="{Binding Path=Employee}"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Фамилия: "
+                                   TextAlignment="Right"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                        <TextBlock Text="{Binding lastname}"
+                                   DataContext="{Binding Path=Employee}"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Почта: "
+                                   Style="{StaticResource TextBlocksDefault}"
+                                   TextAlignment="Right"/>
+                        <TextBlock Text="{Binding email}"
+                                   DataContext="{Binding Path=Employee}"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Телефон: "
+                                   TextAlignment="Right"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                        <TextBlock Text="{Binding phone}"
+                                   DataContext="{Binding Path=Employee}"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Text="Выполнено заказов:"
+                                   Width="200"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                        <TextBlock Text="Заполнить"
+                                   HorizontalAlignment="Left"
+                                   Style="{StaticResource TextBlocksDefault}"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
             <TextBlock Text="Сортировка"
                        Style="{StaticResource TextBlocksDefault}"
                        Width="120"/>
 
-            <Border BorderBrush="Black" Background="AliceBlue"
+            <Border BorderBrush="Black" 
+                    Background="AliceBlue"
                     BorderThickness="1"
                     Margin="5">
                 <StackPanel Orientation="Horizontal">
@@ -23,16 +77,8 @@
                                    Style="{StaticResource TextBlocksDefault}"
                                    HorizontalAlignment="Left"/>
                         <TextBox Name="TextBoxProductName"
-                                 Style="{StaticResource TextBoxesDefault}"
-                                 TextChanged="TextBox_TextChanged"/>
-                    </StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="Описание"
-                                   Style="{StaticResource TextBlocksDefault}"
-                                   HorizontalAlignment="Left"/>
-                        <TextBox Name="TextBoxProductDesc"
-                                 Style="{StaticResource TextBoxesDefault}"
-                                 TextChanged="TextBox_TextChanged"/>
+                                   Style="{StaticResource TextBoxesDefault}"
+                                   TextChanged="TextBox_TextChanged"/>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="Тип"
@@ -42,7 +88,18 @@
                                   DisplayMemberPath="pr_type_title"
                                   SelectedValuePath="pr_type_id"
                                   Style="{StaticResource ComboBoxesDefault}"
-                                  SelectionChanged="ComboBoxProductType_SelectionChanged"/>
+                                  SelectionChanged="ComboBox_SelectionChanged"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Статус"
+                                   Style="{StaticResource TextBlocksDefault}"
+                                   HorizontalAlignment="Left"/>
+                        <ComboBox Name="ComboBoxStatus"
+                                  DisplayMemberPath="pr_status_title"
+                                  SelectedValuePath="pr_status_id"
+                                  
+                                  Style="{StaticResource ComboBoxesDefault}"
+                                  SelectionChanged="ComboBox_SelectionChanged"/>
                     </StackPanel>
                     <Button Name="ButtonReset"
                             Style="{StaticResource ButtonsDefault}"
@@ -55,7 +112,7 @@
                       IsReadOnly="True"
                       CanUserAddRows="False"
                       AutoGenerateColumns="False"
-                      Height="370"
+                      Height="250"
                       Width="800"
                       MinRowHeight="20">
 
@@ -86,7 +143,11 @@
                                         Width="20*"
                                         Binding="{Binding Path=ProductType.pr_type_title}"
                                         CellStyle="{StaticResource CellListProductsStyle}"/>
-                    <DataGridTemplateColumn Width="10*">
+                    <DataGridTextColumn Header="Статус"
+                                        Width="14*"
+                                        Binding="{Binding Path=ProductStatus.pr_status_title}"
+                                        CellStyle="{StaticResource CellListProductsStyle}"/>
+                    <DataGridTemplateColumn Width="15*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Name="ButtonSelectProduct"
@@ -105,14 +166,16 @@
                         Click="ButtonPreviousPage_Click"
                         Style="{StaticResource ButtonsDefault}"/>
                 <TextBlock Text="{Binding CurrentPage}"
+                           DataContext="{Binding Path= MetaData}"
                            FontSize="14pt"                           
                            VerticalAlignment="Center"/>
                 <TextBlock Text="из"
                            FontSize="14pt"                           
                            VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding TotalPages}"
+                           DataContext="{Binding Path= MetaData}"
                            FontSize="14pt"                           
-                           VerticalAlignment="Center"/>     
+                           VerticalAlignment="Center"/>
                 <Button Name="ButtonNextPage"
                         Content="След"
                         Click="ButtonNextPage_Click"

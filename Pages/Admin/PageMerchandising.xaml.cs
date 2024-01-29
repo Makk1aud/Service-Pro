@@ -78,7 +78,7 @@ namespace Coursework.Pages.Admin
                 manager_id = AdminClass.Employee.employee_id,
                 pr_type_id = Convert.ToInt32(ComboBoxPrType.SelectedValue),
                 client_id = (DataGridClients.SelectedItem as Client).client_id,
-                pr_status_id = 1
+                pr_status_id = 2
             };
             AdminClass.RepositoryManager.Product.CreateProduct(product);
             await AdminClass.RepositoryManager.SaveAsync();

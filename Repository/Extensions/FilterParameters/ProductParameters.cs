@@ -14,5 +14,6 @@ namespace Coursework.Repository.Extensions.FilterParameters
         public string SearchName { get; set; }
         public int? ProductTypeId { get; set; }
         public string SearchDesc { get; set; }
+        public int? ProductStatusId { get; set; }
     }
 }
