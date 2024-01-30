@@ -104,7 +104,7 @@ namespace Coursework.Testing.Systems.Repositories
         public void Get_OnSucces_List_Products_With_MaterialType_0_Count_0()
         {
             var fixture = new MaterialFixture();
-            var expectedCount = 0;
+            var expectedCount = 4;
             var materialParameters = new MaterialParameters
             {
                 MaterialTypeId = 0

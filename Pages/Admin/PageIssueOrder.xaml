@@ -17,7 +17,8 @@
                     BorderThickness="1"
                     Margin="5">
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Name="SortingStackPanel">
                     <StackPanel>
                         <TextBlock Text="Имя"
                                    Style="{StaticResource TextBlocksDefault}"
@@ -51,45 +52,61 @@
                             VerticalAlignment="Bottom"/>
                 </StackPanel>
             </Border>
-            <DataGrid Name="DataGridEmployes"
-          IsReadOnly="True"
-          CanUserAddRows="False"
-          AutoGenerateColumns="False"
-          Height="300"
-          Width="800">
+            <DataGrid Name="DataGridClients"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      AutoGenerateColumns="False"
+                      Height="250"
+                      Width="800">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Имя"
-            Width="20*"
-            Binding="{Binding Path=firstname}"/>
+                                        Width="20*"
+                                        Binding="{Binding Path=firstname}"/>
 
                     <DataGridTextColumn Header="Фамилия"
-            Width="20*"
-            Binding="{Binding Path=lastname}"/>
+                                        Width="25*"
+                                        Binding="{Binding Path=lastname}"/>
 
                     <DataGridTextColumn Header="Номер телефона"
-            Width="40*"
-            Binding="{Binding Path=phone}"/>
+                                        Width="35*"
+                                        Binding="{Binding Path=phone}"/>
 
                     <DataGridTextColumn Header="Email"
-            Width="40*"
-            Binding="{Binding Path=email}"/>
+                                        Width="35*"
+                                        Binding="{Binding Path=email}"/>
 
-                    <DataGridTextColumn Header="Код"
-            Width="10*"
-            Binding="{Binding Path=login_code}"/>
-
-                    <DataGridTextColumn Header="Должность"
-            Width="40*"
-            Binding="{Binding Path=Position.position_title}"/>
+                    <DataGridTemplateColumn Width="18*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="ButtonSelectClient"
+                                        Style="{StaticResource ButtonsDefault}"
+                                        Content="Выбрать"
+                                        Click="ButtonSelectClient_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
-                <DataGrid.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Удалить"
-                      Click="MenuDelete_Click">
-                        </MenuItem>
-                    </ContextMenu>
-                </DataGrid.ContextMenu>
             </DataGrid>
+            <StackPanel HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Name="ButtonPreviousPage"
+                        Content="Пред"
+                        Click="ButtonPreviousPage_Click"
+                        Style="{StaticResource ButtonsDefault}"/>
+                <TextBlock Text="{Binding CurrentPage}"
+                           FontSize="14pt"                           
+                           VerticalAlignment="Center"/>
+                <TextBlock Text="из"
+                           FontSize="14pt"                           
+                           VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding TotalPages}"
+                           FontSize="14pt"                           
+                           VerticalAlignment="Center"/>
+                <Button Name="ButtonNextPage"
+                        Content="След"
+                        Click="ButtonNextPage_Click"
+                        Style="{StaticResource ButtonsDefault}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
