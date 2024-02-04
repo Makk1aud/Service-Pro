@@ -119,6 +119,9 @@ namespace Coursework.Pages.Expert
 
         private async void MenuItemDelete_Click(object sender, RoutedEventArgs e)
         {
+            if (_product.pr_status_id > 2)
+                return;
+
             var expMaterial = DataGridExpenditure.SelectedItem as Expenditure;
 
             if (expMaterial.quantity > 1)
@@ -134,6 +137,8 @@ namespace Coursework.Pages.Expert
 
         private async void MenuItemAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (_product.pr_status_id > 2)
+                return;
             var expMaterial = DataGridExpenditure.SelectedItem as Expenditure;
             expMaterial.quantity++;
 

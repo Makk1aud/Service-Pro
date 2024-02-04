@@ -34,7 +34,8 @@ namespace Coursework.Repository.Extensions
         public static IQueryable<Client> FindById(this IQueryable<Client> items, int? clientId) =>
             clientId is null
             ? items
-            : items.Where(x => x.client_id == clientId);                    
+            : items.Where(x => x.client_id == clientId);            
+        
 
         //Поиск по id любой таблицы
 

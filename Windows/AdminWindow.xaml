@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="1000"
+        ResizeMode="NoResize"
+        Title="AdminWindow" Height="450" Width="1100"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
         <Frame Grid.Column="0"
                Name="FrameLeftPanel"

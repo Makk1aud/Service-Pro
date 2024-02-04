@@ -1,4 +1,5 @@
 ﻿using Coursework.Classes;
+using Coursework.DataApp;
 using Coursework.Repository.Extensions.FilterParameters;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,6 @@ namespace Coursework.Pages.Admin
                 .GetClients(new ClientParameters
                 {
                     PageNumber = pageNum,
-                    PageSize = 1,
                     Name = TextBoxFirstname.Text,
                     LastName = TextBoxLastName.Text,
                     PhoneNum = TextBoxPhone.Text
@@ -59,7 +59,8 @@ namespace Coursework.Pages.Admin
 
         private void ButtonSelectClient_Click(object sender, RoutedEventArgs e)
         {
-
+            var client = (sender as Button).DataContext as Client;
+            AdminClass.FrameMainStruct.Navigate(new PageAboutClientProducts(client));
         }
 
         private void ButtonPreviousPage_Click(object sender, RoutedEventArgs e) =>

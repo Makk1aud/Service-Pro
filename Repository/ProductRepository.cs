@@ -24,18 +24,11 @@ namespace Coursework.Repository
         public void DeleteProduct(Product product) => 
             Delete(product);
 
+
+
         public PagedList<Product> GetProducts(ProductParameters productParameters, bool trackChanges)
         {
-            var items = FindAll(trackChanges)
-                .GetProductsByExpertId(productParameters.ExpertId)
-                .GetProductsByName(productParameters.SearchName)
-                .GetProductsByProductTypeId(productParameters.ProductTypeId)
-                .GetProductsByDescription(productParameters.SearchDesc)
-                .GetProductsByProductStatusId(productParameters.ProductStatusId)
-                .OrderBy(x => x.product_name)
-                .Skip((productParameters.PageNumber - 1) * productParameters.PageSize)
-                .Take(productParameters.PageSize)
-                .ToList();
+            var items = GetProductsWithParameters(productParameters, trackChanges).ToList();
 
             var count = FindAll(trackChanges)
                 .GetProductsByExpertId(productParameters.ExpertId)
@@ -52,6 +45,19 @@ namespace Coursework.Repository
             FindAll(trackChanges)
             .OrderBy(x => x.product_name)
             .ToList();
+
+        public IEnumerable<Product> GetProductsWithParameters(ProductParameters productParameters, bool trackChanges) =>
+            FindAll(trackChanges)
+                .GetProductsByExpertId(productParameters.ExpertId)
+                .GetProductsByName(productParameters.SearchName)
+                .GetProductsByProductTypeId(productParameters.ProductTypeId)
+                .GetProductsByDescription(productParameters.SearchDesc)
+                .GetProductsByProductStatusId(productParameters.ProductStatusId)
+                .GetProductsByClientId(productParameters.ClientId)
+                .OrderBy(x => x.product_name)
+                .Skip((productParameters.PageNumber - 1) * productParameters.PageSize)
+                .Take(productParameters.PageSize)
+                .ToList();
 
         public void UpdateProduct(Product product) => 
             Update(product);
