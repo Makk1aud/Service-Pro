@@ -32,7 +32,8 @@ namespace Coursework.Pages.Admin
             {
                 firstname = client.FirstName,
                 lastname = client.LastName,
-                phone = client.PhoneNum
+                phone = client.PhoneNum,
+                email = client.Email
             };
             AdminClass.RepositoryManager.Client.CreateClient(newClient);
             await AdminClass.RepositoryManager.SaveAsync();

@@ -27,6 +27,16 @@ namespace Coursework.Pages.Admin
             _client = client;
             this.DataContext = _client;
             DataGridProductsSorting();
+
+            ComboBoxProductType.ItemsSource = AdminClass
+                .RepositoryManager
+                .ProductType
+                .FindAllGeneric(trackChanges: true);
+
+            ComboBoxProductStatus.ItemsSource = AdminClass
+                .RepositoryManager
+                .ProductStatus
+                .FindAllGeneric(trackChanges: true);
         }
 
         private void DataGridProductsSorting() =>
@@ -37,7 +47,8 @@ namespace Coursework.Pages.Admin
             {
                 ClientId = _client.client_id,
                 SearchName = TextBoxProductName.Text,
-                ProductTypeId = Convert.ToInt32(ComboBoxProductType.SelectedValue)
+                ProductTypeId = Convert.ToInt32(ComboBoxProductType.SelectedValue),
+                ProductStatusId = Convert.ToInt32(ComboBoxProductStatus.SelectedValue)
             }, trackChanges: true);
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e) =>

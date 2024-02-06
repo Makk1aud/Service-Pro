@@ -20,7 +20,11 @@
                                  Text="Поиск по номеру"
                                  GotFocus="TextBox_GotFocus"
                                  MaxLength="20"
-                                 Style="{StaticResource TextBoxesDefault}"/>        
+                                 Style="{StaticResource TextBoxesDefault}"/>
+                        <Button Name="ButtonResetSorting"
+                                Content="Сбросить"
+                                Style="{StaticResource ButtonsDefault}"
+                                Click="ButtonResetSorting_Click"/>
                     </StackPanel>
                     <DataGrid Name="DataGridClients"
                               IsReadOnly="True"

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Coursework.Pages.Admin"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="900"
       Title="PageAboutClientProducts">
 
     <Grid>
@@ -57,6 +57,7 @@
                                        Style="{StaticResource TextBlocksDefault}"
                                        HorizontalAlignment="Left"/>
                             <TextBox Name="TextBoxProductName"
+                                     Width="150"
                                      Style="{StaticResource TextBoxesDefault}"
                                      TextChanged="TextBoxProductName_TextChanged"/>
                         </StackPanel>
@@ -67,6 +68,16 @@
                             <ComboBox Name="ComboBoxProductType"
                                       DisplayMemberPath="pr_type_title"
                                       SelectedValuePath="pr_type_id"
+                                      Style="{StaticResource ComboBoxesDefault}"
+                                      SelectionChanged="ComboBoxProductType_SelectionChanged"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Статус товара"
+                                       Style="{StaticResource TextBlocksDefault}"
+                                       HorizontalAlignment="Left"/>
+                            <ComboBox Name="ComboBoxProductStatus"
+                                      DisplayMemberPath="pr_status_title"
+                                      SelectedValuePath="pr_status_id"
                                       Style="{StaticResource ComboBoxesDefault}"
                                       SelectionChanged="ComboBoxProductType_SelectionChanged"/>
                         </StackPanel>
@@ -82,7 +93,7 @@
                           CanUserAddRows="False"
                           AutoGenerateColumns="False"
                           Height="250"
-                          Width="500">
+                          Width="600">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Наименование"
                             Width="20*"

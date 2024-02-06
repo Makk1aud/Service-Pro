@@ -26,9 +26,9 @@ namespace Coursework.ValidationsModels.Extensions
             && EmailValidation(employee.email)
             && PhoneValidation(employee.phone);
 
-        public static bool EmailValidation(string email) =>
+        public static bool EmailValidation(string email, int maxLength = 40) =>
             new EmailAddressAttribute().IsValid(email)
-            && email.FieldValidation(max: 40);
+            && email.FieldValidation(max: maxLength);
 
         public static bool ProductNameValidation(string productName) =>
             productName.FieldValidation(3, 30)
