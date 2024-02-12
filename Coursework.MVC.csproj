@@ -218,8 +218,8 @@
     <Compile Include="Pages\Admin\PageListOfEmployes.xaml.cs">
       <DependentUpon>PageListOfEmployes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\ProductCheck.xaml.cs">
-      <DependentUpon>ProductCheck.xaml</DependentUpon>
+    <Compile Include="Pages\Admin\PageProductCheck.xaml.cs">
+      <DependentUpon>PageProductCheck.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Expert\PageExpertLeftPanel.xaml.cs">
       <DependentUpon>PageExpertLeftPanel.xaml</DependentUpon>
@@ -257,7 +257,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Admin\ProductCheck.xaml">
+    <Page Include="Pages\Admin\PageProductCheck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

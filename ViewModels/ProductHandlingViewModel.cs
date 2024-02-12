@@ -21,6 +21,6 @@ namespace Coursework.ViewModels
 
         public bool WaitButtonEnabled => Product.pr_status_id == 1;
 
-        public bool CompleteButtonEnabled => Product.pr_status_id != 3;
+        public bool CompleteButtonEnabled => Product.pr_status_id == 3;
     }
 }

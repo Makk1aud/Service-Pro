@@ -1,4 +1,5 @@
 ﻿using Coursework.Classes;
+using Coursework.Helpers;
 using Coursework.Pages.General;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,8 @@ namespace Coursework.Pages.Expert
 
         private void ButtonPersonalKabinet_Click(object sender, RoutedEventArgs e) =>
             ExpertClass.FrameMainStruct.Navigate(new PageMyService());
+
+        private void ButtonSignOut_Click(object sender, RoutedEventArgs e) =>
+            ChangeWindows.Change(Window.GetWindow(this), new AuthorisationWindow());
     }
 }

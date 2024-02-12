@@ -33,10 +33,13 @@ namespace Coursework.Pages.Authorisation
                 .Employee
                 .GetEmployeeByLogin(PasswordBoxCode.Password, trackChanges : false);
 
-            if (emp == null)            
-                return;  
-            
-            switch(emp.position_id)
+            if (emp == null)
+            {
+                TextBlockError.Text = "Неверные данные для входа";
+                return;
+            }
+
+            switch (emp.position_id)
             {
                 case 1:
                     ChangeWindows.Change(Window.GetWindow(this), new ExpertWindow(emp));

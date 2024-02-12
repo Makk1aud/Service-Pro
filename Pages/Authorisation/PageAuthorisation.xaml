@@ -13,6 +13,12 @@
                     VerticalAlignment="Center">
             <TextBlock Text="Введите ваш код"
                        FontSize="26pt"/>
+            <TextBlock Name="TextBlockError"
+                       Style="{StaticResource TextBlocksDefault}"
+                       Foreground="Red"
+                       Width="250"
+                       TextAlignment="Center"
+                       FontSize="12pt"/>
             <PasswordBox Name="PasswordBoxCode" 
                          Height="35"
                          Width="200"

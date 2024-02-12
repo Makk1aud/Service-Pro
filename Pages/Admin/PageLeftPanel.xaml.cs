@@ -1,4 +1,5 @@
 ﻿using Coursework.Classes;
+using Coursework.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,5 +33,8 @@ namespace Coursework.Pages.Admin
 
         private void ButtonIssueOrder_Click(object sender, RoutedEventArgs e) =>
             AdminClass.FrameMainStruct.Navigate(new PageIssueOrder());
+
+        private void ButtonSignOut_Click(object sender, RoutedEventArgs e) =>
+            ChangeWindows.Change(Window.GetWindow(this), new AuthorisationWindow());
     }
 }

@@ -24,7 +24,15 @@ namespace Coursework.Repository
         public void DeleteProduct(Product product) => 
             Delete(product);
 
-
+        public IEnumerable<Product> GetClientProducts(ProductParameters productParameters, bool trackChanges) =>
+            FindAll(trackChanges)
+                .GetProductsByName(productParameters.SearchName)
+                .GetProductsByProductTypeId(productParameters.ProductTypeId)
+                .GetProductsByDescription(productParameters.SearchDesc)
+                .GetProductsByProductStatusId(productParameters.ProductStatusId)
+                .GetProductsByClientId(productParameters.ClientId)
+                .OrderBy(x => x.product_name)
+                .ToList();
 
         public PagedList<Product> GetProducts(ProductParameters productParameters, bool trackChanges)
         {
@@ -36,6 +44,7 @@ namespace Coursework.Repository
                 .GetProductsByDescription(productParameters.SearchDesc)
                 .GetProductsByProductTypeId(productParameters.ProductTypeId)
                 .GetProductsByProductStatusId (productParameters.ProductStatusId)
+                .GetProductsByClientId(productParameters.ClientId)
                 .Count();
 
             return new PagedList<Product>(items, count, productParameters.PageNumber, productParameters.PageSize);

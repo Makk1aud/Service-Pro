@@ -43,7 +43,7 @@ namespace Coursework.Pages.Admin
             DataGridProducts.ItemsSource = AdminClass
             .RepositoryManager
             .Product
-            .GetProducts(new ProductParameters
+            .GetClientProducts(new ProductParameters
             {
                 ClientId = _client.client_id,
                 SearchName = TextBoxProductName.Text,
@@ -64,11 +64,14 @@ namespace Coursework.Pages.Admin
         {
             TextBoxProductName.Text = string.Empty;
             ComboBoxProductType.SelectedItem = null;
+            ComboBoxProductStatus.SelectedItem = null;
         }
 
         private void ButtonSelectProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            var product = (sender as Button).DataContext as Product;
+            if(product.pr_status_id == 3)
+                AdminClass.FrameMainStruct.Navigate(new PageProductCheck(product, _client));
         }
     }
 }

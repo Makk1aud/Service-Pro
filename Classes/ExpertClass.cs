@@ -12,11 +12,7 @@ namespace Coursework.Classes
 {
     public static class ExpertClass
     {
-        public static IRepositoryManager RepositoryManager { get; }
-        static ExpertClass()
-        {
-            RepositoryManager = new RepositoryManager(new CourseworkEntities());
-        }
+        public static IRepositoryManager RepositoryManager { get; set;}
 
         public static Frame FrameLeftPanel { get; set; }
         public static Frame FrameMainStruct { get; set; }
