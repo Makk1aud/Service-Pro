@@ -29,7 +29,7 @@ namespace Coursework.Pages.Admin
 
         public void DataGridClientsSorting(int pageNum)
         {
-            var listOfClients = ExpertClass
+            var listOfClients = AdminClass
                 .RepositoryManager
                 .Client
                 .GetClients(new ClientParameters
