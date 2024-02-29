@@ -212,5 +212,22 @@ namespace Coursework.Testing.Systems.Repositories
 
             result.Should().HaveCount(expectedCount);
         }
+
+        [Fact]
+        public void Get_OnSucces_Material_WithId()
+        {
+            var fixture = new MaterialFixture();
+
+            var listOfMaterials = fixture.GetTestDbSetMaterials();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Material>()).Returns(listOfMaterials);
+
+            var materialRepository = new MaterialRepository(context.Object);
+
+            var result = materialRepository.GetMaterial(1, trackChanges: false);
+
+            result.Should().NotBeNull();
+        }
     }
 }

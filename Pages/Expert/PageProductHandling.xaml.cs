@@ -78,12 +78,16 @@ namespace Coursework.Pages.Expert
         private async void ButtonAddMaterial_Click(object sender, RoutedEventArgs e)
         {
             var material = DataGridMaterials.SelectedItem as Material;
+            if(material.quantity <= 0)
+                return;
+
             var expMat = ExpertClass
                 .RepositoryManager
                 .Expenditure
                 .FindByConditionGeneric(x => x.material_id == material.material_id
                 && x.product_id == _product.product_id, trackChanges: true)
                 .FirstOrDefault();
+
             if (expMat != null)            
                 expMat.quantity += 1;            
             else
@@ -95,8 +99,10 @@ namespace Coursework.Pages.Expert
                     capture_date = DateTime.Now
                 });
 
+            material.quantity -= 1;
             await ExpertClass.RepositoryManager.SaveAsync();
             DataGridExpenditureFilling();
+            DataGridMaterialsSorting();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e) =>
@@ -119,10 +125,11 @@ namespace Coursework.Pages.Expert
 
         private async void MenuItemDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (_product.pr_status_id > 2)
-                return;
-
             var expMaterial = DataGridExpenditure.SelectedItem as Expenditure;
+
+            if (_product.pr_status_id > 2
+                || expMaterial is null)
+                return;
 
             if (expMaterial.quantity > 1)
                 expMaterial.quantity--;
@@ -131,19 +138,32 @@ namespace Coursework.Pages.Expert
                     .RepositoryManager
                     .Expenditure.DeleteGeneric(expMaterial);
 
+            var material = ExpertClass.RepositoryManager.Material.GetMaterial(expMaterial.material_id, trackChanges: true);
+            material.quantity++;
             await ExpertClass.RepositoryManager.SaveAsync();
+
             DataGridExpenditureFilling();
+            DataGridMaterialsSorting();
         }
 
         private async void MenuItemAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (_product.pr_status_id > 2)
-                return;
             var expMaterial = DataGridExpenditure.SelectedItem as Expenditure;
-            expMaterial.quantity++;
+            
+            if (_product.pr_status_id > 2
+                || expMaterial is null)
+                return;
 
+            var material = ExpertClass.RepositoryManager.Material.GetMaterial(expMaterial.material_id, trackChanges: true);
+            if (material.quantity <= 0)
+                return;
+
+            expMaterial.quantity++;
+            material.quantity--;
             await ExpertClass.RepositoryManager.SaveAsync();
+
             DataGridExpenditureFilling();
+            DataGridMaterialsSorting();
         }
     }
 }

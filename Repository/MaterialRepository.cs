@@ -20,6 +20,10 @@ namespace Coursework.Repository
         public void CreateMaterial(Material material) =>
             Create(material);
 
+        public Material GetMaterial(int materialId, bool trackChanges) =>
+            FindByCondition(x => x.material_id == materialId, trackChanges)
+            .SingleOrDefault();
+
         public IEnumerable<Material> GetMaterials(MaterialParameters parameters, bool trackChanges) =>
             FindAll(trackChanges)
             .GetMaterialByName(parameters.MaterialTitle)
