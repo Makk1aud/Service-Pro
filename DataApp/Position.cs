@@ -20,7 +20,7 @@ namespace Coursework.DataApp
             this.Employee = new HashSet<Employee>();
         }
     
-        public int posotion_id { get; set; }
+        public int position_id { get; set; }
         public string position_title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

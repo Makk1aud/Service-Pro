@@ -306,5 +306,50 @@ namespace Coursework.Testing.Systems.Repositories
             result.Should().HaveCount(expectedCount);
             result.Should().Contain(x => x.pr_status_id == productParameters.ProductStatusId);
         }
+
+        [Fact]
+        public void Get_OnSucces_Return_List_Products_With_Client_Id_433()
+        {
+            var fixture = new ProductFixture();
+            var expectedCount = 1;
+            var productParameters = new ProductParameters
+            {
+                ClientId = 435
+            };
+
+            var listOfProducts = fixture.GetTestDbSetProducts();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Product>()).Returns(listOfProducts);
+
+            var productRepository = new ProductRepository(context.Object);
+
+            var result = productRepository.GetProductsWithParameters(productParameters, trackChanges: true);
+
+            result.Should().HaveCount(expectedCount);
+            result.Should().Contain(x => x.client_id == productParameters.ClientId);
+        }
+
+        [Fact]
+        public void Get_OnSucces_Return_List_Products_With_Client_Id_Null()
+        {
+            var fixture = new ProductFixture();
+            var expectedCount = 2;
+            var productParameters = new ProductParameters
+            {
+                ClientId = null
+            };
+
+            var listOfProducts = fixture.GetTestDbSetProducts();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Product>()).Returns(listOfProducts);
+
+            var productRepository = new ProductRepository(context.Object);
+
+            var result = productRepository.GetProductsWithParameters(productParameters, trackChanges: true);
+
+            result.Should().HaveCount(expectedCount);
+        }
     }
 }

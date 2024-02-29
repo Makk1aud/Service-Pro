@@ -25,6 +25,7 @@ namespace Coursework.DataApp
         public decimal material_price { get; set; }
         public int mat_type_id { get; set; }
         public int manufacturer_id { get; set; }
+        public int quantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenditure> Expenditure { get; set; }

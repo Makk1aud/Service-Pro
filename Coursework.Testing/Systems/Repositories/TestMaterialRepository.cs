@@ -104,7 +104,7 @@ namespace Coursework.Testing.Systems.Repositories
         public void Get_OnSucces_List_Products_With_MaterialType_0_Count_0()
         {
             var fixture = new MaterialFixture();
-            var expectedCount = 0;
+            var expectedCount = 4;
             var materialParameters = new MaterialParameters
             {
                 MaterialTypeId = 0
@@ -211,6 +211,23 @@ namespace Coursework.Testing.Systems.Repositories
             var result = materialRepository.GetMaterials(materialParameters, trackChanges: false);
 
             result.Should().HaveCount(expectedCount);
+        }
+
+        [Fact]
+        public void Get_OnSucces_Material_WithId()
+        {
+            var fixture = new MaterialFixture();
+
+            var listOfMaterials = fixture.GetTestDbSetMaterials();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Material>()).Returns(listOfMaterials);
+
+            var materialRepository = new MaterialRepository(context.Object);
+
+            var result = materialRepository.GetMaterial(1, trackChanges: false);
+
+            result.Should().NotBeNull();
         }
     }
 }

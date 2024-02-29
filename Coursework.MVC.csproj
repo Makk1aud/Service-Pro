@@ -153,6 +153,7 @@
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IMaterialRepository.cs" />
     <Compile Include="Contracts\IRepositoryBase.cs" />
+    <Compile Include="Contracts\IRepositoryManager.cs" />
     <Compile Include="DataApp\Client.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -207,13 +208,18 @@
     <Compile Include="DataApp\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Contracts\IRepositoryManager.cs" />
     <Compile Include="Helpers\PasswordHash.cs" />
+    <Compile Include="Pages\Admin\PageAboutClientProducts.xaml.cs">
+      <DependentUpon>PageAboutClientProducts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\PageIssueOrder.xaml.cs">
       <DependentUpon>PageIssueOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\PageListOfEmployes.xaml.cs">
       <DependentUpon>PageListOfEmployes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\PageProductCheck.xaml.cs">
+      <DependentUpon>PageProductCheck.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Expert\PageExpertLeftPanel.xaml.cs">
       <DependentUpon>PageExpertLeftPanel.xaml</DependentUpon>
@@ -243,7 +249,15 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\RepositoryManager.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
+    <Page Include="Pages\Admin\PageAboutClientProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Admin\PageIssueOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\PageProductCheck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

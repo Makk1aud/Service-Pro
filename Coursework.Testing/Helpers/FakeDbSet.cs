@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Coursework.Testing.Helpers
 {
-    public class FakeDbSet<T> : DbSet<T>, IDbSet<T>, IEnumerable<T>, IQueryable, IDbAsyncEnumerable<T> where T : class
+    public class FakeDbSet<T> : DbSet<T>, IDbSet<T>, IEnumerable<T>, IQueryable<T>, IDbAsyncEnumerable<T> where T : class
     {
         private ObservableCollection<T> _data;
 

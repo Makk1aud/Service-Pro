@@ -34,10 +34,10 @@ namespace Coursework.DataApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deal> Deal { get; set; }
         public virtual Employee Employee { get; set; }
+        public virtual Employee Employee1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenditure> Expenditure { get; set; }
         public virtual ProductStatus ProductStatus { get; set; }
         public virtual ProductType ProductType { get; set; }
-        public virtual Employee Employee1 { get; set; }
     }
 }

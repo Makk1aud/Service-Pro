@@ -189,6 +189,10 @@
                                                     Width="20*"
                                                     Binding="{Binding Path=Manufacturer.manufacturer_title}"
                                                     CellStyle="{StaticResource CellListProductsStyle}"/>
+                                <DataGridTextColumn Header="Кол-во"
+                                                    Width="10*"
+                                                    Binding="{Binding Path=quantity}"
+                                                    CellStyle="{StaticResource CellListProductsStyle}"/>            
                             </DataGrid.Columns>
                         </DataGrid>
                         <StackPanel HorizontalAlignment="Center">

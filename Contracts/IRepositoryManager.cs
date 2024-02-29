@@ -18,6 +18,7 @@ namespace Coursework.Contracts
         IGenericRepository<ProductStatus> ProductStatus{ get;}
         IGenericRepository<Expenditure> Expenditure { get; }
         IGenericRepository<MaterialType> MaterialType { get; }
+        IGenericRepository<Position> Position { get; }
         Task SaveAsync();
     }
 }

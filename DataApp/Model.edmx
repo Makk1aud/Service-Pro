@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище CourseworkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище CourseworkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="client_id" />
@@ -13,6 +13,7 @@
           <Property Name="firstname" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="lastname" Type="varchar" MaxLength="20" />
           <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Deal">
           <Key>
@@ -72,6 +73,7 @@
           <Property Name="material_price" Type="decimal" Precision="17" Scale="1" Nullable="false" />
           <Property Name="mat_type_id" Type="int" Nullable="false" />
           <Property Name="manufacturer_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MaterialType">
           <Key>
@@ -82,9 +84,9 @@
         </EntityType>
         <EntityType Name="Position">
           <Key>
-            <PropertyRef Name="posotion_id" />
+            <PropertyRef Name="position_id" />
           </Key>
-          <Property Name="posotion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="position_title" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
@@ -237,7 +239,7 @@
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
-              <PropertyRef Name="posotion_id" />
+              <PropertyRef Name="position_id" />
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="position_id" />
@@ -363,7 +365,8 @@
             <End Role="Expenditure" EntitySet="Expenditure" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CourseworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -375,6 +378,7 @@
           <Property Name="firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DiscountCard" Relationship="Self.FK_client_id_DiscountCard" FromRole="Client" ToRole="DiscountCard" />
           <NavigationProperty Name="Product" Relationship="Self.FK_clientid_Product" FromRole="Client" ToRole="Product" />
         </EntityType>
@@ -416,8 +420,8 @@
           <Property Name="position_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Deal" Relationship="Self.FK_admin_id_Deal" FromRole="Employee" ToRole="Deal" />
           <NavigationProperty Name="Product" Relationship="Self.FK_expert_id_Product" FromRole="Employee" ToRole="Product" />
+          <NavigationProperty Name="Product1" Relationship="Self.FK_managerid_Product" FromRole="Employee" ToRole="Product" />
           <NavigationProperty Name="Position" Relationship="Self.FK_position_id_Position" FromRole="Employee" ToRole="Position" />
-          <NavigationProperty Name="Product1" Relationship="CourseworkModel.FK_managerid_Product" FromRole="Employee" ToRole="Product" />
         </EntityType>
         <EntityType Name="Expenditure">
           <Key>
@@ -448,6 +452,7 @@
           <Property Name="material_price" Type="Decimal" Precision="17" Scale="1" Nullable="false" />
           <Property Name="mat_type_id" Type="Int32" Nullable="false" />
           <Property Name="manufacturer_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Expenditure" Relationship="Self.FK_material_id_Expenditure" FromRole="Material" ToRole="Expenditure" />
           <NavigationProperty Name="Manufacturer" Relationship="Self.FK_material_id_Material" FromRole="Material" ToRole="Manufacturer" />
           <NavigationProperty Name="MaterialType" Relationship="Self.FK_mat_type_id_Material" FromRole="Material" ToRole="MaterialType" />
@@ -462,11 +467,11 @@
         </EntityType>
         <EntityType Name="Position">
           <Key>
-            <PropertyRef Name="posotion_id" />
+            <PropertyRef Name="position_id" />
           </Key>
-          <Property Name="posotion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position_title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_position_id_Position" FromRole="Position" ToRole="Employee" />
-          <Property Name="position_title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -483,10 +488,10 @@
           <NavigationProperty Name="Client" Relationship="Self.FK_clientid_Product" FromRole="Product" ToRole="Client" />
           <NavigationProperty Name="Deal" Relationship="Self.FK_product_id_Deal" FromRole="Product" ToRole="Deal" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_expert_id_Product" FromRole="Product" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_managerid_Product" FromRole="Product" ToRole="Employee" />
           <NavigationProperty Name="Expenditure" Relationship="Self.FK_product_id_Expenditure" FromRole="Product" ToRole="Expenditure" />
           <NavigationProperty Name="ProductStatus" Relationship="Self.FK_pr_status_id_Product" FromRole="Product" ToRole="ProductStatus" />
           <NavigationProperty Name="ProductType" Relationship="Self.FK_pr_type_id_Product" FromRole="Product" ToRole="ProductType" />
-          <NavigationProperty Name="Employee1" Relationship="CourseworkModel.FK_managerid_Product" FromRole="Product" ToRole="Employee" />
         </EntityType>
         <EntityType Name="ProductStatus">
           <Key>
@@ -586,12 +591,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_managerid_Product">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_position_id_Position">
           <End Role="Position" Type="Self.Position" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
-              <PropertyRef Name="posotion_id" />
+              <PropertyRef Name="position_id" />
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="position_id" />
@@ -708,6 +725,10 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_managerid_Product" Association="Self.FK_managerid_Product">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_position_id_Position" Association="Self.FK_position_id_Position">
             <End Role="Position" EntitySet="Position" />
             <End Role="Employee" EntitySet="Employee" />
@@ -736,23 +757,7 @@
             <End Role="ProductType" EntitySet="ProductType" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_managerid_Product" Association="CourseworkModel.FK_managerid_Product">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_managerid_Product">
-          <End Type="CourseworkModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="CourseworkModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employee_id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="manager_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -766,6 +771,7 @@
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -831,6 +837,7 @@
                 <ScalarProperty Name="material_price" ColumnName="material_price" />
                 <ScalarProperty Name="mat_type_id" ColumnName="mat_type_id" />
                 <ScalarProperty Name="manufacturer_id" ColumnName="manufacturer_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -845,8 +852,8 @@
           <EntitySetMapping Name="Position">
             <EntityTypeMapping TypeName="CourseworkModel.Position">
               <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
                 <ScalarProperty Name="position_title" ColumnName="position_title" />
-                <ScalarProperty Name="posotion_id" ColumnName="posotion_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

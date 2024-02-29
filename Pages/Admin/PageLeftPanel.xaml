@@ -23,6 +23,10 @@
                     Content="Выдать заказ"
                     Click="ButtonIssueOrder_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
+            <Button Name="ButtonSignOut"
+                    Content="Выйти с аккаунта"
+                    Click="ButtonSignOut_Click"
+                    Style="{StaticResource ButtonsLeftPanel}"/>
         </StackPanel>
     </Grid>
 </Page>

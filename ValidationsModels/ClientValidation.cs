@@ -14,6 +14,7 @@ namespace Coursework.ValidationsModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNum { get; set; }
+        public string Email { get; set; }
 
         public string this[string columnName]
         {
@@ -32,6 +33,10 @@ namespace Coursework.ValidationsModels
                         break;
                     case "PhoneNum":
                         if (!ValidationExtensions.PhoneValidation(PhoneNum))
+                            error = "Формат номера не правильный, проверьте пробелы";
+                        break;
+                    case "Email":
+                        if (!String.IsNullOrEmpty(Email) && !ValidationExtensions.EmailValidation(Email, maxLength:30))
                             error = "Формат номера не правильный, проверьте пробелы";
                         break;
                 }

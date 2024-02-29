@@ -20,7 +20,7 @@ namespace Coursework.Repository.Extensions
             : items.Where(x => x.employee_id == employeeId);        
 
         public static IQueryable<Employee> FindByPositionId(this IQueryable<Employee> items, int? positionId) =>
-            positionId is null
+            positionId is null || positionId == 0
             ? items
             : items.Where(x => x.position_id == positionId);        
 

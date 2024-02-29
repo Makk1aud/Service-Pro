@@ -47,10 +47,6 @@ namespace Coursework.Pages.Admin
 
         private void TextBoxPhone_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (TextBoxPhone.Text != string.Empty)
-            //    DataGridClients.ItemsSource = _clientRepository.GetClientsByPhone(TextBoxPhone.Text);
-            //else
-            //    DataGridClients.ItemsSource = _clientRepository.GetClients();
             DataGridClients.ItemsSource = AdminClass
                 .RepositoryManager
                 .Client
@@ -98,5 +94,8 @@ namespace Coursework.Pages.Admin
                 .Client
                 .GetClients(trackChanges : false);
         }
+
+        private void ButtonResetSorting_Click(object sender, RoutedEventArgs e) =>
+            TextBoxPhone.Text = "+";
     }
 }

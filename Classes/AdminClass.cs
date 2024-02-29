@@ -12,11 +12,8 @@ namespace Coursework.Classes
 {
     public static class AdminClass
     {
-        public static IRepositoryManager RepositoryManager { get; }
-        static AdminClass()
-        {
-            RepositoryManager = new RepositoryManager(new CourseworkEntities());
-        }
+        public static IRepositoryManager RepositoryManager { get; set; }
+
         public static Employee Employee { get; set; }
         public static Frame FrameLeftPanel { get; set; }
         public static Frame FrameMainStruct { get; set; }

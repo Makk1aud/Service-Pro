@@ -32,6 +32,18 @@ namespace Coursework.Testing.Systems.Helpers
         }
 
         [Fact]
+        public void Get_Email_WithParameters_Of_Validations_Length_Is_30_Return_False()
+        {
+            var email = "sometextwtihlength of 30 chars maybe its too loong but";
+
+            var expected = false;
+
+            var result = ValidationExtensions.EmailValidation(email, maxLength: 30);
+
+            result.Should().Be(expected);
+        }
+
+        [Fact]
         public void Get_20_RandomEmails_Return_True()
         {
             var emails = fixture.GetListOfRandomEmployees(20).Select(x => x.email);
@@ -41,7 +53,7 @@ namespace Coursework.Testing.Systems.Helpers
             bool result = true;
             foreach (var email in emails)
             {
-                result = ValidationExtensions.EmailValidation(email);
+                result = ValidationExtensions.EmailValidation(email, maxLength: 40);
                 if(!result)
                     break;
             }
@@ -52,7 +64,7 @@ namespace Coursework.Testing.Systems.Helpers
         [Fact]
         public void Get_50_LengthEmail_Return_False()
         {
-            var email = "makklaud32434kljfdlfgfdgfdfdfdksj@mail.ru";
+            var email = "makklaud32434kljfdlfgfggfghfgffhfhgfhggfhgfhgggfghhgfhgfggdgfdfdfdksj@mail.ru";
 
             var expected = false;
 

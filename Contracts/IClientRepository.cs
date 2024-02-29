@@ -14,6 +14,7 @@ namespace Coursework.Contracts
     {
         IEnumerable<Client> GetClients(bool trackChanges);
         PagedList<Client> GetClients(ClientParameters parameters, bool trackChanges);
+
         void CreateClient(Client client);
         void DeleteClient(Client client);
     }

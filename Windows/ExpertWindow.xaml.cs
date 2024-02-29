@@ -2,6 +2,7 @@
 using Coursework.DataApp;
 using Coursework.Pages.Expert;
 using Coursework.Pages.General;
+using Coursework.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Coursework
         {
             InitializeComponent();
             ExpertClass.Employee = employee;
+            ExpertClass.RepositoryManager = new RepositoryManager(new CourseworkEntities());
             ExpertClass.FrameMainStruct = FrameMainStruct;
             ExpertClass.FrameLeftPanel = FrameLeftPanel;
             FrameMainStruct.Navigate(new PageMyService());

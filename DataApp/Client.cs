@@ -25,6 +25,7 @@ namespace Coursework.DataApp
         public string firstname { get; set; }
         public string lastname { get; set; }
         public string phone { get; set; }
+        public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiscountCard> DiscountCard { get; set; }

@@ -37,6 +37,8 @@ namespace Coursework.Repository
             var items = FindAll(trackChanges)
                 .FindById(clientParameters.Id)
                 .FindByPhone(clientParameters.PhoneNum)
+                .FindByName(clientParameters.Name)
+                .FindByLastname(clientParameters.LastName)
                 .OrderBy(x => x.firstname)
                 .Skip((clientParameters.PageNumber - 1) * clientParameters.PageSize)
                 .Take(clientParameters.PageSize)
@@ -45,6 +47,8 @@ namespace Coursework.Repository
             var count = FindAll(trackChanges)
                 .FindById(clientParameters.Id)
                 .FindByPhone(clientParameters.PhoneNum)
+                .FindByName(clientParameters.Name)
+                .FindByLastname(clientParameters.LastName)
                 .Count();
             return new PagedList<Client>(items, count, clientParameters.PageNumber, clientParameters.PageSize);
         }            

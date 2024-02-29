@@ -34,6 +34,7 @@
                             <ComboBox Name="ComboBoxPosSort"
                                       DisplayMemberPath="position_title"
                                       SelectedValuePath="position_id"
+                                      Width="200"
                                       Style="{StaticResource ComboBoxesDefault}"
                                       SelectionChanged="ComboBoxPosSort_SelectionChanged"/>
                         </StackPanel>
@@ -49,7 +50,7 @@
                       IsReadOnly="True"
                       CanUserAddRows="False"
                       AutoGenerateColumns="False"
-                      Height="300"
+                      Height="250"
                       Width="800">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Имя"

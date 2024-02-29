@@ -152,5 +152,98 @@ namespace Coursework.Testing.Systems.Repositories
 
             pagedListClients.Should().HaveCount(count);
         }
+
+        [Fact]
+        public void Get_OnSucces_Return_1_With_Name_Containts_Ol()
+        {
+            var fixture = new ClientFixture();
+            var expectedCount = 1;
+
+            var clientsParameters = new ClientParameters
+            {
+                Name = "Ol"
+            };
+
+            var listOfClients = fixture.GetDbSetTestClients();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Client>()).Returns(listOfClients);
+
+            var clientRepository = new ClientRepository(context.Object);
+
+            var pagedListClients = clientRepository.GetClients(clientsParameters,trackChanges: false);
+
+            pagedListClients.Should().HaveCount(expectedCount);
+        }
+
+        [Fact]
+        public void Get_OnSucces_Return_14_With_Name_Containts_WhiteSpace()
+        {
+            var fixture = new ClientFixture();
+            var expectedCount = 9;
+
+            var clientsParameters = new ClientParameters
+            {
+                PageSize = expectedCount,
+                Name = "  " 
+            };
+
+            var listOfClients = fixture.GetRandomDbSetClients(expectedCount);
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Client>()).Returns(listOfClients);
+
+            var clientRepository = new ClientRepository(context.Object);
+
+            var pagedListClients = clientRepository.GetClients(clientsParameters, trackChanges: false);
+
+            pagedListClients.Should().HaveCount(expectedCount);
+        }
+
+        [Fact]
+        public void Get_OnSucces_Return_1_With_LastName_Containts_Pet()
+        {
+            var fixture = new ClientFixture();
+            var expectedCount = 1;
+
+            var clientsParameters = new ClientParameters
+            {
+                LastName = "Pet"
+            };
+
+            var listOfClients = fixture.GetDbSetTestClients();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Client>()).Returns(listOfClients);
+
+            var clientRepository = new ClientRepository(context.Object);
+
+            var pagedListClients = clientRepository.GetClients(clientsParameters, trackChanges: false);
+
+            pagedListClients.Should().HaveCount(expectedCount);
+        }
+
+        [Fact]
+        public void Get_OnSucces_Return_1_With_LastName_Containts_WhiteSpace()
+        {
+            var fixture = new ClientFixture();
+            var expectedCount = 4;
+
+            var clientsParameters = new ClientParameters
+            {
+                LastName = " "
+            };
+
+            var listOfClients = fixture.GetDbSetTestClients();
+
+            var context = new Mock<CourseworkEntities>();
+            context.Setup(x => x.Set<Client>()).Returns(listOfClients);
+
+            var clientRepository = new ClientRepository(context.Object);
+
+            var pagedListClients = clientRepository.GetClients(clientsParameters, trackChanges: false);
+
+            pagedListClients.Should().HaveCount(expectedCount);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Coursework.Classes;
 using Coursework.DataApp;
 using Coursework.Pages.Admin;
+using Coursework.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Coursework
         public AdminWindow(Employee employee)
         {
             InitializeComponent();
+            AdminClass.RepositoryManager = new RepositoryManager(new CourseworkEntities());
             AdminClass.FrameLeftPanel = FrameLeftPanel;
             AdminClass.FrameMainStruct = FrameMainStruct;
             AdminClass.Employee = employee;

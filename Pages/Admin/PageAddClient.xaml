@@ -54,6 +54,21 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
+
+            <TextBlock Text="Введите почту"
+                       Width="200"
+                       Style="{StaticResource TextBlocksDefault}"
+                       TextAlignment="Center"/>
+            <TextBox Name="TextBoxEmail"
+                     Style="{StaticResource TextBoxesDefault}">
+                <TextBox.Text>
+                    <Binding Path="Email" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Button Name="ButtonAddClient"
                     Content="Добавить"
                     Style="{StaticResource ButtonsDefault}"

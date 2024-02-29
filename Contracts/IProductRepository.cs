@@ -14,6 +14,8 @@ namespace Coursework.Contracts
         void CreateProduct(Product product);
         PagedList<Product> GetProducts(ProductParameters productParameters, bool trackChanges);
         IEnumerable<Product> GetProducts(bool trackChanges);
+        IEnumerable<Product> GetProductsWithParameters(ProductParameters productParameters, bool trackChanges);
+        IEnumerable<Product> GetClientProducts(ProductParameters productParameters, bool trackChanges);
         void DeleteProduct(Product product);
         void UpdateProduct(Product product);
     }
