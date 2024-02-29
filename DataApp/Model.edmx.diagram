@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b43c6b7add914fd4981e0978803355f9" Name="Diagram1">
+      <Diagram DiagramId="68bf448d88ab4d3e94bb087a270957ef" Name="Diagram1">
         <EntityTypeShape EntityType="CourseworkModel.Client" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseworkModel.Deal" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseworkModel.DiscountCard" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseworkModel.Employee" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseworkModel.Expenditure" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseworkModel.Manufacturer" Width="1.5" PointX="0.75" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseworkModel.Material" Width="1.5" PointX="3" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseworkModel.MaterialType" Width="1.5" PointX="0.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Manufacturer" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.Material" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseworkModel.MaterialType" Width="1.5" PointX="0.75" PointY="24.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseworkModel.Position" Width="1.5" PointX="1.5" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseworkModel.Product" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CourseworkModel.ProductStatus" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />

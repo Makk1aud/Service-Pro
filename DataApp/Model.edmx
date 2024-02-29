@@ -73,6 +73,7 @@
           <Property Name="material_price" Type="decimal" Precision="17" Scale="1" Nullable="false" />
           <Property Name="mat_type_id" Type="int" Nullable="false" />
           <Property Name="manufacturer_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MaterialType">
           <Key>
@@ -451,6 +452,7 @@
           <Property Name="material_price" Type="Decimal" Precision="17" Scale="1" Nullable="false" />
           <Property Name="mat_type_id" Type="Int32" Nullable="false" />
           <Property Name="manufacturer_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Expenditure" Relationship="Self.FK_material_id_Expenditure" FromRole="Material" ToRole="Expenditure" />
           <NavigationProperty Name="Manufacturer" Relationship="Self.FK_material_id_Material" FromRole="Material" ToRole="Manufacturer" />
           <NavigationProperty Name="MaterialType" Relationship="Self.FK_mat_type_id_Material" FromRole="Material" ToRole="MaterialType" />
@@ -835,6 +837,7 @@
                 <ScalarProperty Name="material_price" ColumnName="material_price" />
                 <ScalarProperty Name="mat_type_id" ColumnName="mat_type_id" />
                 <ScalarProperty Name="manufacturer_id" ColumnName="manufacturer_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
