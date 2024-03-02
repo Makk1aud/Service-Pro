@@ -24,11 +24,13 @@ namespace Coursework.Pages.Admin
     {
         private readonly Product _product;
         private readonly Client _client;
-        public PageProductCheck(Product product, Client client)  
+        private readonly DiscountCard _discountCard;
+        public PageProductCheck(Product product, Client client, DiscountCard discountCard)  
         {
             InitializeComponent();
             _product = product;
             _client = client;
+            _discountCard = discountCard;
 
             this.DataContext = _product;
 
@@ -38,7 +40,14 @@ namespace Coursework.Pages.Admin
                 .FindByConditionGeneric(x => x.product_id == _product.product_id, trackChanges: true);
             DataGridMaterials.ItemsSource = listOfExpenditure;
 
-            TextBlockOrderSum.Text = listOfExpenditure.Sum(x => x.Material.material_price * x.quantity).ToString();
+            var materialSum = listOfExpenditure.Sum(x => x.Material.material_price * x.quantity);
+            var finalPrice = materialSum < 500 ? 500
+                : ((double)materialSum * 1.2);
+
+            if (_discountCard != null)
+                finalPrice *= ((100.0 - _discountCard.discount) / 100.0);
+
+            TextBlockOrderSum.Text = finalPrice.ToString();
         }
 
         private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e)

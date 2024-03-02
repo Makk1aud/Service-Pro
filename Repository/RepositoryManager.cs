@@ -25,6 +25,7 @@ namespace Coursework.Repository
         private readonly Lazy<IGenericRepository<Expenditure>> _expernditureRepository;
         private readonly Lazy<IGenericRepository<MaterialType>> _materialTypeRepository;
         private readonly Lazy<IGenericRepository<Position>> _positionRepository;
+        
 
         public RepositoryManager(CourseworkEntities context)
         {

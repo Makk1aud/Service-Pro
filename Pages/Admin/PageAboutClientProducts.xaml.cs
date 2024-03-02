@@ -21,6 +21,7 @@ namespace Coursework.Pages.Admin
     public partial class PageAboutClientProducts : Page
     {
         private readonly Client _client;
+        private DiscountCard _discountCard;
         public PageAboutClientProducts(Client client)
         {
             InitializeComponent();
@@ -37,6 +38,28 @@ namespace Coursework.Pages.Admin
                 .RepositoryManager
                 .ProductStatus
                 .FindAllGeneric(trackChanges: true);
+
+            _discountCard = AdminClass
+                .RepositoryManager
+                .DiscountCard
+                .FindByConditionGeneric(x => x.client_id == _client.client_id, trackChanges: true)
+                .FirstOrDefault();
+
+            FillingDiscount(_discountCard);
+        }
+
+        //Проверить работу 
+        private void FillingDiscount(DiscountCard discountCard)
+        {
+            if (discountCard is null)
+                return;
+            //Проверка на 0 потому что у клиента нет товаров умножение на 0 скидка ноль значит ошибка при сохранении
+            ButtonIssueDiscountCard.IsEnabled = false;
+            discountCard.discount = DataGridProducts.Items.Count * 5 > 30 
+                ? 30 
+                : DataGridProducts.Items.Count * 2 + 1;
+            TextBlockDiscount.Text = $"{discountCard.discount}%";
+            _discountCard = discountCard;
         }
 
         private void DataGridProductsSorting() =>
@@ -71,7 +94,20 @@ namespace Coursework.Pages.Admin
         {
             var product = (sender as Button).DataContext as Product;
             if(product.pr_status_id == 3)
-                AdminClass.FrameMainStruct.Navigate(new PageProductCheck(product, _client));
+                AdminClass.FrameMainStruct.Navigate(new PageProductCheck(product, _client, _discountCard));
+        }
+
+        private async void ButtonIssueDiscountCard_Click(object sender, RoutedEventArgs e)
+        {
+            var discountCard = new DiscountCard
+            {
+                card_num = new Random().Next(100000, 999999).ToString(),
+                client_id = _client.client_id,
+                discount = 1
+            };
+            AdminClass.RepositoryManager.DiscountCard.CreateGeneric(discountCard);
+            await AdminClass.RepositoryManager.SaveAsync();
+            FillingDiscount(discountCard);
         }
     }
 }

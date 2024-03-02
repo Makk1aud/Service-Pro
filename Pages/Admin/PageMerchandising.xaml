@@ -57,6 +57,8 @@
                             <ContextMenu>
                                 <MenuItem Header="Удалить"
                                           Click="MenuDelete_Click"/>
+                                <MenuItem Header="Подробнее"
+                                          Click="MenuAbout_Click"/>
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                     </DataGrid>
@@ -74,12 +76,13 @@
                              GotFocus="TextBox_GotFocus"
                              Width="250"
                              Text="Наименование товара"
-                             LostFocus="TextBox_LostFocus"
+                             TextChanged="TextBoxAboutProducts_TextChanged"
                              MaxLength="30"/>
                     <TextBox Name="TextBoxPrDesc"
                              Style="{StaticResource TextBoxesDefault}"
                              GotFocus="TextBox_GotFocus"
                              Width="250"
+                             TextChanged="TextBoxAboutProducts_TextChanged"
                              TextWrapping="WrapWithOverflow"
                              Height="150"
                              Text="Описание проблемы"/>

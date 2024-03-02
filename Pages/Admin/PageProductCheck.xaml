@@ -128,8 +128,11 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Сумма к оплате: "
                                Style="{StaticResource TextBlocksDefault}"/>
-                    <TextBlock Name="TextBlockOrderSum"
-                               Style="{StaticResource TextBlocksDefault}"/>
+                    <TextBlock Name="TextBlockOrderSum"                               
+                               FontSize="14pt"/>
+                    <TextBlock Style="{StaticResource TextBlocksDefault}"
+                               Width="15"
+                               Text="р."/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
