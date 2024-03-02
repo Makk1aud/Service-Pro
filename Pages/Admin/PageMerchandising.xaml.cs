@@ -78,14 +78,15 @@ namespace Coursework.Pages.Admin
             };
             AdminClass.RepositoryManager.Product.CreateProduct(product);
             await AdminClass.RepositoryManager.SaveAsync();
+            ResetFields();
         }
-
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e) =>
-            ButtonAddProduct.IsEnabled = ValidationExtensions.ProductNameValidation((sender as TextBox).Text);
 
         private async void MenuDelete_Click(object sender, RoutedEventArgs e)
         {
             var client = DataGridClients.SelectedItem as Client;
+            if (client is null)
+                return;
+
             AdminClass.RepositoryManager.Client.DeleteClient(client);
             await AdminClass.RepositoryManager.SaveAsync();
 
@@ -97,5 +98,26 @@ namespace Coursework.Pages.Admin
 
         private void ButtonResetSorting_Click(object sender, RoutedEventArgs e) =>
             TextBoxPhone.Text = "+";
+
+        private void MenuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            var client = DataGridClients.SelectedItem as Client;
+            if (client is null)
+                return;
+
+            AdminClass.FrameMainStruct.Navigate(new PageAboutClientProducts(client));
+        }
+        private void ResetFields()
+        {
+            ComboBoxPrType.SelectedItem = ComboBoxPrType.Items[0];
+            TextBoxPrDesc.Text = string.Empty;
+            TextBoxPrTitle.Text = string.Empty;
+        }
+
+        private void TextBoxAboutProducts_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(ButtonAddProduct != null)
+                ButtonAddProduct.IsEnabled = ValidationExtensions.ProductNameValidation((sender as TextBox).Text);        
+        }
     }
 }

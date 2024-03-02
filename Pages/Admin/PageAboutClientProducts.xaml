@@ -43,6 +43,25 @@
                         Width="100"
                         HorizontalAlignment="Left"
                         Click="ButtonBack_Click"/>
+                
+                <Button Name="ButtonIssueDiscountCard"
+                        Style="{StaticResource ButtonsDefault }"
+                        Content="Выдать скидочную карту"
+                        Width="250"
+                        HorizontalAlignment="Left"
+                        Click="ButtonIssueDiscountCard_Click"/>
+                <StackPanel Orientation="Horizontal"
+                            Margin="10 0 0 0">
+                    <TextBlock Text="Скидка по карте:"
+                               Style="{StaticResource TextBlocksDefault}"
+                               HorizontalAlignment="Left"/>
+
+                    <TextBlock Text="0%"
+                               Style="{StaticResource TextBlocksDefault}"
+                               HorizontalAlignment="Left"
+                               Width="50"
+                               Name="TextBlockDiscount"/>
+                </StackPanel>
             </StackPanel>
             <StackPanel>
                 <Border BorderBrush="Black" 
