@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:Coursework"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="AdminWindow" Height="450" Width="1100"
+        Title="AdminWindow" Height="500" Width="1120"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="900"/>
         </Grid.ColumnDefinitions>
         <Frame Grid.Column="0"
                Name="FrameLeftPanel"

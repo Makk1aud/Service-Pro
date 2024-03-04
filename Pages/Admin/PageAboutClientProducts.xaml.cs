@@ -53,11 +53,13 @@ namespace Coursework.Pages.Admin
         {
             if (discountCard is null)
                 return;
-            //Проверка на 0 потому что у клиента нет товаров умножение на 0 скидка ноль значит ошибка при сохранении
+
             ButtonIssueDiscountCard.IsEnabled = false;
+
             discountCard.discount = DataGridProducts.Items.Count * 5 > 30 
                 ? 30 
                 : DataGridProducts.Items.Count * 2 + 1;
+
             TextBlockDiscount.Text = $"{discountCard.discount}%";
             _discountCard = discountCard;
         }

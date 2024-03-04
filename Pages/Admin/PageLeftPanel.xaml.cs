@@ -36,5 +36,8 @@ namespace Coursework.Pages.Admin
 
         private void ButtonSignOut_Click(object sender, RoutedEventArgs e) =>
             ChangeWindows.Change(Window.GetWindow(this), new AuthorisationWindow());
+
+        private void ButtonSupplyMaterials_Click(object sender, RoutedEventArgs e) =>
+            AdminClass.FrameMainStruct.Navigate(new PageSupplyMaterials());
     }
 }
