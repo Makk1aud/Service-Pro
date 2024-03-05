@@ -92,5 +92,10 @@ namespace Coursework.Pages.Admin
             await AdminClass.RepositoryManager.SaveAsync();
             AdminClass.FrameMainStruct.Navigate(new PageAboutClientProducts(_client));
         }
+
+        private void ButtonPrintGuarantee_Click(object sender, RoutedEventArgs e)
+        {
+            // Тут создается ворд с гарантией
+        }
     }
 }

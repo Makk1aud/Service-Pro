@@ -212,6 +212,9 @@
     <Compile Include="Pages\Admin\PageAboutClientProducts.xaml.cs">
       <DependentUpon>PageAboutClientProducts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Admin\PageAddNewMaterial.xaml.cs">
+      <DependentUpon>PageAddNewMaterial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\PageIssueOrder.xaml.cs">
       <DependentUpon>PageIssueOrder.xaml</DependentUpon>
     </Compile>
@@ -253,6 +256,10 @@
     <Compile Include="Repository\RepositoryManager.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
     <Page Include="Pages\Admin\PageAboutClientProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\PageAddNewMaterial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

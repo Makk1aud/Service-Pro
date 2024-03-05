@@ -51,11 +51,11 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center">
-                    <StackPanel>
-                        <TextBlock Text="Выполнено заказов:"
-                                   Width="200"
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Всего заказов:"
+                                   Width="130"
                                    Style="{StaticResource TextBlocksDefault}"/>
-                        <TextBlock Text="Заполнить"
+                        <TextBlock Name="CountOrders"
                                    HorizontalAlignment="Left"
                                    Style="{StaticResource TextBlocksDefault}"/>
                     </StackPanel>

@@ -84,6 +84,11 @@
                         Click="ButtonIssueOrder_Click"
                         Style="{StaticResource ButtonsDefault}"
                         Width="150"/>
+                <Button Name="ButtonPrintGuarantee"
+                        Content="Гарантия"
+                        Click="ButtonPrintGuarantee_Click"
+                        Style="{StaticResource ButtonsDefault}"
+                        Width="150"/>
             </StackPanel>
             <StackPanel>
                 <DataGrid Name="DataGridMaterials"

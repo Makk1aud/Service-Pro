@@ -50,7 +50,7 @@ namespace Coursework.Pages.Admin
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e) =>
-            AdminClass.FrameMainStruct.GoBack();
+            AdminClass.FrameMainStruct.Navigate(new PageMerchandising());
 
         private void ButtonResetSorting_Click(object sender, RoutedEventArgs e)
         {
@@ -94,10 +94,8 @@ namespace Coursework.Pages.Admin
             //Здесь надо сделать печать документа о поступлении
         }
 
-        private void ButtonAddNewMaterials_Click(object sender, RoutedEventArgs e)
-        {
-            //Переход на страницу с добавление нового типа материалов
-        }
+        private void ButtonAddNewMaterials_Click(object sender, RoutedEventArgs e) =>
+            AdminClass.FrameMainStruct.Navigate(new PageAddNewMaterial());
 
         private void DataGridMaterials_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e) =>
             this.DataContext = DataGridMaterials.SelectedItem as Material;
