@@ -85,7 +85,7 @@
                         Style="{StaticResource ButtonsDefault}"
                         Width="150"/>
                 <Button Name="ButtonPrintGuarantee"
-                        Content="Гарантия"
+                        Content="Гарантия и выдать заказ"
                         Click="ButtonPrintGuarantee_Click"
                         Style="{StaticResource ButtonsDefault}"
                         Width="150"/>

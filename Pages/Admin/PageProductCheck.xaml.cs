@@ -17,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.CodeAnalysis;
+using Coursework.Helpers;
 
 namespace Coursework.Pages.Admin
 {
@@ -25,6 +27,7 @@ namespace Coursework.Pages.Admin
         private readonly Product _product;
         private readonly Client _client;
         private readonly DiscountCard _discountCard;
+        private double finalPrice;
         public PageProductCheck(Product product, Client client, DiscountCard discountCard)  
         {
             InitializeComponent();
@@ -41,13 +44,16 @@ namespace Coursework.Pages.Admin
             DataGridMaterials.ItemsSource = listOfExpenditure;
 
             var materialSum = listOfExpenditure.Sum(x => x.Material.material_price * x.quantity);
-            var finalPrice = materialSum < 500 ? 500
+            finalPrice = materialSum < 500 ? 500
                 : ((double)materialSum * 1.2);
 
-            if (_discountCard != null)
-                finalPrice *= ((100.0 - _discountCard.discount) / 100.0);
-
-            TextBlockOrderSum.Text = finalPrice.ToString();
+            if(_discountCard is null)
+                TextBlockOrderSum.Text = finalPrice.ToString();
+            else
+            {
+                var finalPriceWithDiscount = finalPrice * ((100.0 - _discountCard.discount) / 100.0);
+                TextBlockOrderSum.Text = finalPriceWithDiscount.ToString();
+            }            
         }
 
         private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e)
@@ -95,7 +101,18 @@ namespace Coursework.Pages.Admin
 
         private void ButtonPrintGuarantee_Click(object sender, RoutedEventArgs e)
         {
-            // Тут создается ворд с гарантией
+            var wordHelper = new WordHelper("Word/WordTempleGuarantee.docx");
+
+            var replacementKeys = new Dictionary<string, string>
+            {
+                {"<ProductCode>", _product.pr_status_id.ToString() },
+                {"<ProductName>", _product.product_name },
+                {"<ProductPrice>", finalPrice.ToString()},
+                {"<Discount>", _discountCard.discount.ToString() },
+                {"<ProductPriceFinaly>", TextBlockOrderSum.Text }
+            };
+
+            wordHelper.WriteIntoDocument(replacementKeys, "Guarantees", _product.product_name);
         }
     }
 }
