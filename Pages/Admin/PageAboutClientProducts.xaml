@@ -28,7 +28,8 @@
                 <TextBlock Text="{Binding email}"
                            Style="{StaticResource TextBlocksDefault}" 
                            FontSize="20pt"
-                           Height="40"
+                           TextWrapping="Wrap"
+                           Height="70"
                            Margin="10"
                            Width="250"/>           
                 <TextBlock Text="{Binding phone}"

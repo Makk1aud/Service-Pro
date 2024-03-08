@@ -37,6 +37,7 @@ namespace Coursework.Pages.Expert
                 .FindAllGeneric(trackChanges: false);
 
             DataGridSorting(1);
+            CountOrders.Text = _metaData.TotalCount.ToString();
         }
 
         private void DataGridSorting(int pageNum)

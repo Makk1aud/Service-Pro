@@ -17,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.CodeAnalysis;
+using Coursework.Helpers;
 
 namespace Coursework.Pages.Admin
 {
@@ -25,6 +27,8 @@ namespace Coursework.Pages.Admin
         private readonly Product _product;
         private readonly Client _client;
         private readonly DiscountCard _discountCard;
+        private double finalPrice;
+        private int? verificationCode;
         public PageProductCheck(Product product, Client client, DiscountCard discountCard)  
         {
             InitializeComponent();
@@ -41,35 +45,43 @@ namespace Coursework.Pages.Admin
             DataGridMaterials.ItemsSource = listOfExpenditure;
 
             var materialSum = listOfExpenditure.Sum(x => x.Material.material_price * x.quantity);
-            var finalPrice = materialSum < 500 ? 500
+            finalPrice = materialSum < 500 ? 500
                 : ((double)materialSum * 1.2);
 
-            if (_discountCard != null)
-                finalPrice *= ((100.0 - _discountCard.discount) / 100.0);
-
-            TextBlockOrderSum.Text = finalPrice.ToString();
+            if(_discountCard is null)
+                TextBlockOrderSum.Text = finalPrice.ToString();
+            else
+            {
+                var finalPriceWithDiscount = finalPrice * ((100.0 - _discountCard.discount) / 100.0);
+                TextBlockOrderSum.Text = finalPriceWithDiscount.ToString();
+            }            
         }
 
-        private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e)
+        private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e) =>
+            SendEmailCode();
+
+        private void SendEmailCode()
         {
             MailAddress from = new MailAddress("serviceprotech.omsk@gmail.com", "Сервисный центр");
-
-            //MailAddress to = new MailAddress("1roman080283@mail.ru");
+            verificationCode = new Random().Next(1000, 9999);
+            var htmlBody = HtmlCodeVerification.InsertCodeIntoText(verificationCode.ToString());
+            if (htmlBody is null)
+                return;
 
             MailMessage mailMessage = new MailMessage
             {
-                From = new MailAddress("serviceprotech.omsk@gmail.com", "Сервисный центр"),
+                From = from,
                 Subject = "Код подтверждения",
-                Body = "<h2>Ваш код подтверждения</h2>",
+                Body = htmlBody,
                 IsBodyHtml = true
             };
-            mailMessage.To.Add("1roman080283@mail.ru");
-            
+            mailMessage.To.Add(new MailAddress(_client.email));
+
             SmtpClient smtp = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
                 EnableSsl = true,
-                Credentials = new NetworkCredential("serviceprotech.omsk", "Qwerty123."),
+                Credentials = new NetworkCredential("serviceprotech.omsk@gmail.com", "hypvanfwowgvhvzn"),
                 DeliveryMethod = SmtpDeliveryMethod.Network
             };
 
@@ -77,7 +89,12 @@ namespace Coursework.Pages.Admin
         }
 
         private async void ButtonCheckCode_Click(object sender, RoutedEventArgs e)
-        {            
+        {
+            if (verificationCode is null)
+                return;
+
+            if (TextBoxEmailCode.Text == verificationCode.ToString())
+                MessageBox.Show("Проверка пройдена!");
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e) =>
@@ -91,6 +108,22 @@ namespace Coursework.Pages.Admin
             _product.pr_status_id = 4;
             await AdminClass.RepositoryManager.SaveAsync();
             AdminClass.FrameMainStruct.Navigate(new PageAboutClientProducts(_client));
+        }
+
+        private void ButtonPrintGuarantee_Click(object sender, RoutedEventArgs e)
+        {
+            var wordHelper = new WordHelper("Word/WordTempleGuarantee.docx");
+
+            var replacementKeys = new Dictionary<string, string>
+            {
+                {"<ProductCode>", _product.pr_status_id.ToString() },
+                {"<ProductName>", _product.product_name },
+                {"<ProductPrice>", finalPrice.ToString()},
+                {"<Discount>", _discountCard.discount.ToString() },
+                {"<ProductPriceFinaly>", TextBlockOrderSum.Text }
+            };
+
+            wordHelper.WriteIntoDocument(replacementKeys, "Guarantees", _product.product_name);
         }
     }
 }
