@@ -28,6 +28,7 @@ namespace Coursework.Pages.Admin
         private readonly Client _client;
         private readonly DiscountCard _discountCard;
         private double finalPrice;
+        private int? verificationCode;
         public PageProductCheck(Product product, Client client, DiscountCard discountCard)  
         {
             InitializeComponent();
@@ -56,26 +57,31 @@ namespace Coursework.Pages.Admin
             }            
         }
 
-        private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e)
+        private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e) =>
+            SendEmailCode();
+
+        private void SendEmailCode()
         {
             MailAddress from = new MailAddress("serviceprotech.omsk@gmail.com", "Сервисный центр");
-
-            //MailAddress to = new MailAddress("1roman080283@mail.ru");
+            verificationCode = new Random().Next(1000, 9999);
+            var htmlBody = HtmlCodeVerification.InsertCodeIntoText(verificationCode.ToString());
+            if (htmlBody is null)
+                return;
 
             MailMessage mailMessage = new MailMessage
             {
-                From = new MailAddress("serviceprotech.omsk@gmail.com", "Сервисный центр"),
+                From = from,
                 Subject = "Код подтверждения",
-                Body = "<h2>Ваш код подтверждения</h2>",
+                Body = htmlBody,
                 IsBodyHtml = true
             };
-            mailMessage.To.Add("1roman080283@mail.ru");
-            
+            mailMessage.To.Add(new MailAddress(_client.email));
+
             SmtpClient smtp = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
                 EnableSsl = true,
-                Credentials = new NetworkCredential("serviceprotech.omsk", "Qwerty123."),
+                Credentials = new NetworkCredential("serviceprotech.omsk@gmail.com", "hypvanfwowgvhvzn"),
                 DeliveryMethod = SmtpDeliveryMethod.Network
             };
 
@@ -83,7 +89,12 @@ namespace Coursework.Pages.Admin
         }
 
         private async void ButtonCheckCode_Click(object sender, RoutedEventArgs e)
-        {            
+        {
+            if (verificationCode is null)
+                return;
+
+            if (TextBoxEmailCode.Text == verificationCode.ToString())
+                MessageBox.Show("Проверка пройдена!");
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e) =>

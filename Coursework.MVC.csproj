@@ -260,6 +260,7 @@
     <Compile Include="DataApp\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlCodeVerification.cs" />
     <Compile Include="Helpers\PasswordHash.cs" />
     <Compile Include="Helpers\WordHelper.cs" />
     <Compile Include="Pages\Admin\PageAboutClientProducts.xaml.cs">
@@ -472,6 +473,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Html\EmailMessage.html" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
