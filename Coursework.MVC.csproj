@@ -260,6 +260,7 @@
     <Compile Include="DataApp\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\HtmlCodeVerification.cs" />
     <Compile Include="Helpers\PasswordHash.cs" />
     <Compile Include="Helpers\WordHelper.cs" />
