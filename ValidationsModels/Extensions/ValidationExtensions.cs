@@ -12,7 +12,6 @@ namespace Coursework.ValidationsModels.Extensions
 {
     public static class ValidationExtensions
     {
-
         public static bool NameValidation(string name) =>
             name.FieldValidation(3, 20);          
 

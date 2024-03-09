@@ -12,13 +12,13 @@ namespace Coursework.Helpers
 {
     public static class EmailHelper
     {
-        public static int SendEmailCode(string receiverEmail)
+        public static int? SendEmailCode(string receiverEmail)
         {
             MailAddress from = new MailAddress("serviceprotech.omsk@gmail.com", "Сервисный центр");
             var verificationCode = new Random().Next(1000, 9999);
             var htmlBody = HtmlCodeVerification.InsertCodeIntoText(verificationCode.ToString());
             if (htmlBody is null)
-                return 0;
+                return null;
 
             MailMessage mailMessage = new MailMessage
             {

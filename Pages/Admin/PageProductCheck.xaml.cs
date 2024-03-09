@@ -34,7 +34,8 @@ namespace Coursework.Pages.Admin
 
         private DispatcherTimer _timer;
         private int _timerTime = 0;
-        private const int constIntervalMs = 1000;
+        private const int _constIntervalMs = 1000;
+        private const int _timerDuration = 30;
 
         public PageProductCheck(Product product, Client client, DiscountCard discountCard)  
         {
@@ -63,9 +64,9 @@ namespace Coursework.Pages.Admin
                 TextBlockOrderSum.Text = finalPriceWithDiscount.ToString();
             }
 
-            ButtonSendCodeToEmail.IsEnabled = _client != null;
+            ButtonSendCodeToEmail.IsEnabled = _client.email != null;
 
-            _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(constIntervalMs) };
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(_constIntervalMs) };
             _timer.Tick += new EventHandler(timer_tick);
         }
 
@@ -80,7 +81,7 @@ namespace Coursework.Pages.Admin
         {
             TextBlockTimerToSend.Text = $"Время до повторной отправки {30 - _timerTime}";
             _timerTime++;
-            if(_timerTime >= 30)
+            if(_timerTime >= _timerDuration)
             {
                 _timer.Stop();
                 ButtonSendCodeToEmail.IsEnabled = true;
@@ -104,7 +105,9 @@ namespace Coursework.Pages.Admin
                     "Результат",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
+
             TextBlockValidationMessage.Text = null;
+            ButtonSendCodeToEmail.IsEnabled= false;
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e) =>

@@ -5,75 +5,108 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Coursework.Pages.Admin"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="400"
+      d:DesignHeight="450" d:DesignWidth="650"
       Title="PageAddClient">
 
     <Grid Name="GridAddClient">
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Name="StackPanelElemets">
-            <TextBlock Text="Введите имя"
-                       Style="{StaticResource TextBlocksDefault}"
-                       TextAlignment="Center"/>
-            <TextBox Name="TextBoxFirstName"
-                     Style="{StaticResource TextBoxesDefault}">
-                <TextBox.Text>
-                    <Binding Path="FirstName" NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-                
-            </TextBox>
-            <TextBlock Text="Введите фамилию"
-                       Width="200"
-                       Style="{StaticResource TextBlocksDefault}"
-                       TextAlignment="Center"/> 
-            <TextBox Name="TextBoxLastname"
-                     Style="{StaticResource TextBoxesDefault}">
-                <TextBox.Text>
-                    <Binding Path="LastName" NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text="Введите номер"
-                       Width="200"
-                       Style="{StaticResource TextBlocksDefault}"
-                       TextAlignment="Center"/> 
-            <TextBox Name="TextBoxPhone"
-                     Style="{StaticResource TextBoxesDefault}">
-                <TextBox.Text>
-                    <Binding Path="PhoneNum" NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
+                    Orientation="Horizontal">
+            <StackPanel Name="StackPanelElemets">
+                <TextBlock Text="Введите имя"
+                           Style="{StaticResource TextBlocksDefault}"
+                           TextAlignment="Center"/>
+                <TextBox Name="TextBoxFirstName"
+                         Style="{StaticResource TextBoxesDefault}">
+                    <TextBox.Text>
+                        <Binding Path="FirstName" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
 
-            <TextBlock Text="Введите почту"
-                       Width="200"
-                       Style="{StaticResource TextBlocksDefault}"
-                       TextAlignment="Center"/>
-            <TextBox Name="TextBoxEmail"
-                     Style="{StaticResource TextBoxesDefault}">
-                <TextBox.Text>
-                    <Binding Path="Email" NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <Button Name="ButtonAddClient"
-                    Content="Добавить"
-                    Style="{StaticResource ButtonsDefault}"
-                    Width="150"
-                    Click="ButtonAddClient_Click"/>
+                </TextBox>
+                <TextBlock Text="Введите фамилию"
+                           Width="200"
+                           Style="{StaticResource TextBlocksDefault}"
+                           TextAlignment="Center"/>
+                <TextBox Name="TextBoxLastname"
+                         Style="{StaticResource TextBoxesDefault}">
+                    <TextBox.Text>
+                        <Binding Path="LastName" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="Введите номер"
+                           Width="200"
+                           Style="{StaticResource TextBlocksDefault}"
+                           TextAlignment="Center"/>
+                <TextBox Name="TextBoxPhone"
+                         Style="{StaticResource TextBoxesDefault}">
+                    <TextBox.Text>
+                        <Binding Path="PhoneNum" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Name="ButtonAddClient"
+                        Content="Добавить"
+                        Style="{StaticResource ButtonsDefault}"
+                        Width="150"
+                        Click="ButtonAddClient_Click"/>
+            </StackPanel>
+            <StackPanel Margin="80 0 0 0">
+                <TextBlock Text="Введите почту"
+                           Width="200"
+                           Style="{StaticResource TextBlocksDefault}"
+                           TextAlignment="Center"/>
+                <TextBlock Name="TextBlockEmailValidationMessage"
+                           Foreground="Red"
+                           TextAlignment="Center"/>
+                <TextBox Name="TextBoxEmail"
+                         Style="{StaticResource TextBoxesDefault}">
+                    <TextBox.Text>
+                        <Binding Path="Email" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Name="TextBlockTimerToSend"
+                           Foreground="Blue"
+                           TextAlignment="Center"/>
+                <Button Name="ButtonSendCode"
+                        Content="Отправить код"
+                        Style="{StaticResource ButtonsDefault}"
+                        Width="150"
+                        Click="ButtonSendCode_Click"/>
+
+                <TextBlock Text="Введите код с почты"
+                           Width="200"
+                           Margin="0 30 0 0"
+                           Style="{StaticResource TextBlocksDefault}"
+                           TextAlignment="Center"/>
+                <TextBox Name="TextBoxEmailCode"
+                         Style="{StaticResource TextBoxesDefault}"
+                         TextAlignment="Center"
+                         MaxLength="4"/>
+                <TextBlock Name="TextBlockCodeValidationMessage"
+                           Foreground="Red"
+                           TextAlignment="Center"/>
+                <Button Name="ButtonCheckCode"
+                        Content="Проверить"
+                        Style="{StaticResource ButtonsDefault}"
+                        Width="150"
+                        Click="ButtonCheckCode_Click"/>
+            </StackPanel>
+            
         </StackPanel>
     </Grid>
 </Page>
