@@ -118,26 +118,36 @@ namespace Coursework.Pages.Admin
 
         private async void ButtonIssueOrder_Click(object sender, RoutedEventArgs e)
         {
-            PrintGuarantee();
+            if (!PrintGuarantee())
+            {
+                var mesBoxResult = MessageBox.Show("Хотите выдать товар без гарантии?",
+                "Гарантия",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+                if (mesBoxResult == MessageBoxResult.No)
+                    return;
+            }
+           
             _product.pr_status_id = 4;
             await AdminClass.RepositoryManager.SaveAsync();
             AdminClass.FrameMainStruct.Navigate(new PageAboutClientProducts(_client));
         }
 
-        private void PrintGuarantee()
+        private bool PrintGuarantee()
         {
             var wordHelper = new WordHelper("Word/WordTempleGuarantee.docx");
 
             var replacementKeys = new Dictionary<string, string>
             {
-                {"<ProductCode>", _product.pr_status_id.ToString() },
+                {"<ProductCode>", _product.product_id.ToString() },
                 {"<ProductName>", _product.product_name },
                 {"<ProductPrice>", _finalPrice.ToString()},
                 {"<Discount>", _discountCard.discount.ToString() },
                 {"<ProductPriceFinaly>", TextBlockOrderSum.Text }
             };
 
-            wordHelper.WriteIntoDocument(replacementKeys, "Guarantees", _product.product_name);
+            return wordHelper.WriteIntoDocument(replacementKeys, "Guarantees", _product.product_name);
         }
 
         private void ButtonPassportCheck_Click(object sender, RoutedEventArgs e)
@@ -145,7 +155,7 @@ namespace Coursework.Pages.Admin
             var messageBoxBody = $"Имя: {_client.firstname}\n" +
                 $"Фамилия: {_client.lastname}\n" +
                 $"Номер телефона: {_client.phone}\n" +
-                $"Если данные верны нажмите Ok";
+                $"Если данные верны нажмите да";
 
             var mesBoxResult = MessageBox.Show(messageBoxBody,
                 "Проверка данных",
