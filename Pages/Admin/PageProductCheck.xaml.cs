@@ -79,13 +79,14 @@ namespace Coursework.Pages.Admin
         
         private void timer_tick(object sender, EventArgs e)
         {
-            TextBlockTimerToSend.Text = $"Время до повторной отправки {30 - _timerTime}";
+            TextBlockTimerToSend.Text = $"Время до повторной отправки {_timerDuration - _timerTime}";
             _timerTime++;
             if(_timerTime >= _timerDuration)
             {
                 _timer.Stop();
                 ButtonSendCodeToEmail.IsEnabled = true;
                 TextBlockTimerToSend.Text = null;
+                _timerTime = 0;
             }
             var now = DateTime.Now.Millisecond;
             _timer.Interval = TimeSpan.FromMilliseconds(1000 - now);
