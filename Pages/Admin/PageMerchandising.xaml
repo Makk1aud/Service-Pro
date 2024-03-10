@@ -32,7 +32,7 @@
                               AutoGenerateColumns="False"
                               Height="200"
                               Width="400">
-                        <DataGrid.Resources>
+                        <!--<DataGrid.Resources>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Style.Triggers>
                                     <Trigger Property="DataGridCell.IsSelected" Value="True">
@@ -41,7 +41,7 @@
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
-                        </DataGrid.Resources>
+                        </DataGrid.Resources>-->
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Имя"
                                     Width="20*"
