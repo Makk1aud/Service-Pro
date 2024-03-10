@@ -475,6 +475,10 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Html\EmailMessage.html" />
+    <Resource Include="Images\Logos\Logo back BW.png" />
+    <Resource Include="Images\Logos\Logo back.png" />
+    <Resource Include="Images\Logos\Logo Bw.png" />
+    <Resource Include="Images\Logos\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

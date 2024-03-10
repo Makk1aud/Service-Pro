@@ -164,7 +164,8 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 20 0 0">
                     <TextBlock Text="Поставить:"
                                TextAlignment="Right"
                                Style="{StaticResource TextBlocksDefault}"/>
@@ -178,12 +179,6 @@
                         Content="Добавить"
                         Click="ButtonAddMaterials_Click"
                         Width="120"/>
-
-                <Button Name="ButtonAddAndPrintMaterials"
-                        Style="{StaticResource ButtonsDefault}"
-                        Content="Добавить и распечатать"
-                        Click="ButtonAddAndPrintMaterials_Click"
-                        Width="250"/>
 
                 <Button Name="ButtonAddNewMaterials"
                         Style="{StaticResource ButtonsDefault}"

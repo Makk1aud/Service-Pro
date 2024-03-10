@@ -9,10 +9,18 @@
       Title="PageAuthorisation">
 
     <Grid>
+        <StackPanel Background="#5386db"
+                    Height="70"
+                    VerticalAlignment="Top"/>
+        <StackPanel Background="#5386db"
+            Height="70"
+            VerticalAlignment="Bottom"/>
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <TextBlock Text="Введите ваш код"
-                       FontSize="26pt"/>
+            <TextBlock Text="Добро пожаловать"
+                       FontSize="35pt"
+                       HorizontalAlignment="Center"
+                       FontFamily="Times New Roman"/>
             <TextBlock Name="TextBlockError"
                        Style="{StaticResource TextBlocksDefault}"
                        Foreground="Red"
@@ -20,16 +28,17 @@
                        TextAlignment="Center"
                        FontSize="12pt"/>
             <PasswordBox Name="PasswordBoxCode" 
-                         Height="35"
+                         Height="45"
                          Width="200"
                          Margin="5"
-                         FontSize="14pt"/>
+                         FontSize="18pt"
+                         HorizontalContentAlignment="Center"/>
             <Button Name="ButtonLogin"
                     Content="Войти"
                     Height="30"
                     Width="100"
                     Margin="5"
-                    Style="{StaticResource ButtonsDefault}"
+                    Style="{StaticResource ButtonsDefault}"                    
                     Click="ButtonLogin_Click"/>
         </StackPanel>
     </Grid>

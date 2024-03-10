@@ -25,8 +25,8 @@ namespace Coursework.Pages.Admin
 
         private DispatcherTimer _timer;
         private const int _constIntervalMs = 1000;
-        private int _timerTime = 0;
-        private int _timerDuration = 15;
+        private const int _timerDuration = 15;
+        private DateTime _timerEndTime;
 
         public PageAddClient()
         {
@@ -100,24 +100,22 @@ namespace Coursework.Pages.Admin
             }            
 
             _verificationCode = EmailHelper.SendEmailCode(TextBoxEmail.Text);
+
             _timer.Start();
+            _timerEndTime = DateTime.Now + TimeSpan.FromSeconds(_timerDuration);
+
             ButtonSendCode.IsEnabled = false;
             TextBoxEmail.TextChanged += TextBoxEmail_TextChanged;
         }
 
         private void timer_tick(object sender, EventArgs e)
         {
-            TextBlockTimerToSend.Text = $"Время до повторной отправки {_timerDuration - _timerTime}";
-            _timerTime++;
-            if (_timerTime >= _timerDuration)
+            var timeNow = (_timerEndTime - DateTime.Now).Seconds;
+            if (timeNow <= 0)
             {
                 _timer.Stop();
                 ButtonSendCode.IsEnabled = true;
-                TextBlockTimerToSend.Text = null;
-                _timerTime = 0;
             }
-            var now = DateTime.Now.Millisecond;
-            _timer.Interval = TimeSpan.FromMilliseconds(1000 - now);
         }
 
         private void TextBoxEmail_TextChanged(object sender, TextChangedEventArgs e)

@@ -33,8 +33,8 @@ namespace Coursework.Pages.Admin
         private int? _verificationCode;
 
         private DispatcherTimer _timer;
-        private int _timerTime = 0;
         private const int _constIntervalMs = 1000;
+        private DateTime _timerEndTime;
         private const int _timerDuration = 30;
 
         public PageProductCheck(Product product, Client client, DiscountCard discountCard)  
@@ -73,23 +73,19 @@ namespace Coursework.Pages.Admin
         private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e)
         {
             _verificationCode = EmailHelper.SendEmailCode(_client.email);
+            _timerEndTime = DateTime.Now + TimeSpan.FromSeconds(_timerDuration);
             _timer.Start();
             ButtonSendCodeToEmail.IsEnabled = false;
         }            
         
         private void timer_tick(object sender, EventArgs e)
         {
-            TextBlockTimerToSend.Text = $"Время до повторной отправки {_timerDuration - _timerTime}";
-            _timerTime++;
-            if(_timerTime >= _timerDuration)
+            var timeNow = (_timerEndTime - DateTime.Now).Seconds;
+            if (timeNow <= 0)
             {
                 _timer.Stop();
                 ButtonSendCodeToEmail.IsEnabled = true;
-                TextBlockTimerToSend.Text = null;
-                _timerTime = 0;
             }
-            var now = DateTime.Now.Millisecond;
-            _timer.Interval = TimeSpan.FromMilliseconds(1000 - now);
         }
 
         private void ButtonCheckCode_Click(object sender, RoutedEventArgs e)

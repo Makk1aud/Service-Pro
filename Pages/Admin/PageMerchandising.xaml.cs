@@ -117,7 +117,7 @@ namespace Coursework.Pages.Admin
         private void TextBoxAboutProducts_TextChanged(object sender, TextChangedEventArgs e)
         {
             if(ButtonAddProduct != null)
-                ButtonAddProduct.IsEnabled = ValidationExtensions.ProductNameValidation((sender as TextBox).Text);        
+                ButtonAddProduct.IsEnabled = ValidationExtensions.FieldValidation((sender as TextBox).Text, min:3,max: 90);        
         }
     }
 }

@@ -10,6 +10,11 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Width" Value="210"/>
             <Setter Property="Margin" Value="0 0 0 10"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
         </Style>
 
         <Style TargetType="TextBox" x:Key="TextBoxesDefault">
@@ -17,6 +22,11 @@
             <Setter Property="FontSize" Value="14pt"/>
             <Setter Property="Width" Value="200"/>
             <Setter Property="Margin" Value="5"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="TextBlocksDefault">
@@ -30,21 +40,31 @@
             <Setter Property="FontSize" Value="14pt"/>
             <Setter Property="Width" Value="150"/>
             <Setter Property="Margin" Value="5"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
         </Style>
 
         <Style TargetType="Button" x:Key="ButtonsDefault">
             <Setter Property="Height" Value="35"/>
             <Setter Property="FontSize" Value="14pt"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="AliceBlue"/>
+            <Setter Property="Background" Value="#06085c"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
         </Style>
-        
+
         <Style TargetType="DataGridCell" x:Key="CellListProductsStyle">
             <Setter Property="FontSize" Value="13pt"/>
             <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
             <Setter Property="TextBlock.TextAlignment" Value="Left"/>
         </Style>
 
-
-        
     </Application.Resources>
 </Application>
