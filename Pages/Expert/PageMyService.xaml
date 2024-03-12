@@ -77,8 +77,9 @@
                                    Style="{StaticResource TextBlocksDefault}"
                                    HorizontalAlignment="Left"/>
                         <TextBox Name="TextBoxProductName"
-                                   Style="{StaticResource TextBoxesDefault}"
-                                   TextChanged="TextBox_TextChanged"/>
+                                 MaxLength="20"
+                                 Style="{StaticResource TextBoxesDefault}"
+                                 TextChanged="TextBox_TextChanged"/>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="Тип"
@@ -162,9 +163,13 @@
             <StackPanel HorizontalAlignment="Center"
                         Orientation="Horizontal">
                 <Button Name="ButtonPreviousPage"
-                        Content="Пред"
+                        Height="40"
                         Click="ButtonPreviousPage_Click"
-                        Style="{StaticResource ButtonsDefault}"/>
+                        Style="{StaticResource ButtonsDefault}">
+                    <Image Source="/Images/Props/ArrowLeft.png"
+                           Height="40"
+                           Width="50"/>
+                </Button>
                 <TextBlock Text="{Binding CurrentPage}"
                            DataContext="{Binding Path= MetaData}"
                            FontSize="14pt"                           
@@ -177,9 +182,13 @@
                            FontSize="14pt"                           
                            VerticalAlignment="Center"/>
                 <Button Name="ButtonNextPage"
-                        Content="След"
+                        Height="40"
                         Click="ButtonNextPage_Click"
-                        Style="{StaticResource ButtonsDefault}"/>
+                        Style="{StaticResource ButtonsDefault}">
+                    <Image Source="/Images/Props/ArrowRight.png"
+                           Height="40"
+                           Width="50"/>
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

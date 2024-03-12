@@ -24,6 +24,7 @@
                                        Style="{StaticResource TextBlocksDefault}"
                                        HorizontalAlignment="Left"/>
                             <TextBox Name="TextBoxLastName"
+                                     MaxLength="15"
                                      Style="{StaticResource TextBoxesDefault}"
                                      TextChanged="TextBoxLastName_TextChanged"/>
                         </StackPanel>

@@ -24,6 +24,7 @@
                                    Style="{StaticResource TextBlocksDefault}"
                                    HorizontalAlignment="Left"/>
                         <TextBox Name="TextBoxFirstname"
+                                 MaxLength="15"
                                  Style="{StaticResource TextBoxesDefault}"
                                  TextChanged="TextBoxLastName_TextChanged"/>
                     </StackPanel>
@@ -32,6 +33,7 @@
                                    Style="{StaticResource TextBlocksDefault}"
                                    HorizontalAlignment="Left"/>
                         <TextBox Name="TextBoxLastName"
+                                 MaxLength="15"
                                  Style="{StaticResource TextBoxesDefault}"
                                  TextChanged="TextBoxLastName_TextChanged"/>
                     </StackPanel>
@@ -90,9 +92,13 @@
             <StackPanel HorizontalAlignment="Center"
                         Orientation="Horizontal">
                 <Button Name="ButtonPreviousPage"
-                        Content="Пред"
+                        Height="40"
                         Click="ButtonPreviousPage_Click"
-                        Style="{StaticResource ButtonsDefault}"/>
+                        Style="{StaticResource ButtonsDefault}">
+                    <Image Source="/Images/Props/ArrowLeft.png"
+                           Height="40"
+                           Width="50"/>
+                </Button>
                 <TextBlock Text="{Binding CurrentPage}"
                            FontSize="14pt"                           
                            VerticalAlignment="Center"/>
@@ -103,9 +109,13 @@
                            FontSize="14pt"                           
                            VerticalAlignment="Center"/>
                 <Button Name="ButtonNextPage"
-                        Content="След"
+                        Height="40"
                         Click="ButtonNextPage_Click"
-                        Style="{StaticResource ButtonsDefault}"/>
+                        Style="{StaticResource ButtonsDefault}">
+                    <Image Source="/Images/Props/ArrowRight.png"
+                           Height="40"
+                           Width="50"/>
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -78,6 +78,7 @@
                                        HorizontalAlignment="Left"/>
                             <TextBox Name="TextBoxProductName"
                                      Width="150"
+                                     MaxLength="30"
                                      Style="{StaticResource TextBoxesDefault}"
                                      TextChanged="TextBoxProductName_TextChanged"/>
                         </StackPanel>
