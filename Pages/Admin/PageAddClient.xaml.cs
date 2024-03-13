@@ -124,5 +124,8 @@ namespace Coursework.Pages.Admin
             ButtonSendCode.IsEnabled = true;
             TextBoxEmail.TextChanged -= TextBoxEmail_TextChanged;
         }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e) =>
+            AdminClass.FrameMainStruct.GoBack();
     }
 }

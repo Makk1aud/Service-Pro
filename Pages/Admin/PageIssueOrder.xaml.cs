@@ -69,5 +69,7 @@ namespace Coursework.Pages.Admin
         private void ButtonNextPage_Click(object sender, RoutedEventArgs e) =>
             DataGridClientsSorting(_metaData.HasNext ? ++_metaData.CurrentPage : _metaData.CurrentPage);
 
+        private void ButtoBack_Click(object sender, RoutedEventArgs e) =>
+            AdminClass.FrameMainStruct.GoBack();
     }
 }

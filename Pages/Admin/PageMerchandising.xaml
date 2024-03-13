@@ -76,6 +76,12 @@
                 <StackPanel HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             Margin="40 20 0 0">
+                    <TextBlock Text="Добавление товара"
+                               Style="{StaticResource TextBlocksDefault}"
+                               Width="230"
+                               Height="40"
+                               Margin="0 0 0 10"
+                               FontSize="19pt"/>
                     <TextBox Name="TextBoxPrTitle"
                              Style="{StaticResource TextBoxesDefault}"
                              GotFocus="TextBox_GotFocus"

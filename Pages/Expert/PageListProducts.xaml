@@ -88,7 +88,7 @@
                                         Width="20*"
                                         Binding="{Binding Path=ProductType.pr_type_title}"
                                         CellStyle="{StaticResource CellListProductsStyle}"/>
-                    <DataGridTemplateColumn Width="10*">
+                    <DataGridTemplateColumn Width="13*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Name="ButtonSelectProduct"
@@ -111,13 +111,15 @@
                            Width="50"/>
                 </Button>
                 <TextBlock Text="{Binding CurrentPage}"
-                           FontSize="14pt"                           
+                           FontSize="14pt"     
+                           Margin="3"
                            VerticalAlignment="Center"/>
                 <TextBlock Text="из"
                            FontSize="14pt"                           
                            VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding TotalPages}"
-                           FontSize="14pt"                           
+                           FontSize="14pt"    
+                           Margin="3"
                            VerticalAlignment="Center"/>
                 <Button Name="ButtonNextPage"
                         Height="40"

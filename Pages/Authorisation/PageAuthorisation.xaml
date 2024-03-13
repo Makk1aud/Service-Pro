@@ -9,14 +9,14 @@
       Title="PageAuthorisation">
 
     <Grid>
-        <StackPanel Background="#cacae3"
+        <StackPanel Background="#06085c"
                     Height="80"
                     VerticalAlignment="Top">
             <Image Source="/Images/Logos/Logo.png"
                     Height="80"
                    VerticalAlignment="Top"/>
         </StackPanel>
-        <StackPanel Background="#cacae3"
+        <StackPanel Background="#06085c"
             Height="70"
             VerticalAlignment="Bottom"/>
         <StackPanel HorizontalAlignment="Center"
@@ -28,7 +28,7 @@
             <TextBlock Name="TextBlockError"
                        Style="{StaticResource TextBlocksDefault}"
                        Foreground="Red"
-                       Width="250"
+                       Width="300"
                        TextAlignment="Center"
                        FontSize="15pt"/>
             <PasswordBox Name="PasswordBoxCode" 

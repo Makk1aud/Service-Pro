@@ -116,7 +116,11 @@
                       Height="250"
                       Width="800"
                       MinRowHeight="20">
-
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FontSize" Value="14pt"/>
+                    </Style>
+                </DataGrid.CellStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Наименование"
                                         Width="20*"
@@ -172,14 +176,16 @@
                 </Button>
                 <TextBlock Text="{Binding CurrentPage}"
                            DataContext="{Binding Path= MetaData}"
-                           FontSize="14pt"                           
+                           FontSize="14pt"     
+                           Margin="3"
                            VerticalAlignment="Center"/>
                 <TextBlock Text="из"
                            FontSize="14pt"                           
                            VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding TotalPages}"
                            DataContext="{Binding Path= MetaData}"
-                           FontSize="14pt"                           
+                           FontSize="14pt"
+                           Margin="3"
                            VerticalAlignment="Center"/>
                 <Button Name="ButtonNextPage"
                         Height="40"

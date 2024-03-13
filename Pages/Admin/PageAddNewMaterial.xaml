@@ -59,7 +59,7 @@
                         Click="ButtonBack_Click"
                         Content="Назад"
                         HorizontalAlignment="Left"
-                        Style="{StaticResource ButtonsDefault}"
+                        Style="{StaticResource ButtonsBack}"
                         Margin="20"
                         Width="80"/>
             </StackPanel>

@@ -33,6 +33,7 @@
                     Style="{StaticResource ButtonsLeftPanel}"/>
             <Image Source="/Images/Logos/Logo.png"
                    Margin="0 50 0 0"/>
+
         </StackPanel>
     </Grid>
 </Page>

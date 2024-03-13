@@ -60,6 +60,11 @@
                       AutoGenerateColumns="False"
                       Height="250"
                       Width="800">
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FontSize" Value="14pt"/>
+                    </Style>
+                </DataGrid.CellStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Имя"
                                         Width="20*"
@@ -89,34 +94,47 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-                <Button Name="ButtonPreviousPage"
-                        Height="40"
-                        Click="ButtonPreviousPage_Click"
-                        Style="{StaticResource ButtonsDefault}">
-                    <Image Source="/Images/Props/ArrowLeft.png"
-                           Height="40"
-                           Width="50"/>
-                </Button>
-                <TextBlock Text="{Binding CurrentPage}"
-                           FontSize="14pt"                           
-                           VerticalAlignment="Center"/>
-                <TextBlock Text="из"
-                           FontSize="14pt"                           
-                           VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding TotalPages}"
-                           FontSize="14pt"                           
-                           VerticalAlignment="Center"/>
-                <Button Name="ButtonNextPage"
-                        Height="40"
-                        Click="ButtonNextPage_Click"
-                        Style="{StaticResource ButtonsDefault}">
-                    <Image Source="/Images/Props/ArrowRight.png"
-                           Height="40"
-                           Width="50"/>
-                </Button>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="ButtoBack"
+                        Content="Назад"
+                        Style="{StaticResource ButtonsBack}"
+                        Width="100"
+                        Margin="0 0 0 0"
+                        Click="ButtoBack_Click"/>
+                <StackPanel HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Margin="210 0 0 0">
+
+                    <Button Name="ButtonPreviousPage"
+                            Height="40"
+                            Click="ButtonPreviousPage_Click"
+                            Style="{StaticResource ButtonsDefault}">
+                        <Image Source="/Images/Props/ArrowLeft.png"
+                               Height="40"
+                               Width="50"/>
+                    </Button>
+                    <TextBlock Text="{Binding CurrentPage}"
+                               FontSize="14pt"              
+                               Margin="3"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="из"
+                               FontSize="14pt"                           
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalPages}"
+                               FontSize="14pt"   
+                               Margin="3"
+                               VerticalAlignment="Center"/>
+                    <Button Name="ButtonNextPage"
+                            Height="40"
+                            Click="ButtonNextPage_Click"
+                            Style="{StaticResource ButtonsDefault}">
+                        <Image Source="/Images/Props/ArrowRight.png"
+                               Height="40"
+                               Width="50"/>
+                    </Button>
+                </StackPanel>
             </StackPanel>
+            
         </StackPanel>
     </Grid>
 </Page>

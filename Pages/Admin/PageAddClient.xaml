@@ -111,6 +111,11 @@
                     Style="{StaticResource ButtonsDefault}"
                     Width="150"
                     Click="ButtonAddClient_Click"/>
+            <Button Name="ButtonBack"
+                    Content="Назад"
+                    Style="{StaticResource ButtonsBack}"
+                    Width="100"
+                    Click="ButtonBack_Click"/>
         </StackPanel>
     </Grid>
 </Page>
