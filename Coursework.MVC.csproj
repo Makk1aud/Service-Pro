@@ -281,6 +281,9 @@
     <Compile Include="Pages\Admin\PageAboutClientProducts.xaml.cs">
       <DependentUpon>PageAboutClientProducts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Admin\PageAddEmploye.xaml.cs">
+      <DependentUpon>PageAddEmploye.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\PageAddNewMaterial.xaml.cs">
       <DependentUpon>PageAddNewMaterial.xaml</DependentUpon>
     </Compile>
@@ -328,6 +331,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Admin\PageAddEmploye.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Admin\PageAddNewMaterial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -364,6 +371,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ValidationsModels\EmployeeValidation.cs" />
     <Compile Include="ValidationsModels\Extensions\ValidationExtensions.cs" />
     <Compile Include="ViewModels\ProductHandlingViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />

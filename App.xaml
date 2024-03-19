@@ -29,6 +29,18 @@
             </Style.Resources>
         </Style>
 
+        <Style TargetType="PasswordBox" x:Key="PasswordBoxDefault">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontSize" Value="14pt"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="5"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
         <Style TargetType="TextBlock" x:Key="TextBlocksDefault">
             <Setter Property="Height" Value="30"/>
             <Setter Property="FontSize" Value="14pt"/>

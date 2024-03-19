@@ -16,7 +16,7 @@
                     Click="ButtonMainPage_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
             <Button Name="ButtonListOfExperts"
-                    Content="Список специалистов"
+                    Content="Список сотрудников"
                     Click="ButtonListOfExperts_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
             <Button Name="ButtonIssueOrder"

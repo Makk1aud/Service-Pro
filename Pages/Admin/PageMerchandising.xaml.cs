@@ -54,7 +54,7 @@ namespace Coursework.Pages.Admin
                         { 
                             PhoneNum= TextBoxPhone.Text 
                         }, 
-                        trackChanges : false);
+                        trackChanges : true);
         }
 
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
@@ -93,7 +93,7 @@ namespace Coursework.Pages.Admin
             DataGridClients.ItemsSource = AdminClass
                 .RepositoryManager
                 .Client
-                .GetClients(trackChanges : false);
+                .GetClients(trackChanges : true);
         }
 
         private void ButtonResetSorting_Click(object sender, RoutedEventArgs e) =>

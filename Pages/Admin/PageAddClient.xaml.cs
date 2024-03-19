@@ -122,6 +122,7 @@ namespace Coursework.Pages.Admin
         {
             _emailValidation = false;
             ButtonSendCode.IsEnabled = true;
+            _verificationCode = null;
             TextBoxEmail.TextChanged -= TextBoxEmail_TextChanged;
         }
 
