@@ -141,6 +141,7 @@
                             <TextBlock Text="{Binding material_title}"
                                        TextWrapping="WrapWithOverflow"
                                        Height="60"
+                                       Margin="10 0 0 0"
                                        Style="{StaticResource TextBlocksDefault}"/>
                         </StackPanel>
 
@@ -150,16 +151,19 @@
                                        TextAlignment="Right"
                                        Style="{StaticResource TextBlocksDefault}"/>
                             <TextBlock Text="{Binding manufacturer_title}"
+                                       Margin="10 0 0 0"
                                        DataContext="{Binding Manufacturer}"
                                        Style="{StaticResource TextBlocksDefault}"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal"
-                                    Margin="15">
+                                    Margin="5">
                             <TextBlock Text="Количество:"
                                        TextAlignment="Right"
+                                       
                                        Style="{StaticResource TextBlocksDefault}"/>
                             <TextBlock Text="{Binding quantity}"
+                                       Margin="10 0 0 0"
                                        Style="{StaticResource TextBlocksDefault}"/>
                         </StackPanel>
                     </StackPanel>

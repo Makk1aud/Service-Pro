@@ -15,8 +15,7 @@
                     <TextBlock Text="Наименование: "
                                TextAlignment="Right"
                                Style="{StaticResource TextBlocksDefault}"/>
-                    <TextBlock Text="{Binding product_name}"
-                               
+                    <TextBlock Text="{Binding product_name}"                               
                                TextWrapping="Wrap"
                                Height="60"
                                Style="{StaticResource TextBlocksDefault}"/>

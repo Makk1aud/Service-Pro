@@ -278,6 +278,9 @@
     <Compile Include="Helpers\HtmlCodeVerification.cs" />
     <Compile Include="Helpers\PasswordHash.cs" />
     <Compile Include="Helpers\WordHelper.cs" />
+    <Compile Include="Pages\Admin\PageDataEditing.xaml.cs">
+      <DependentUpon>PageDataEditing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\PageAboutClientProducts.xaml.cs">
       <DependentUpon>PageAboutClientProducts.xaml</DependentUpon>
     </Compile>
@@ -327,6 +330,10 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\RepositoryManager.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
+    <Page Include="Pages\Admin\PageDataEditing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Admin\PageAboutClientProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

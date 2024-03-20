@@ -27,6 +27,10 @@
                     Content="Поставки"
                     Click="ButtonSupplyMaterials_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
+            <Button Name="ButtonEditData"
+                    Content="Редактирование"
+                    Click="ButtonEditData_Click"
+                    Style="{StaticResource ButtonsLeftPanel}"/>
             <Button Name="ButtonSignOut"
                     Content="Выйти с аккаунта"
                     Click="ButtonSignOut_Click"
