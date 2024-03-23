@@ -110,7 +110,7 @@
                     <Button Name="ButtonBack"
                             Click="ButtonBack_Click"
                             Content="Назад"
-                            Style="{StaticResource ButtonsDefault}"
+                            Style="{StaticResource ButtonsBack}"
                             Margin="20"
                             Width="80"/>
                     <Button Name="ButtonResetSorting"
@@ -141,6 +141,7 @@
                             <TextBlock Text="{Binding material_title}"
                                        TextWrapping="WrapWithOverflow"
                                        Height="60"
+                                       Margin="10 0 0 0"
                                        Style="{StaticResource TextBlocksDefault}"/>
                         </StackPanel>
 
@@ -150,21 +151,25 @@
                                        TextAlignment="Right"
                                        Style="{StaticResource TextBlocksDefault}"/>
                             <TextBlock Text="{Binding manufacturer_title}"
+                                       Margin="10 0 0 0"
                                        DataContext="{Binding Manufacturer}"
                                        Style="{StaticResource TextBlocksDefault}"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal"
-                                    Margin="15">
+                                    Margin="5">
                             <TextBlock Text="Количество:"
                                        TextAlignment="Right"
+                                       
                                        Style="{StaticResource TextBlocksDefault}"/>
                             <TextBlock Text="{Binding quantity}"
+                                       Margin="10 0 0 0"
                                        Style="{StaticResource TextBlocksDefault}"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 20 0 0">
                     <TextBlock Text="Поставить:"
                                TextAlignment="Right"
                                Style="{StaticResource TextBlocksDefault}"/>
@@ -178,12 +183,6 @@
                         Content="Добавить"
                         Click="ButtonAddMaterials_Click"
                         Width="120"/>
-
-                <Button Name="ButtonAddAndPrintMaterials"
-                        Style="{StaticResource ButtonsDefault}"
-                        Content="Добавить и распечатать"
-                        Click="ButtonAddAndPrintMaterials_Click"
-                        Width="250"/>
 
                 <Button Name="ButtonAddNewMaterials"
                         Style="{StaticResource ButtonsDefault}"

@@ -19,6 +19,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.CodeAnalysis;
 using Coursework.Helpers;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace Coursework.Pages.Admin
 {
@@ -27,8 +29,14 @@ namespace Coursework.Pages.Admin
         private readonly Product _product;
         private readonly Client _client;
         private readonly DiscountCard _discountCard;
-        private double finalPrice;
-        private int? verificationCode;
+        private double _finalPrice;
+        private int? _verificationCode;
+
+        private DispatcherTimer _timer;
+        private const int _constIntervalMs = 1000;
+        private DateTime _timerEndTime;
+        private const int _timerDuration = 30;
+
         public PageProductCheck(Product product, Client client, DiscountCard discountCard)  
         {
             InitializeComponent();
@@ -45,56 +53,58 @@ namespace Coursework.Pages.Admin
             DataGridMaterials.ItemsSource = listOfExpenditure;
 
             var materialSum = listOfExpenditure.Sum(x => x.Material.material_price * x.quantity);
-            finalPrice = materialSum < 500 ? 500
+            _finalPrice = materialSum < 500 ? 500
                 : ((double)materialSum * 1.2);
 
             if(_discountCard is null)
-                TextBlockOrderSum.Text = finalPrice.ToString();
+                TextBlockOrderSum.Text = _finalPrice.ToString();
             else
             {
-                var finalPriceWithDiscount = finalPrice * ((100.0 - _discountCard.discount) / 100.0);
+                var finalPriceWithDiscount = _finalPrice * ((100.0 - _discountCard.discount) / 100.0);
                 TextBlockOrderSum.Text = finalPriceWithDiscount.ToString();
-            }            
+            }
+
+            ButtonSendCodeToEmail.IsEnabled = _client.email != null;
+
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(_constIntervalMs) };
+            _timer.Tick += new EventHandler(timer_tick);
         }
 
-        private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e) =>
-            SendEmailCode();
-
-        private void SendEmailCode()
+        private void ButtonSendCodeToEmail_Click(object sender, RoutedEventArgs e)
         {
-            MailAddress from = new MailAddress("serviceprotech.omsk@gmail.com", "Сервисный центр");
-            verificationCode = new Random().Next(1000, 9999);
-            var htmlBody = HtmlCodeVerification.InsertCodeIntoText(verificationCode.ToString());
-            if (htmlBody is null)
-                return;
-
-            MailMessage mailMessage = new MailMessage
+            _verificationCode = EmailHelper.SendEmailCode(_client.email);
+            _timerEndTime = DateTime.Now + TimeSpan.FromSeconds(_timerDuration);
+            _timer.Start();
+            ButtonSendCodeToEmail.IsEnabled = false;
+        }            
+        
+        private void timer_tick(object sender, EventArgs e)
+        {
+            var timeNow = (_timerEndTime - DateTime.Now).Seconds;
+            if (timeNow <= 0)
             {
-                From = from,
-                Subject = "Код подтверждения",
-                Body = htmlBody,
-                IsBodyHtml = true
-            };
-            mailMessage.To.Add(new MailAddress(_client.email));
-
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                EnableSsl = true,
-                Credentials = new NetworkCredential("serviceprotech.omsk@gmail.com", "hypvanfwowgvhvzn"),
-                DeliveryMethod = SmtpDeliveryMethod.Network
-            };
-
-            smtp.Send(mailMessage);
+                _timer.Stop();
+                ButtonSendCodeToEmail.IsEnabled = true;
+            }
         }
 
-        private async void ButtonCheckCode_Click(object sender, RoutedEventArgs e)
+        private void ButtonCheckCode_Click(object sender, RoutedEventArgs e)
         {
-            if (verificationCode is null)
+            if (_verificationCode is null ||
+                TextBoxEmailCode.Text != _verificationCode.ToString())
+            {
+                TextBlockValidationMessage.Text = "Неверный код";
                 return;
+            }
 
-            if (TextBoxEmailCode.Text == verificationCode.ToString())
-                MessageBox.Show("Проверка пройдена!");
+            ButtonIssueOrder.IsEnabled = true;
+            MessageBox.Show("Проверка пройдена!",
+                    "Результат",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+            TextBlockValidationMessage.Text = null;
+            ButtonSendCodeToEmail.IsEnabled= false;
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e) =>
@@ -105,25 +115,52 @@ namespace Coursework.Pages.Admin
 
         private async void ButtonIssueOrder_Click(object sender, RoutedEventArgs e)
         {
+            if (!PrintGuarantee())
+            {
+                var mesBoxResult = MessageBox.Show("Хотите выдать товар без гарантии?",
+                "Гарантия",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+                if (mesBoxResult == MessageBoxResult.No)
+                    return;
+            }
+           
             _product.pr_status_id = 4;
             await AdminClass.RepositoryManager.SaveAsync();
             AdminClass.FrameMainStruct.Navigate(new PageAboutClientProducts(_client));
         }
 
-        private void ButtonPrintGuarantee_Click(object sender, RoutedEventArgs e)
+        private bool PrintGuarantee()
         {
             var wordHelper = new WordHelper("Word/WordTempleGuarantee.docx");
 
             var replacementKeys = new Dictionary<string, string>
             {
-                {"<ProductCode>", _product.pr_status_id.ToString() },
+                {"<ProductCode>", _product.product_id.ToString() },
                 {"<ProductName>", _product.product_name },
-                {"<ProductPrice>", finalPrice.ToString()},
-                {"<Discount>", _discountCard.discount.ToString() },
+                {"<ProductPrice>", _finalPrice.ToString()},
+                {"<Discount>", _discountCard is null ? "0" : _discountCard.discount.ToString() },
                 {"<ProductPriceFinaly>", TextBlockOrderSum.Text }
             };
 
-            wordHelper.WriteIntoDocument(replacementKeys, "Guarantees", _product.product_name);
+            return wordHelper.WriteIntoDocument(replacementKeys, "Guarantees", _product.product_name);
+        }
+
+        private void ButtonPassportCheck_Click(object sender, RoutedEventArgs e)
+        {
+            var messageBoxBody = $"Имя: {_client.firstname}\n" +
+                $"Фамилия: {_client.lastname}\n" +
+                $"Номер телефона: {_client.phone}\n" +
+                $"Если данные верны нажмите да";
+
+            var mesBoxResult = MessageBox.Show(messageBoxBody,
+                "Проверка данных",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if(mesBoxResult == MessageBoxResult.Yes)
+                ButtonIssueOrder.IsEnabled = true;
         }
     }
 }

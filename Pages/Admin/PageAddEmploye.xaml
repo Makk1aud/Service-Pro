@@ -1,0 +1,165 @@
+﻿<Page x:Class="Coursework.Pages.Admin.PageAddEmploye"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework.Pages.Admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="PageAddEmploye">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Добавить работника"
+                       FontSize="24pt"
+                       HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0 10 0 0">
+                <StackPanel Margin="0 0 40 0"
+                            Name="StackPanelEmpInfo">
+                    <TextBlock Text="Имя"
+                               Style="{StaticResource TextBlocksDefault}"
+                               TextAlignment="Center"
+                               Margin="0 20 0 0"                               
+                               FontSize="16pt"/>
+                    <TextBox Name="TextBoxFirstname"
+                             MaxLength="20"
+                             Style="{StaticResource TextBoxesDefault}">
+                        <TextBox.Text>
+                            <Binding Path="Firstname" NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <TextBlock Text="Фамилия"
+                               Style="{StaticResource TextBlocksDefault}"
+                               TextAlignment="Center"
+                               Margin="0 20 0 0"
+                               FontSize="16pt"/>
+                    <TextBox Name="TextBoxLastname"
+                             MaxLength="20"
+                             Style="{StaticResource TextBoxesDefault}">
+                        <TextBox.Text>
+                            <Binding Path="Lastname" NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <TextBlock Text="Телефон"
+                               Margin="0 20 0 0"
+                               Style="{StaticResource TextBlocksDefault}"
+                               TextAlignment="Center"
+                               FontSize="16pt"/>
+                    <TextBox Name="TextBoxPhone"
+                             MaxLength="20"                             
+                             Style="{StaticResource TextBoxesDefault}">
+                        <TextBox.Text>
+                            <Binding Path="Phone" NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBlock Text="+### ### ## ##"
+                               Margin="5"
+                               Style="{StaticResource TextBlocksDefault}"
+                               TextAlignment="Center"
+                               FontSize="12pt"/>
+                </StackPanel>
+                <StackPanel Margin="0 0 40 0">
+                    <TextBlock Text="Почта"
+                               Style="{StaticResource TextBlocksDefault}"
+                               TextAlignment="Center"
+                               Margin="0 20 0 0"
+                               FontSize="16pt"/>
+                    <TextBox Name="TextBoxEmail"
+                             MaxLength="40"
+                             Style="{StaticResource TextBoxesDefault}"/>
+                    <TextBlock Name="TextBlockEmailValidation"                               
+                               TextAlignment="Center"
+                               FontSize="12pt"
+                               Foreground="Red"/>
+                    <Button Name="ButtonSendEmail"
+                            Content="Отправить код"
+                            Style="{StaticResource ButtonsDefault}"
+                            Click="ButtonSendEmail_Click"/>
+                    
+                    <TextBlock Text="Код с почты"
+                               Style="{StaticResource TextBlocksDefault}"
+                               TextAlignment="Center"
+                               Margin="0 20 0 0"
+                               FontSize="16pt"/>
+                    <TextBlock Name="TextBlockEmailCodeVerification"                               
+                               TextAlignment="Center"
+                               FontSize="12pt"
+                               Foreground="Red"/>
+                    <TextBox Name="TextBoxEmailCode"
+                             MaxLength="4"
+                             TextAlignment="Center"
+                             Width="100"
+                             Style="{StaticResource TextBoxesDefault}"/>
+
+                    <Button Name="ButtonCheckCode"
+                            Content="Проверить код"
+                            Style="{StaticResource ButtonsDefault}"
+                            Click="ButtonCheckCode_Click"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Введите пароль"
+                               Style="{StaticResource TextBlocksDefault}"
+                               TextAlignment="Center"
+                               Margin="0 20 0 0"
+                               FontSize="16pt"
+                               Width="200"/>
+                    <TextBox Name="TextBoxLoginPassword"
+                             MaxLength="20"
+                             TextChanged="TextBoxLoginPassword_TextChanged"
+                             Style="{StaticResource TextBoxesDefault}"/>
+
+                    <TextBlock Text="Повторите пароль"
+                               Style="{StaticResource TextBlocksDefault}"
+                               TextAlignment="Center"
+                               Margin="0 20 0 0"
+                               Width="200"
+                               FontSize="16pt"/>
+                    <TextBlock Name="TextBlockPasswordVerification"                               
+                               TextAlignment="Center"
+                               FontSize="12pt"
+                               Foreground="Red"/>
+                    <PasswordBox Name="PasswordBoxRepeatPassword"
+                                 MaxLength="20"                                   
+                                 PasswordChanged="PasswordBoxRepeatPassword_PasswordChanged"
+                                 Style="{StaticResource PasswordBoxDefault}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 10 0 0">
+                <Button Name="ButtonBack"
+                        Content="Назад"
+                        Width="100"
+                        Style="{StaticResource ButtonsBack}"
+                        Click="ButtonBack_Click"/>
+                <StackPanel Margin="185 0 0 0">
+                    <TextBlock Name="TextBlockEmployeValidation"                               
+                               TextAlignment="Center"
+                               FontSize="12pt"
+                               Width="300"
+                               Foreground="Red"/>
+                    <Button Name="ButtonAddEmploye"
+                            Content="Добавить"                            
+                            Width="150"
+                            Style="{StaticResource ButtonsDefault}"
+                            Click="ButtonAddEmploye_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

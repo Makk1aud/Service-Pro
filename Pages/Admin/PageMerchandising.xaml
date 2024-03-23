@@ -6,51 +6,55 @@
       xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageMerchandising">
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="PageMerchandising" ShowsNavigationUI="False">
 
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <StackPanel HorizontalAlignment="Left"
                             VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Сортировка"
+                               Style="{StaticResource TextBlocksDefault}"
+                               Width="120"/>
 
-                        <TextBox Name="TextBoxPhone"
-                                 Text="Поиск по номеру"
-                                 GotFocus="TextBox_GotFocus"
-                                 MaxLength="20"
-                                 Style="{StaticResource TextBoxesDefault}"/>
-                        <Button Name="ButtonResetSorting"
-                                Content="Сбросить"
-                                Style="{StaticResource ButtonsDefault}"
-                                Click="ButtonResetSorting_Click"/>
-                    </StackPanel>
+                    <Border BorderBrush="Black" Background="AliceBlue"
+                            BorderThickness="1"
+                            Margin="5">
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBox Name="TextBoxPhone"
+                                     Text="Поиск по номеру"
+                                     GotFocus="TextBox_GotFocus"
+                                     MaxLength="20"
+                                     Style="{StaticResource TextBoxesDefault}"/>
+                            <Button Name="ButtonResetSorting"
+                                    Content="Сбросить"
+                                    Style="{StaticResource ButtonsDefault}"
+                                    Click="ButtonResetSorting_Click"/>
+                        </StackPanel>
+                    </Border>
                     <DataGrid Name="DataGridClients"
                               IsReadOnly="True"
                               CanUserAddRows="False"
                               AutoGenerateColumns="False"
-                              Height="200"
-                              Width="400">
-                        <DataGrid.Resources>
-                            <Style TargetType="{x:Type DataGridCell}">
-                                <Style.Triggers>
-                                    <Trigger Property="DataGridCell.IsSelected" Value="True">
-                                        <Setter Property="Background" Value="Black" />
-                                        <Setter Property="Foreground" Value="White"/>
-                                    </Trigger>
-                                </Style.Triggers>
+                              Height="250"                             
+                              Width="500">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="14pt"/>
                             </Style>
-                        </DataGrid.Resources>
+                        </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Имя"
-                                    Width="20*"
+                                    Width="15*"
                                     Binding="{Binding Path=firstname}"/>
                             <DataGridTextColumn Header="Фамилия"
                                     Width="20*"
                                     Binding="{Binding Path=lastname}"/>
                             <DataGridTextColumn Header="Номер телефона"
-                                    Width="40*"
+                                    Width="30*"
                                     Binding="{Binding Path=phone}"/>
                         </DataGrid.Columns>
                         <DataGrid.ContextMenu>
@@ -70,7 +74,14 @@
                             HorizontalAlignment="Left"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right"
-                            VerticalAlignment="Top">
+                            VerticalAlignment="Top"
+                            Margin="40 20 0 0">
+                    <TextBlock Text="Добавление товара"
+                               Style="{StaticResource TextBlocksDefault}"
+                               Width="230"
+                               Height="40"
+                               Margin="0 0 0 10"
+                               FontSize="19pt"/>
                     <TextBox Name="TextBoxPrTitle"
                              Style="{StaticResource TextBoxesDefault}"
                              GotFocus="TextBox_GotFocus"
@@ -81,7 +92,7 @@
                     <TextBox Name="TextBoxPrDesc"
                              Style="{StaticResource TextBoxesDefault}"
                              GotFocus="TextBox_GotFocus"
-                             Width="250"
+                             Width="300"
                              TextChanged="TextBoxAboutProducts_TextChanged"
                              TextWrapping="WrapWithOverflow"
                              Height="150"
@@ -89,6 +100,7 @@
                     <ComboBox Name="ComboBoxPrType"
                               Style="{StaticResource ComboBoxesDefault}"
                               SelectedValuePath="pr_type_id"
+                              Width="200"
                               DisplayMemberPath="pr_type_title"/>   
                 </StackPanel>
             </StackPanel>

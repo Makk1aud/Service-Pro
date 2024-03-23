@@ -3,6 +3,7 @@ using Coursework.DataApp;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.IO.Packaging;
 using System.Linq;
@@ -66,6 +67,15 @@ namespace Coursework.Repository
 
         public IGenericRepository<Manufacturer> Manufacturer => _manufacturerRepository.Value;
 
+        private void ClearDbExceptions()
+        {
+            foreach (var dbEntityEntry in _context.ChangeTracker.Entries().ToArray())
+            {
+                if (dbEntityEntry.Entity != null)
+                    dbEntityEntry.State = EntityState.Detached;
+            }
+        }
+
         public async Task SaveAsync()
         {
             try
@@ -76,12 +86,13 @@ namespace Coursework.Repository
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
                 MessageBox.Show("Не удалось обновить данные, возможно пропущены поля для заполнения",
                     "Ошибка БД",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
+                ClearDbExceptions();
             }
             catch (DbException)
             {
@@ -89,6 +100,7 @@ namespace Coursework.Repository
                     "Ошибка БД",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
+                ClearDbExceptions();
             }
             catch (Exception ex)
             {
@@ -96,6 +108,7 @@ namespace Coursework.Repository
                     "Ошибка",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
+                ClearDbExceptions();
             }
         }
     }

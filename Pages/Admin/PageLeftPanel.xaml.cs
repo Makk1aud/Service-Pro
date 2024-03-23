@@ -39,5 +39,8 @@ namespace Coursework.Pages.Admin
 
         private void ButtonSupplyMaterials_Click(object sender, RoutedEventArgs e) =>
             AdminClass.FrameMainStruct.Navigate(new PageSupplyMaterials());
+
+        private void ButtonEditData_Click(object sender, RoutedEventArgs e) =>
+            AdminClass.FrameMainStruct.Navigate(new PageDataEditing());
     }
 }

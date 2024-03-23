@@ -37,6 +37,7 @@
                                    Style="{StaticResource TextBlocksDefault}"
                                    TextAlignment="Right"/>
                         <TextBlock Text="{Binding email}"
+                                   Width="240"
                                    DataContext="{Binding Path=Employee}"
                                    Style="{StaticResource TextBlocksDefault}"/>
                     </StackPanel>
@@ -50,13 +51,16 @@
                                    Style="{StaticResource TextBlocksDefault}"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="60 0 0 0">
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0 30 0 0">
                         <TextBlock Text="Всего заказов:"
-                                   Width="130"
+                                   Width="180"
+                                   FontSize="18pt"
                                    Style="{StaticResource TextBlocksDefault}"/>
                         <TextBlock Name="CountOrders"
                                    HorizontalAlignment="Left"
+                                   FontSize="18pt"
                                    Style="{StaticResource TextBlocksDefault}"/>
                     </StackPanel>
 
@@ -77,8 +81,9 @@
                                    Style="{StaticResource TextBlocksDefault}"
                                    HorizontalAlignment="Left"/>
                         <TextBox Name="TextBoxProductName"
-                                   Style="{StaticResource TextBoxesDefault}"
-                                   TextChanged="TextBox_TextChanged"/>
+                                 MaxLength="20"
+                                 Style="{StaticResource TextBoxesDefault}"
+                                 TextChanged="TextBox_TextChanged"/>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="Тип"
@@ -115,7 +120,11 @@
                       Height="250"
                       Width="800"
                       MinRowHeight="20">
-
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FontSize" Value="14pt"/>
+                    </Style>
+                </DataGrid.CellStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Наименование"
                                         Width="20*"
@@ -162,24 +171,34 @@
             <StackPanel HorizontalAlignment="Center"
                         Orientation="Horizontal">
                 <Button Name="ButtonPreviousPage"
-                        Content="Пред"
+                        Height="40"
                         Click="ButtonPreviousPage_Click"
-                        Style="{StaticResource ButtonsDefault}"/>
+                        Style="{StaticResource ButtonsDefault}">
+                    <Image Source="/Images/Props/ArrowLeft.png"
+                           Height="40"
+                           Width="50"/>
+                </Button>
                 <TextBlock Text="{Binding CurrentPage}"
                            DataContext="{Binding Path= MetaData}"
-                           FontSize="14pt"                           
+                           FontSize="14pt"     
+                           Margin="3"
                            VerticalAlignment="Center"/>
                 <TextBlock Text="из"
                            FontSize="14pt"                           
                            VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding TotalPages}"
                            DataContext="{Binding Path= MetaData}"
-                           FontSize="14pt"                           
+                           FontSize="14pt"
+                           Margin="3"
                            VerticalAlignment="Center"/>
                 <Button Name="ButtonNextPage"
-                        Content="След"
+                        Height="40"
                         Click="ButtonNextPage_Click"
-                        Style="{StaticResource ButtonsDefault}"/>
+                        Style="{StaticResource ButtonsDefault}">
+                    <Image Source="/Images/Props/ArrowRight.png"
+                           Height="40"
+                           Width="50"/>
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

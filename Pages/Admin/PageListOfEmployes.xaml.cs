@@ -28,7 +28,7 @@ namespace Coursework.Pages.Admin
             ComboBoxPosSort.ItemsSource = AdminClass
                 .RepositoryManager
                 .Position
-                .FindAllGeneric(trackChanges: false);
+                .FindAllGeneric(trackChanges: true);
         }
 
         private void DataGridSort()
@@ -40,7 +40,7 @@ namespace Coursework.Pages.Admin
                 {
                     Lastname = TextBoxLastName.Text,
                     PositonId = Convert.ToInt32(ComboBoxPosSort.SelectedValue)
-                }, trackChanges: false);
+                }, trackChanges: true);
         }
 
         private void TextBoxLastName_TextChanged(object sender, TextChangedEventArgs e) =>
@@ -59,10 +59,13 @@ namespace Coursework.Pages.Admin
         private async void MenuDelete_Click(object sender, RoutedEventArgs e)
         {
             var employee = DataGridEmployes.SelectedItem as Employee;
-
+           
             AdminClass.RepositoryManager.Employee.DeleteEmployee(employee);
             await AdminClass.RepositoryManager.SaveAsync();
             DataGridSort();
         }
+
+        private void ButtonAddEmploye_Click(object sender, RoutedEventArgs e) =>
+            AdminClass.FrameMainStruct.Navigate(new PageAddEmploye());
     }
 }

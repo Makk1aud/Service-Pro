@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="210"
       Title="PageLeftPanel">
 
-    <Grid Background="DarkSalmon">
+    <Grid Background="#06085c">
         <StackPanel VerticalAlignment="Top"
                     HorizontalAlignment="Left">
             <Button Name="ButtonMainPage"
@@ -16,7 +16,7 @@
                     Click="ButtonMainPage_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
             <Button Name="ButtonListOfExperts"
-                    Content="Список специалистов"
+                    Content="Список сотрудников"
                     Click="ButtonListOfExperts_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
             <Button Name="ButtonIssueOrder"
@@ -27,10 +27,17 @@
                     Content="Поставки"
                     Click="ButtonSupplyMaterials_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
+            <Button Name="ButtonEditData"
+                    Content="Редактирование"
+                    Click="ButtonEditData_Click"
+                    Style="{StaticResource ButtonsLeftPanel}"/>
             <Button Name="ButtonSignOut"
                     Content="Выйти с аккаунта"
                     Click="ButtonSignOut_Click"
                     Style="{StaticResource ButtonsLeftPanel}"/>
+            <Image Source="/Images/Logos/Logo.png"
+                   Margin="0 50 0 0"/>
+
         </StackPanel>
     </Grid>
 </Page>

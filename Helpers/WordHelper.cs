@@ -20,7 +20,7 @@ namespace Coursework.Helpers
             _fileInfo = new FileInfo(fileName);
         }
 
-        public void WriteIntoDocument(Dictionary<string, string> values, string dirName, string productName)
+        public bool WriteIntoDocument(Dictionary<string, string> values, string dirName, string productName)
         {
             Word.Application app = null;
             try
@@ -55,12 +55,20 @@ namespace Coursework.Helpers
                 }
 
                 var pathToDir = AppDomain.CurrentDomain.BaseDirectory;
-                string path = $"{pathToDir}Word\\{dirName}\\{productName}_{_fileInfo.Name}";
+                string path = $"{pathToDir}Word\\{dirName}\\{DateTime.Now.ToString("yyyy_MM_dd_H")}-{productName}_{_fileInfo.Name}";
 
                 app.ActiveDocument.SaveAs2(path);
                 app.ActiveDocument.Close();
+                return true;
             }
-            catch (Exception) { MessageBox.Show("Не удалось сделать гарантию"); }
+            catch (Exception)
+            {
+                MessageBox.Show("Не удалось сделать гарантию",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return false;
+            }
             finally 
             {
                 if (app != null)

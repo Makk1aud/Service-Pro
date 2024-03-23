@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,6 +45,15 @@
     </Reference>
     <Reference Include="Humanizer, Version=2.14.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
       <HintPath>packages\Humanizer.Core.2.14.1\lib\netstandard2.0\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=3.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.3.0.0\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignExtensions, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c5ebccebe084d64f, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignExtensions.3.3.0\lib\net45\MaterialDesignExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.5.0.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -79,6 +90,9 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Primitives, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
@@ -260,11 +274,18 @@
     <Compile Include="DataApp\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\HtmlCodeVerification.cs" />
     <Compile Include="Helpers\PasswordHash.cs" />
     <Compile Include="Helpers\WordHelper.cs" />
+    <Compile Include="Pages\Admin\PageDataEditing.xaml.cs">
+      <DependentUpon>PageDataEditing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\PageAboutClientProducts.xaml.cs">
       <DependentUpon>PageAboutClientProducts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\PageAddEmploye.xaml.cs">
+      <DependentUpon>PageAddEmploye.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\PageAddNewMaterial.xaml.cs">
       <DependentUpon>PageAddNewMaterial.xaml</DependentUpon>
@@ -309,7 +330,15 @@
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\RepositoryManager.cs" />
     <Compile Include="ValidationsModels\ClientValidation.cs" />
+    <Page Include="Pages\Admin\PageDataEditing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Admin\PageAboutClientProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\PageAddEmploye.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -349,6 +378,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ValidationsModels\EmployeeValidation.cs" />
     <Compile Include="ValidationsModels\Extensions\ValidationExtensions.cs" />
     <Compile Include="ViewModels\ProductHandlingViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
@@ -474,6 +504,12 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Html\EmailMessage.html" />
+    <Resource Include="Images\Props\ArrowRight.png" />
+    <Resource Include="Images\Props\ArrowLeft.png" />
+    <Resource Include="Images\Logos\Logo back BW.png" />
+    <Resource Include="Images\Logos\Logo back.png" />
+    <Resource Include="Images\Logos\Logo Bw.png" />
+    <Resource Include="Images\Logos\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
@@ -509,4 +545,11 @@
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\MaterialDesignThemes.5.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.5.0.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\MaterialDesignThemes.5.0.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.5.0.0\build\MaterialDesignThemes.targets'))" />
+  </Target>
 </Project>

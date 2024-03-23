@@ -34,7 +34,7 @@ namespace Coursework.Repository
         {
             login = PasswordHash.EncodePasswordToBase64(login);
             return FindByCondition(x => x.login_code.Equals(login), trackChanges)
-            .SingleOrDefault();
+            .FirstOrDefault();
         }
 
 
