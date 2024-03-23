@@ -62,12 +62,12 @@ namespace Coursework.Pages.Admin
 
         private void DataGridManufacturers_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            var manufaturer = DataGridManufacturers.SelectedItem as Manufacturer;
-            if (manufaturer is null)
+            var manufacturer = DataGridManufacturers.SelectedItem as Manufacturer;
+            if (manufacturer is null)
                 return;
 
-            material.manufacturer_id = manufaturer.manufacturer_id;
-            material.Manufacturer = manufaturer;
+            material.manufacturer_id = manufacturer.manufacturer_id;
+            material.Manufacturer = manufacturer;
             UpdateDataContext();
         }
 
@@ -100,6 +100,9 @@ namespace Coursework.Pages.Admin
 
         private async void ButtonAddNewMaterial_Click_1(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(TextBoxMaterialPrice.Text) ||
+                string.IsNullOrEmpty(TextBoxMaterialTitle.Text))
+                return;
             AdminClass.RepositoryManager.Material.CreateMaterial(material);
             await AdminClass.RepositoryManager.SaveAsync();
         }

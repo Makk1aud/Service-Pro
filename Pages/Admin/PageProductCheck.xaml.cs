@@ -140,7 +140,7 @@ namespace Coursework.Pages.Admin
                 {"<ProductCode>", _product.product_id.ToString() },
                 {"<ProductName>", _product.product_name },
                 {"<ProductPrice>", _finalPrice.ToString()},
-                {"<Discount>", _discountCard.discount.ToString() },
+                {"<Discount>", _discountCard is null ? "0" : _discountCard.discount.ToString() },
                 {"<ProductPriceFinaly>", TextBlockOrderSum.Text }
             };
 

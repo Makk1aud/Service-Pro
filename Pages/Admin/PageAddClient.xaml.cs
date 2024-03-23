@@ -105,6 +105,7 @@ namespace Coursework.Pages.Admin
             _timerEndTime = DateTime.Now + TimeSpan.FromSeconds(_timerDuration);
 
             ButtonSendCode.IsEnabled = false;
+            _timer.Stop();
             TextBoxEmail.TextChanged += TextBoxEmail_TextChanged;
         }
 
@@ -122,6 +123,7 @@ namespace Coursework.Pages.Admin
         {
             _emailValidation = false;
             ButtonSendCode.IsEnabled = true;
+            _timer.Start();
             _verificationCode = null;
             TextBoxEmail.TextChanged -= TextBoxEmail_TextChanged;
         }

@@ -121,6 +121,7 @@
             <StackPanel Width="280">
                 <TextBlock Text="Добавление"
                            FontSize="20pt"
+                           Height="35"
                            Margin="0 20 0 40"
                            Style="{StaticResource TextBlocksDefault}"/>
                 <TextBlock Text="Производитель"

@@ -37,6 +37,7 @@
                                    Style="{StaticResource TextBlocksDefault}"
                                    TextAlignment="Right"/>
                         <TextBlock Text="{Binding email}"
+                                   Width="240"
                                    DataContext="{Binding Path=Employee}"
                                    Style="{StaticResource TextBlocksDefault}"/>
                     </StackPanel>
@@ -50,13 +51,16 @@
                                    Style="{StaticResource TextBlocksDefault}"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="60 0 0 0">
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0 30 0 0">
                         <TextBlock Text="Всего заказов:"
-                                   Width="130"
+                                   Width="180"
+                                   FontSize="18pt"
                                    Style="{StaticResource TextBlocksDefault}"/>
                         <TextBlock Name="CountOrders"
                                    HorizontalAlignment="Left"
+                                   FontSize="18pt"
                                    Style="{StaticResource TextBlocksDefault}"/>
                     </StackPanel>
 

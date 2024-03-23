@@ -66,18 +66,13 @@ namespace Coursework.Pages.Admin
             ButtonSendEmail.IsEnabled = false;
         }
 
-        private void TextBoxRepeatPassword_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PasswordBoxRepeatPassword.GotFocus -= TextBoxRepeatPassword_GotFocus;
-            PasswordBoxRepeatPassword.PasswordChanged += PasswordBoxRepeatPassword_PasswordChanged;
-        }
-
         private void ButtonCheckCode_Click(object sender, RoutedEventArgs e)
         {
             if(int.TryParse(TextBoxEmailCode.Text, out var code)
                 && code == _verificationCode)
             {
                 _emailValidation = true;
+                _timer.Stop();
                 ButtonSendEmail.IsEnabled = false;
                 TextBlockEmailCodeVerification.Text = string.Empty;
                 TextBoxEmail.TextChanged += TextBoxEmail_TextChanged;
@@ -144,11 +139,15 @@ namespace Coursework.Pages.Admin
             _verificationCode = null;
             _emailValidation = false;
             ButtonSendEmail.IsEnabled = true;
+            _timer.Start();
             TextBlockEmailCodeVerification.Text = string.Empty;
             TextBoxEmail.TextChanged -= TextBoxEmail_TextChanged;
         }
 
-        private void PasswordBoxRepeatPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        private void PasswordBoxRepeatPassword_PasswordChanged(object sender, RoutedEventArgs e) => 
+            PasswordCheck();
+
+        private void PasswordCheck()
         {
             if (PasswordBoxRepeatPassword.Password != TextBoxLoginPassword.Text
                 || string.IsNullOrEmpty(TextBoxLoginPassword.Text))
@@ -160,5 +159,8 @@ namespace Coursework.Pages.Admin
             _passwordValidation = true;
             TextBlockPasswordVerification.Text = string.Empty;
         }
+
+        private void TextBoxLoginPassword_TextChanged(object sender, TextChangedEventArgs e) =>
+            PasswordCheck();
     }
 }

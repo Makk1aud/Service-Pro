@@ -121,6 +121,7 @@
                                Width="200"/>
                     <TextBox Name="TextBoxLoginPassword"
                              MaxLength="20"
+                             TextChanged="TextBoxLoginPassword_TextChanged"
                              Style="{StaticResource TextBoxesDefault}"/>
 
                     <TextBlock Text="Повторите пароль"
@@ -135,7 +136,7 @@
                                Foreground="Red"/>
                     <PasswordBox Name="PasswordBoxRepeatPassword"
                                  MaxLength="20"                                   
-                                 GotFocus="TextBoxRepeatPassword_GotFocus"                                 
+                                 PasswordChanged="PasswordBoxRepeatPassword_PasswordChanged"
                                  Style="{StaticResource PasswordBoxDefault}"/>
                 </StackPanel>
             </StackPanel>
